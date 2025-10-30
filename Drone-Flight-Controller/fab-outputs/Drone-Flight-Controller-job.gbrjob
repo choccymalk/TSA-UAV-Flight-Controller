@@ -5,7 +5,11 @@
       "Application": "Pcbnew",
       "Version": "9.0.1"
     },
+<<<<<<< Updated upstream
     "CreationDate": "2025-10-26T21:15:45-04:00"
+=======
+    "CreationDate": "2025-10-26T21:35:25-04:00"
+>>>>>>> Stashed changes
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -14,8 +18,13 @@
       "Revision": "rev?"
     },
     "Size": {
+<<<<<<< Updated upstream
       "X": 51.55,
       "Y": 43.3
+=======
+      "X": 56.55,
+      "Y": 59.8
+>>>>>>> Stashed changes
     },
     "LayerNumber": 4,
     "BoardThickness": 1.6,
@@ -28,6 +37,7 @@
       "PadToTrack": 0.2,
       "TrackToTrack": 0.2,
       "MinLineWidth": 0.2,
+<<<<<<< Updated upstream
       "TrackToRegion": 0.2,
       "RegionToRegion": 0.2
     },
@@ -35,6 +45,15 @@
       "Layers": "Inner",
       "PadToPad": 0.0,
       "PadToTrack": 0.0,
+=======
+      "TrackToRegion": 0.5,
+      "RegionToRegion": 0.5
+    },
+    {
+      "Layers": "Inner",
+      "PadToPad": 0.2,
+      "PadToTrack": 0.2,
+>>>>>>> Stashed changes
       "TrackToTrack": 0.2,
       "MinLineWidth": 0.2,
       "TrackToRegion": 0.5,

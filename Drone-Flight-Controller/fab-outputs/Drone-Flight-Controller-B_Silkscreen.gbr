@@ -1,16 +1,25 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,9.0.1*%
+<<<<<<< Updated upstream
 %TF.CreationDate,2025-10-26T21:15:44-04:00*%
+=======
+%TF.CreationDate,2025-10-26T21:35:25-04:00*%
+>>>>>>> Stashed changes
 %TF.ProjectId,Drone-Flight-Controller,44726f6e-652d-4466-9c69-6768742d436f,rev?*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Legend,Bot*%
 %TF.FilePolarity,Positive*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+<<<<<<< Updated upstream
 G04 Created by KiCad (PCBNEW 9.0.1) date 2025-10-26 21:15:44*
+=======
+G04 Created by KiCad (PCBNEW 9.0.1) date 2025-10-26 21:35:25*
+>>>>>>> Stashed changes
 %MOMM*%
 %LPD*%
 G01*
 G04 APERTURE LIST*
+<<<<<<< Updated upstream
 %ADD10C,0.150000*%
 %ADD11C,0.120000*%
 G04 APERTURE END LIST*
@@ -307,4 +316,7 @@ X42892164Y-45140000D01*
 X43107836Y-45860000D02*
 X42892164Y-45860000D01*
 %TD*%
+=======
+G04 APERTURE END LIST*
+>>>>>>> Stashed changes
 M02*
