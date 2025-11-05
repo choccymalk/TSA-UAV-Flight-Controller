@@ -4419,6 +4419,28 @@
 		)
 		(uuid "fdf78def-646c-40dc-94c6-6f804785da20")
 	)
+	(global_label "PWM_6"
+		(shape input)
+		(at 193.04 237.49 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "03fadd49-9d0b-4c24-9ccf-b0f00392f048")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 202.3751 237.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "PWM_1"
 		(shape input)
 		(at 140.97 53.34 180)
@@ -4454,6 +4476,28 @@
 		(uuid "243b6d6e-8cb9-4f94-adfa-277eee4f9dd9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 202.3751 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PWM_7"
+		(shape input)
+		(at 193.04 240.03 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2d3b36d1-c456-41ea-8039-8937ed3c32d4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 202.3751 240.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4747,6 +4791,50 @@
 			)
 		)
 	)
+	(global_label "PWM_4"
+		(shape input)
+		(at 140.97 68.58 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "82bcec63-01eb-46ef-b8b0-3c878dbfe050")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.6349 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PWM_7"
+		(shape input)
+		(at 140.97 83.82 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8657d13c-fd71-4f44-851a-cbc3792de30f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.6349 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "I2C_SDA"
 		(shape input)
 		(at 160.02 224.79 180)
@@ -4787,6 +4875,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PWM_4"
+		(shape input)
+		(at 193.04 232.41 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9dd76cb8-20f0-4075-9ed4-2f2157df7e08")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 202.3751 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4877,6 +4987,50 @@
 			)
 		)
 	)
+	(global_label "PWM_5"
+		(shape input)
+		(at 193.04 234.95 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bcf30784-f5b9-4f32-8881-cb0dcf4c6211")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 202.3751 234.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PWM_6"
+		(shape input)
+		(at 140.97 78.74 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c4e2ed7c-af66-4bf4-aedc-ed96dfb7980c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.6349 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "BAROMETER_SDI"
 		(shape input)
 		(at 144.78 175.26 180)
@@ -4912,6 +5066,28 @@
 		(uuid "d14cb405-184c-4f48-8992-4e5618e03399")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 126.1316 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PWM_5"
+		(shape input)
+		(at 140.97 73.66 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d2504b03-bace-47dd-83d5-9e6c456d0f89")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.6349 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6164,6 +6340,82 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
+		(at 140.97 68.58 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4476b3d3-a65d-4a9e-9ccf-47e17b233713")
+		(property "Reference" "J9"
+			(at 146.05 67.3099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 146.05 69.8499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 140.97 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 140.97 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 140.97 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Field5" ""
+			(at 140.97 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "41934acd-21e3-4fde-a4e4-c1946546076b")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "J9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
 		(at 87.63 60.96 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6677,7 +6929,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 140.97 68.58 270)
+		(at 140.97 38.1 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6686,7 +6938,7 @@
 		(fields_autoplaced yes)
 		(uuid "5fb3a3fa-233f-4457-ad23-0a0140c794eb")
 		(property "Reference" "J7"
-			(at 146.05 67.3099 90)
+			(at 146.05 36.8299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6695,7 +6947,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 146.05 69.8499 90)
+			(at 146.05 39.3699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6704,7 +6956,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 140.97 73.66 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6713,7 +6965,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 140.97 73.66 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6722,7 +6974,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 140.97 68.58 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6731,7 +6983,7 @@
 			)
 		)
 		(property "Field5" ""
-			(at 140.97 68.58 90)
+			(at 140.97 38.1 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7247,7 +7499,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_2x20_P2.54mm_Vertical"
 			(at 137.414 278.638 0)
 			(effects
 				(font
@@ -7813,6 +8065,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 140.97 73.66 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8949b4bc-cf39-4bdb-807a-56e2c781291d")
+		(property "Reference" "J10"
+			(at 146.05 72.3899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 146.05 74.9299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 140.97 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 140.97 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 140.97 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Field5" ""
+			(at 140.97 73.66 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "36f4ea6e-f741-49d5-bd88-d53e057e487a")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "J10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 26.67 60.96 0)
 		(unit 1)
@@ -8152,6 +8480,82 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "R10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 140.97 83.82 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9d047c2d-b54d-4fd9-9f4e-7913d353d0f6")
+		(property "Reference" "J12"
+			(at 146.05 82.5499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 146.05 85.0899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 140.97 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 140.97 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 140.97 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Field5" ""
+			(at 140.97 83.82 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bf35bc86-6bb8-426e-ad84-6adeeecedbfb")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "J12")
 					(unit 1)
 				)
 			)
@@ -8570,7 +8974,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 140.97 73.66 270)
+		(at 140.97 43.18 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8578,7 +8982,7 @@
 		(dnp no)
 		(uuid "a9f4330b-9823-4967-98d0-dda9376a6250")
 		(property "Reference" "#PWR024"
-			(at 134.62 73.66 0)
+			(at 134.62 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8587,7 +8991,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 137.16 73.66 0)
+			(at 137.16 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8595,7 +8999,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 140.97 73.66 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8604,7 +9008,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 140.97 73.66 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8613,7 +9017,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 140.97 73.66 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8710,7 +9114,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 140.97 68.58 90)
+		(at 140.97 38.1 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8718,7 +9122,7 @@
 		(dnp no)
 		(uuid "aa52d18a-4844-42cf-ae85-5525e469fba5")
 		(property "Reference" "#PWR023"
-			(at 144.78 68.58 0)
+			(at 144.78 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8727,7 +9131,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 137.16 68.58 0)
+			(at 137.16 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8735,7 +9139,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 140.97 68.58 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8744,7 +9148,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 140.97 68.58 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8753,7 +9157,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 140.97 68.58 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9031,6 +9435,82 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 140.97 78.74 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b9cecc4e-3c5e-46cc-a780-6c189ef289b1")
+		(property "Reference" "J11"
+			(at 146.05 77.4699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 146.05 80.0099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 140.97 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 140.97 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 140.97 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Field5" ""
+			(at 140.97 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "783e0038-87e7-40f2-8be8-a09a7fae40df")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "J11")
 					(unit 1)
 				)
 			)
@@ -9583,7 +10063,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 140.97 73.66 270)
+		(at 140.97 43.18 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9592,7 +10072,7 @@
 		(fields_autoplaced yes)
 		(uuid "d460997e-b2b8-4800-9448-38a8fbd2dfed")
 		(property "Reference" "J8"
-			(at 146.05 72.3899 90)
+			(at 146.05 41.9099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9601,7 +10081,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 146.05 74.9299 90)
+			(at 146.05 44.4499 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9610,7 +10090,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 140.97 78.74 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9619,7 +10099,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 140.97 78.74 0)
+			(at 140.97 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9628,7 +10108,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 140.97 73.66 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9637,7 +10117,7 @@
 			)
 		)
 		(property "Field5" ""
-			(at 140.97 73.66 90)
+			(at 140.97 43.18 90)
 			(effects
 				(font
 					(size 1.27 1.27)
