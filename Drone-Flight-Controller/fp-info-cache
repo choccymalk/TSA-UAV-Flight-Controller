@@ -1,4 +1,11 @@
-25208957173011065
+25235772779041634
+Analog_Devices
+QFN-32_UH
+
+
+0
+33
+33
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -1246,6 +1253,13 @@ switch normally-open pushbutton push-button
 4
 4
 Button_Switch_SMD
+SW_Membrane
+
+
+0
+2
+2
+Button_Switch_SMD
 SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010
 Side push button (https://www.alps.com/prod/info/E/PDF/Tact/SurfaceMount/SKRT/SKRT.pdf)
 push horizontal SPST 1P1T
@@ -1662,6 +1676,13 @@ Button_Switch_SMD
 SW_Tactile_SPST_NO_Straight_CK_PTS636Sx25SMTRLFS
 Tactile switch, SPST, 6.0x3.5 mm, H2.5 mm, straight, NO, gull wing leads: https://www.ckswitches.com/media/2779/pts636.pdf
 switch tactile SPST 1P1T straight NO SMTR C&K
+0
+2
+2
+Button_Switch_SMD
+Untitled
+
+
 0
 2
 2
@@ -10079,6 +10100,13 @@ DSUB-62-HD_Socket_Vertical_P2.41x1.98mm_MountingHoles
 0
 64
 63
+Connector_FFC-FPC
+HRS_FH26W-39S-0.3SHW_60_
+
+
+0
+41
+41
 Connector_FFC-FPC
 Hirose_FH12-6S-0.5SH_1x06-1MP_P0.50mm_Horizontal
 Hirose FH12, FFC/FPC connector, FH12-6S-0.5SH, 6 Pins per row (https://www.hirose.com/product/en/products/FH12/FH12-24S-0.5SH(55)/), generated with kicad-footprint-generator
@@ -24877,6 +24905,13 @@ connector Molex SlimStack vertical
 0
 80
 80
+Connector_Oculink
+AMPHENOL_G14A42121B12HR
+
+
+0
+46
+46
 Connector_PCBEdge
 4UCON_10156_2x40_P1.27mm_Socket_Horizontal
 4UCON 10156 Card edge socket with 80 contacts (40 each side), through-hole, http://www.4uconnector.com/online/object/4udrawing/10156.pdf
@@ -50218,6 +50253,13 @@ four-pin M8
 6
 5
 Connector_USB
+MOLEX_0484040003
+
+
+0
+13
+13
+Connector_USB
 USB3_A_Molex_48393-001
 USB 3.0, type A, right angle, http://www.molex.com/pdm_docs/sd/483930003_sd.pdf
 USB 3.0 type A right angle
@@ -50805,6 +50847,13 @@ hdmi micro type d right angle tht smd hybrid
 0
 23
 20
+Connector_Wago
+CONN2_2601-1102_WAG
+
+2601-1102 
+0
+4
+4
 Connector_Wago
 Wago_734-132_1x02_P3.50mm_Vertical
 Molex 734 Male header (for PCBs); Straight solder pin 1 x 1 mm, 734-132 , 2 Pins (http://www.farnell.com/datasheets/2157639.pdf), generated with kicad-footprint-generator
@@ -99175,6 +99224,13 @@ THT Terminal Block WAGO 2601-3124 pitch 3.5mm size 85.5x12.8mm drill 1.2mm pad 2
 0
 48
 24
+TerminalBlock_WAGO
+WAGO_2601_1101
+2616-1101-3
+Connector
+0
+6
+6
 TerminalBlock_Wuerth
 Wuerth_REDCUBE-THR_WP-THRBU_74650073_THR
 REDCUBE THR with internal through-hole thread WP-THRBU (https://www.we-online.de/katalog/datasheet/74650073.pdf)
