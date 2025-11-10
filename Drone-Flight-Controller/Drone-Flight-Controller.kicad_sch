@@ -2471,6 +2471,192 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Jumper:SolderJumper_2_Open"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(property "Reference" "JP"
+				(at 0 2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SolderJumper_2_Open"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Solder Jumper, 2-pole, open"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "solder jumper SPST"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SolderJumper*Open*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SolderJumper_2_Open_0_1"
+				(polyline
+					(pts
+						(xy -0.254 1.016) (xy -0.254 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.016) (xy 0.254 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Open_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Regulator_Linear:MCP1700x-180xxMB"
 			(pin_names
 				(offset 0.254)
@@ -3718,6 +3904,304 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Transistor_FET:BSS138"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "BSS138"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 5.08 -1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+				(at 5.08 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" "50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "N-Channel MOSFET"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "BSS138_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "BSS138_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+12V"
 			(power)
 			(pin_numbers
@@ -4351,6 +4835,12 @@
 		(uuid "26010121-4f9e-49a7-9eee-91af132339aa")
 	)
 	(junction
+		(at 199.39 133.35)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2f7713d3-c938-4157-9484-08cc0c0cd900")
+	)
+	(junction
 		(at 31.75 53.34)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4361,6 +4851,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "351349af-5fcf-4d4e-8619-628fa1ce6f15")
+	)
+	(junction
+		(at 199.39 153.67)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "35ae3859-7cb1-4f0e-8890-56b192820830")
 	)
 	(junction
 		(at 82.55 60.96)
@@ -4381,6 +4877,12 @@
 		(uuid "5d1ff7fe-b3ac-4ab7-8ade-f038fc3032be")
 	)
 	(junction
+		(at 199.39 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "787430d9-350a-49ac-85bb-4056ccac0677")
+	)
+	(junction
 		(at 154.94 185.42)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4397,6 +4899,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "827da338-baa7-4e07-9bc6-eca1e04c9964")
+	)
+	(junction
+		(at 48.26 157.48)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9517332d-808f-4120-82bf-68a35bbb8a21")
 	)
 	(junction
 		(at 68.58 60.96)
@@ -4447,10 +4955,22 @@
 		(uuid "f5f892bb-c1be-47c1-80bc-3ac0d39c5c10")
 	)
 	(junction
+		(at 199.39 113.03)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f87adf53-f28a-41f0-83ab-62fb2467c4e2")
+	)
+	(junction
 		(at 87.63 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fcc57827-77df-45cb-97bf-867e88b87204")
+	)
+	(junction
+		(at 55.88 157.48)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fe7a5d5e-e87e-4691-97bf-b4f5a173320e")
 	)
 	(no_connect
 		(at 158.75 129.54)
@@ -4468,10 +4988,6 @@
 		(at 133.35 139.7)
 		(uuid "b78fef80-fad0-4957-8354-526392aeae42")
 	)
-	(no_connect
-		(at 133.35 132.08)
-		(uuid "f118a47e-5393-409b-b999-13f93a010b35")
-	)
 	(wire
 		(pts
 			(xy 154.94 167.64) (xy 157.48 167.64)
@@ -4481,6 +4997,16 @@
 			(type default)
 		)
 		(uuid "09cfec30-78e2-4db2-903d-b0d186ad81b1")
+	)
+	(wire
+		(pts
+			(xy 199.39 133.35) (xy 204.47 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "149af4ab-f294-4b07-a1ca-de6a43b2ee96")
 	)
 	(wire
 		(pts
@@ -4624,6 +5150,26 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 157.48) (xy 48.26 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c4ac23b-7474-44a5-9a6d-acdd8a7ae5c7")
+	)
+	(wire
+		(pts
+			(xy 199.39 153.67) (xy 204.47 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d192225-4d17-4f0e-bf9f-ca42b9ee000c")
+	)
+	(wire
+		(pts
 			(xy 172.72 234.95) (xy 172.72 237.49)
 		)
 		(stroke
@@ -4631,6 +5177,16 @@
 			(type default)
 		)
 		(uuid "8338498e-0682-44af-9bc9-ddc162a9ed38")
+	)
+	(wire
+		(pts
+			(xy 199.39 113.03) (xy 204.47 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87b0d7a6-a7a4-4562-955e-2431da41146e")
 	)
 	(wire
 		(pts
@@ -4764,6 +5320,16 @@
 	)
 	(wire
 		(pts
+			(xy 55.88 157.48) (xy 55.88 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c98d0687-db4d-43fe-bd55-9c199cf83cdf")
+	)
+	(wire
+		(pts
 			(xy 172.72 237.49) (xy 172.72 240.03)
 		)
 		(stroke
@@ -4854,6 +5420,16 @@
 	)
 	(wire
 		(pts
+			(xy 199.39 92.71) (xy 204.47 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd52b9cf-8c85-4ba6-9fb1-85a4897cfcc9")
+	)
+	(wire
+		(pts
 			(xy 86.36 127) (xy 80.01 127)
 		)
 		(stroke
@@ -4861,6 +5437,28 @@
 			(type default)
 		)
 		(uuid "fdf78def-646c-40dc-94c6-6f804785da20")
+	)
+	(global_label "IMU_SDO_LV"
+		(shape input)
+		(at 133.35 124.46 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0000e01d-e9e2-4bb1-be57-bc25c778c477")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.1162 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
 	)
 	(global_label "PWM_6"
 		(shape input)
@@ -4884,9 +5482,9 @@
 			)
 		)
 	)
-	(global_label "I2C_SCL"
+	(global_label "IMU_CS_HV"
 		(shape input)
-		(at 133.35 129.54 180)
+		(at 34.29 228.6 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4894,14 +5492,36 @@
 			)
 			(justify right)
 		)
-		(uuid "0b8a8490-5e26-453f-92a3-0827c38bf09c")
+		(uuid "08061c6c-76a0-4715-882c-1602f04b9aab")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 122.8053 129.54 0)
+			(at 21.0843 228.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_CS_HV"
+		(shape input)
+		(at 209.55 161.29 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0ca4069c-df3e-43ff-b4f3-610ada783f0e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 222.7557 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4919,6 +5539,72 @@
 		(uuid "11d2b509-e6d2-44f2-b1d6-e4a264415800")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 131.6349 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SDI_LV"
+		(shape input)
+		(at 199.39 120.65 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "13b514d1-ac1c-420a-8d98-a7be6dd6cc88")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 185.8819 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SDI_HV"
+		(shape input)
+		(at 34.29 233.68 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "233a4c21-9f94-4773-a5fa-04a19aebd15d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 20.4795 233.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SCL_LV"
+		(shape input)
+		(at 133.35 129.54 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "23931fec-1803-475d-8ed8-ab8692853784")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.4186 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4985,6 +5671,28 @@
 		(uuid "2fdcea20-060d-40e1-9d75-fdf05b1012b3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 160.9053 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SDI_LV"
+		(shape input)
+		(at 133.35 127 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2fe096e1-c2e7-4e50-a152-0ee783296279")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.8419 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5126,6 +5834,28 @@
 			)
 		)
 	)
+	(global_label "IMU_SCL_LV"
+		(shape input)
+		(at 199.39 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "51b1182e-1c21-48e1-874c-2fd588d92cca")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 185.4586 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "BAROMETER_CSB"
 		(shape input)
 		(at 100.33 215.9 0)
@@ -5139,6 +5869,50 @@
 		(uuid "55246e62-ac3b-411b-8a75-c4bd78932914")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 118.9784 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_CS_LV"
+		(shape input)
+		(at 199.39 161.29 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "58716984-70ab-4378-8988-b6e83c63538e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 186.4867 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SDI_HV"
+		(shape input)
+		(at 209.55 120.65 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "58bbbcb5-9b73-483c-bf32-9648216375d1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 223.3605 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5300,6 +6074,72 @@
 			)
 		)
 	)
+	(global_label "IMU_SDO_HV"
+		(shape input)
+		(at 209.55 100.33 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "91a73f9a-1afe-4ab5-98a6-98f2bb766e88")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 224.0862 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SCL_HV"
+		(shape input)
+		(at 34.29 236.22 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "951cee07-9139-4e21-8d47-56a05e3b766e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 20.0562 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SDO_HV"
+		(shape input)
+		(at 34.29 231.14 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9b1018ef-27f9-4466-835e-99ae98032b84")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 19.7538 231.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "PWM_4"
 		(shape input)
 		(at 193.04 232.41 0)
@@ -5338,6 +6178,50 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_CS_LV"
+		(shape input)
+		(at 133.35 132.08 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a7d8cde2-835b-4e98-888a-db07ba3d01eb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.4467 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IMU_SCL_HV"
+		(shape input)
+		(at 209.55 140.97 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a9c0efe7-7601-452b-84b2-b0ff15c4fff7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 223.7838 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -5628,6 +6512,28 @@
 			)
 		)
 	)
+	(global_label "IMU_SDO_LV"
+		(shape input)
+		(at 199.39 100.33 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f418d351-26ad-4a4b-815e-d187bef31306")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 185.1562 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "BATVOLTAGE"
 		(shape input)
 		(at 59.69 129.54 180)
@@ -5641,28 +6547,6 @@
 		(uuid "f4fdd4e8-7555-4862-8a8a-3a2349af1ca1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 45.4562 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "I2C_SDA"
-		(shape input)
-		(at 133.35 127 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f609475e-17c5-4779-b7d6-0b8ab8ceb187")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 122.7448 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5747,7 +6631,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "003ba8d6-1667-475f-8738-0678b48a4113")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR023"
 			(at 96.52 210.82 0)
 			(effects
 				(font
@@ -5796,7 +6680,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR025")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -5876,7 +6760,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "084df409-cb21-46eb-84e4-07f5415c0094")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR035"
 			(at 162.56 114.3 0)
 			(effects
 				(font
@@ -5926,7 +6810,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR037")
+					(reference "#PWR035")
 					(unit 1)
 				)
 			)
@@ -6099,7 +6983,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0a623e1e-cf27-4315-bf6a-283099e7ccfb")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR039"
 			(at 182.88 254 0)
 			(effects
 				(font
@@ -6148,7 +7032,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR041")
+					(reference "#PWR039")
 					(unit 1)
 				)
 			)
@@ -6219,6 +7103,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+1V8")
+		(at 199.39 113.03 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0c9656bc-3107-4d48-b251-603204d79412")
+		(property "Reference" "#PWR043"
+			(at 199.39 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 197.358 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.39 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.39 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 199.39 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "828d5c77-0e66-4f20-9560-d8bd565b651f")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR043")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 100.33 208.28 0)
 		(unit 1)
@@ -6227,7 +7177,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0e612264-f9a0-4b07-b03b-9d94d7e02091")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR022"
 			(at 100.33 212.09 0)
 			(effects
 				(font
@@ -6276,7 +7226,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR024")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -6415,6 +7365,80 @@
 		)
 	)
 	(symbol
+		(lib_id "Transistor_FET:BSS138")
+		(at 204.47 118.11 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1312dd33-4d47-4c32-93d6-568d68f7716c")
+		(property "Reference" "Q2"
+			(at 204.47 124.46 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BSS138"
+			(at 204.47 127 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 202.565 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+			(at 200.66 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23"
+			(at 204.47 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "35802a2b-da6d-4ff6-821c-ca19f0708d0a")
+		)
+		(pin "2"
+			(uuid "a191dbac-ff98-4ab7-9cf1-c00e42346c7e")
+		)
+		(pin "3"
+			(uuid "c32fae93-fe38-4490-91d6-815fbafe9ec2")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "Q2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Sensor_Pressure:BMP280")
 		(at 154.94 177.8 0)
 		(unit 1)
@@ -6503,16 +7527,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+1V8")
-		(at 125.73 124.46 0)
+		(lib_id "power:+5V")
+		(at 48.26 157.48 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "189f33e7-7ced-4fef-aadf-0caec0bcbcaa")
-		(property "Reference" "#PWR042"
-			(at 125.73 128.27 0)
+		(fields_autoplaced yes)
+		(uuid "1997c2a7-53d0-4129-8983-dd3c33bc13b6")
+		(property "Reference" "#PWR040"
+			(at 52.07 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6520,8 +7545,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+1V8"
-			(at 125.73 121.92 90)
+		(property "Value" "+5V"
+			(at 44.45 157.4799 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6530,7 +7555,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 125.73 124.46 0)
+			(at 48.26 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6539,7 +7564,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 125.73 124.46 0)
+			(at 48.26 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6547,8 +7572,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+1V8\""
-			(at 125.73 124.46 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 48.26 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6557,7 +7582,142 @@
 			)
 		)
 		(pin "1"
-			(uuid "56ab5e94-0860-40f5-b1d1-3d4feac40ce9")
+			(uuid "782d2f89-3968-4c14-8ff2-86ff7d414683")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 209.55 137.16 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1b7fd2c9-2a38-481f-8a00-bc4dd095e9bf")
+		(property "Reference" "R15"
+			(at 208.534 145.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 205.486 144.018 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 208.534 136.906 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 209.55 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 209.55 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "31e48e2d-c422-4a3d-8dbe-9d276f1957b3")
+		)
+		(pin "1"
+			(uuid "2c0780f1-7416-4455-979e-06c33a8dafab")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+1V8")
+		(at 199.39 92.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "21f4e325-bba8-434d-a294-504fdd9b2177")
+		(property "Reference" "#PWR042"
+			(at 199.39 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 197.358 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.39 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.39 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 199.39 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eb944dc1-10ab-4cd1-939a-1908bee496f2")
 		)
 		(instances
 			(project "Drone-Flight-Controller"
@@ -6577,7 +7737,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "27a376c2-a311-4aeb-9bbb-fee67d42d82c")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR029"
 			(at 143.51 118.11 0)
 			(effects
 				(font
@@ -6628,7 +7788,76 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR031")
+					(reference "#PWR029")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 199.39 137.16 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "28ffe9d8-e13a-4fb1-a7a2-0f1be27e716c")
+		(property "Reference" "R14"
+			(at 198.374 145.796 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 195.326 144.018 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 198.374 136.906 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 199.39 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 199.39 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ad178fbb-9b4f-45d4-b9dd-4ac71505c9d8")
+		)
+		(pin "1"
+			(uuid "7db91f72-9a8d-41a8-a1b5-5a86d8ca7ca8")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -7311,7 +8540,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4d23b50f-53c5-47c0-ae85-0444b7491156")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR038"
 			(at 182.88 220.98 0)
 			(effects
 				(font
@@ -7360,7 +8589,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR040")
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -7581,7 +8810,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "516935c2-2761-496a-a28d-cb3e035c0908")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR033"
 			(at 154.94 153.67 0)
 			(effects
 				(font
@@ -7632,7 +8861,76 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR035")
+					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 209.55 96.52 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5260f9de-5660-4d46-a0e2-0e3162162167")
+		(property "Reference" "R11"
+			(at 208.534 105.156 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 205.486 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 208.534 96.266 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 209.55 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 209.55 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c67e5ae1-d92c-4871-b8fe-b37a8766c4f3")
+		)
+		(pin "1"
+			(uuid "e8730835-7b93-4b8d-8b26-bc6df777267b")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -7648,7 +8946,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5487950c-8dd3-46a4-8f22-0e12ceaedd1a")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR026"
 			(at 129.54 114.3 0)
 			(effects
 				(font
@@ -7698,7 +8996,81 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR028")
+					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_FET:BSS138")
+		(at 204.47 97.79 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "54ab56a0-d682-444d-9f94-20052947e518")
+		(property "Reference" "Q1"
+			(at 204.47 104.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BSS138"
+			(at 204.47 106.68 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 202.565 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+			(at 200.66 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23"
+			(at 204.47 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f2687af1-abdd-48b3-997a-a12880f20e9e")
+		)
+		(pin "2"
+			(uuid "cb04bd4f-3e5f-4eff-8c40-0d8ffde04d3e")
+		)
+		(pin "3"
+			(uuid "6eee2b50-7a90-4a3c-a9df-e8f1075a2b84")
+		)
+		(instances
+			(project ""
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -7714,7 +9086,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "54d0719d-e50e-4782-ba6f-57e5646c2a9b")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR036"
 			(at 158.75 151.13 0)
 			(effects
 				(font
@@ -7764,7 +9136,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR038")
+					(reference "#PWR036")
 					(unit 1)
 				)
 			)
@@ -7925,7 +9297,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "60268d6e-d390-47c4-b3c1-b510d637c44b")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR030"
 			(at 146.05 156.21 0)
 			(effects
 				(font
@@ -7975,76 +9347,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 129.54 124.46 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "603cebac-0031-4db3-82c4-4ec7448a971a")
-		(property "Reference" "R7"
-			(at 130.556 118.364 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10kOhm"
-			(at 128.524 115.316 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 129.286 125.476 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 129.54 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 129.54 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "dc2c2131-7bc2-4905-b177-a61bd25d6b8f")
-		)
-		(pin "1"
-			(uuid "730d9f8e-8e72-4539-89a4-03566e506941")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "R7")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -8115,6 +9418,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Jumper:SolderJumper_2_Open")
+		(at 52.07 166.37 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "62787e98-f8c7-4955-845d-2c943c432adc")
+		(property "Reference" "JP2"
+			(at 52.07 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SolderJumper_2_Open"
+			(at 52.07 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
+			(at 52.07 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 52.07 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, open"
+			(at 52.07 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9991accd-29b0-49c0-93f0-b8c7a56a6ea9")
+		)
+		(pin "2"
+			(uuid "c879509f-1472-44c8-ae30-e497638e5470")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "JP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 49.53 105.41 0)
 		(unit 1)
@@ -8178,6 +9549,70 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 209.55 133.35 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "683d1298-cc62-4555-8f24-0c16dbca2ad7")
+		(property "Reference" "#PWR046"
+			(at 209.55 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 209.55 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 209.55 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 209.55 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 209.55 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "45958aa9-a305-4046-bb69-14646c9a2db4")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -8259,7 +9694,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6a0ea856-4bfd-476f-84e6-6d7ce969a1a4")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR032"
 			(at 148.59 218.44 0)
 			(effects
 				(font
@@ -8308,7 +9743,76 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR034")
+					(reference "#PWR032")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 199.39 96.52 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6e601167-3f1a-4a93-ab49-91b1bc342e43")
+		(property "Reference" "R7"
+			(at 198.374 105.156 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 195.326 103.378 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 198.374 96.266 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 199.39 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 199.39 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "0104524e-b109-4246-9790-af900cf22d54")
+		)
+		(pin "1"
+			(uuid "faa8b316-02be-45dc-90a6-126b569e6e2b")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -8324,7 +9828,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6e8a95ef-4f4a-479a-82a2-ea5c2dacc8bc")
-		(property "Reference" "#PWR021"
+		(property "Reference" "#PWR020"
 			(at 105.41 173.99 0)
 			(effects
 				(font
@@ -8375,7 +9879,76 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR021")
+					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 209.55 157.48 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6f57b638-4794-489a-a932-cd6fb32fd361")
+		(property "Reference" "R17"
+			(at 208.534 166.116 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 205.486 164.338 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 208.534 157.226 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 209.55 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 209.55 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "78ce68f8-8afa-45dd-abde-6efb7f072fd7")
+		)
+		(pin "1"
+			(uuid "fc1dbd91-49c3-49b0-823f-9e5ad5a1b2d8")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -8446,6 +10019,139 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 209.55 116.84 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7390939b-b638-4b88-a611-ca07abfa8ff7")
+		(property "Reference" "R13"
+			(at 208.534 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 205.486 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 208.534 116.586 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 209.55 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 209.55 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "04c7b4ce-9a9f-4dbb-a63a-e3f34d3ccd6e")
+		)
+		(pin "1"
+			(uuid "f57cd92e-240d-4af0-91d8-17d33a9a6168")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 209.55 92.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "75ccdacc-d52d-44e2-aedc-75d73f6aa88d")
+		(property "Reference" "#PWR024"
+			(at 209.55 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 209.55 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 209.55 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 209.55 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 209.55 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "065f0fbe-1aee-43a7-b61d-4469f3393174")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -8700,6 +10406,137 @@
 			(project ""
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "J2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 55.88 157.48 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7e6e880d-d1e2-4963-9304-38018612e8b9")
+		(property "Reference" "#PWR041"
+			(at 52.07 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 59.69 157.4799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 55.88 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 55.88 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 55.88 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "438a1d07-0135-4ad9-8468-3031be52d21b")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 209.55 113.03 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8050966b-aae2-4e6b-9260-3c7e7317d204")
+		(property "Reference" "#PWR044"
+			(at 209.55 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 209.55 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 209.55 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 209.55 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 209.55 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "af7d36be-1ac9-4292-b763-d02356ecf5a6")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
@@ -9201,7 +11038,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "94ceaeb2-3175-47e0-9242-14ad16f9915a")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR025"
 			(at 133.35 236.22 0)
 			(effects
 				(font
@@ -9252,7 +11089,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR027")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -9613,73 +11450,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 99.06 191.77 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a7d348b1-671d-4234-a067-035384ba786b")
-		(property "Reference" "#PWR023"
-			(at 105.41 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 102.87 191.7699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 99.06 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 99.06 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 99.06 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "34fe208b-2768-465d-92cb-01c1410729fe")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR023")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 82.55 64.77 0)
 		(unit 1)
@@ -9757,7 +11527,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a9f4330b-9823-4967-98d0-dda9376a6250")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR028"
 			(at 134.62 43.18 0)
 			(effects
 				(font
@@ -9806,7 +11576,73 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR030")
+					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+1V8")
+		(at 199.39 133.35 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aa123598-4bfa-47bf-9e62-e37e11b60aa4")
+		(property "Reference" "#PWR045"
+			(at 199.39 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 197.358 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.39 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.39 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 199.39 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "58e9eb22-0467-4e60-81a2-77a93aed6942")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -9897,7 +11733,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aa52d18a-4844-42cf-ae85-5525e469fba5")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR027"
 			(at 144.78 38.1 0)
 			(effects
 				(font
@@ -9946,7 +11782,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR029")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -9962,7 +11798,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b0575652-195e-4fa1-b3b8-b05b788fc287")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR021"
 			(at 105.41 182.88 0)
 			(effects
 				(font
@@ -10013,7 +11849,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR022")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -10305,7 +12141,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "baf3c87c-5929-4310-984c-d2b6ce2ec026")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR034"
 			(at 154.94 191.77 0)
 			(effects
 				(font
@@ -10355,7 +12191,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR036")
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -10492,149 +12328,6 @@
 			(project ""
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "#PWR018")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED")
-		(at 95.25 191.77 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c1b39355-ddb3-4efc-829b-d5ca138855ce")
-		(property "Reference" "D3"
-			(at 95.504 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LED"
-			(at 95.504 187.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "75de131b-def5-4e28-86da-89d58a0a0f05")
-		)
-		(pin "1"
-			(uuid "90454144-16e7-4559-b9eb-f05856612e06")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "D3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 91.44 191.77 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c229a18d-f131-4e3b-a07e-7a9825a6190b")
-		(property "Reference" "#PWR020"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 87.63 191.7699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 91.44 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 91.44 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 91.44 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b3864424-a131-4ba0-9f22-7f84c198b63c")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -10982,6 +12675,148 @@
 		)
 	)
 	(symbol
+		(lib_id "Jumper:SolderJumper_2_Open")
+		(at 52.07 157.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d528da57-5601-400e-ac35-c7ac4fdfe510")
+		(property "Reference" "JP1"
+			(at 52.07 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SolderJumper_2_Open"
+			(at 52.07 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
+			(at 52.07 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 52.07 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, open"
+			(at 52.07 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a07defa8-dcb6-4686-9438-97c0cf820b5a")
+		)
+		(pin "2"
+			(uuid "2489d491-9bfd-47b2-b8b1-970cb7b1a2b5")
+		)
+		(instances
+			(project ""
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "JP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_FET:BSS138")
+		(at 204.47 138.43 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d6ca151e-10ad-4878-b39e-da4df5144b71")
+		(property "Reference" "Q3"
+			(at 204.47 144.78 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BSS138"
+			(at 204.47 147.32 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 202.565 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+			(at 200.66 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23"
+			(at 204.47 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f8afe828-4e1d-484a-a85d-0850b564bebe")
+		)
+		(pin "2"
+			(uuid "a6f5cf42-464b-48d4-8db8-d950a0154235")
+		)
+		(pin "3"
+			(uuid "1d2fac1c-1746-4e48-89bb-23fcedb7e8cb")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "Q3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+1V8")
 		(at 148.59 114.3 0)
 		(unit 1)
@@ -10990,7 +12825,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "dddeb971-7b1f-43e4-b712-2b1ebb7dd291")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR031"
 			(at 148.59 118.11 0)
 			(effects
 				(font
@@ -11041,7 +12876,76 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR033")
+					(reference "#PWR031")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 199.39 157.48 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "def784da-4f24-4413-8a55-113d45a280b0")
+		(property "Reference" "R16"
+			(at 198.374 166.116 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 195.326 164.338 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 198.374 157.226 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 199.39 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 199.39 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "dc9e10c4-5f46-4d6b-847c-9dca16e03ad4")
+		)
+		(pin "1"
+			(uuid "106a9ad5-7521-4eb6-948c-3415e348d8f6")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -11111,6 +13015,70 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 209.55 153.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "df5c46c9-ed10-412a-8fa0-c351e32481e1")
+		(property "Reference" "#PWR048"
+			(at 209.55 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 209.55 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 209.55 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 209.55 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 209.55 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "dfcdd29d-5ce5-4ae0-be8a-c7ec19b1e5e2")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)
@@ -11477,6 +13445,75 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
+		(at 199.39 116.84 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e9d4c63a-800a-4196-9a59-dae2e92e3822")
+		(property "Reference" "R12"
+			(at 198.374 125.476 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10kOhm"
+			(at 195.326 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 198.374 116.586 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 199.39 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 199.39 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "3dae90a5-a093-4fe2-81ae-8097daf389eb")
+		)
+		(pin "1"
+			(uuid "16ceda30-ea11-400e-bf1a-115f1cc5f6a9")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
 		(at 86.36 123.19 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11612,6 +13649,146 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+1V8")
+		(at 199.39 153.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f246bed9-f4ac-4f78-b5d3-cb04e48bdfca")
+		(property "Reference" "#PWR047"
+			(at 199.39 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+1V8"
+			(at 197.358 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 199.39 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.39 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(at 199.39 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1f38521e-7abd-4788-8faf-7dbf554a4d79")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR047")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_FET:BSS138")
+		(at 204.47 158.75 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f32aaec8-47be-421d-9a54-8dcbda66b6d2")
+		(property "Reference" "Q4"
+			(at 204.47 165.1 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BSS138"
+			(at 204.47 167.64 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 202.565 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BSS138-D.PDF"
+			(at 200.66 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23"
+			(at 204.47 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7c6680bb-518b-40fd-bd62-003beb22fc3c")
+		)
+		(pin "2"
+			(uuid "32a35b5a-14b5-4f65-9b7e-383b8bf56be7")
+		)
+		(pin "3"
+			(uuid "55b8b95a-5133-4e32-a010-78727cd4e2b6")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "Q4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Analog_ADC:ADC101C021CIMK")
 		(at 69.85 129.54 0)
 		(unit 1)
@@ -11702,7 +13879,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f8438f47-1c29-411e-ac6c-30419b37bfd8")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR037"
 			(at 156.21 167.64 0)
 			(effects
 				(font
@@ -11753,7 +13930,7 @@
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR039")
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)
