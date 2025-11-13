@@ -1,0 +1,12 @@
+Front (top side) placement file: '/Users/bentley/TSA-UAV-Flight-Controller/Drone-Flight-Controller/Drone-Flight-Controller-top.pos'.
+Info: Component count: 46.
+Back (bottom side) placement file: '/Users/bentley/TSA-UAV-Flight-Controller/Drone-Flight-Controller/Drone-Flight-Controller-bottom.pos'.
+Info: Component count: 1.
+Info: Full component count: 47.
+Info: Done.
+Front (top side) placement file: '/Users/bentley/TSA-UAV-Flight-Controller/Drone-Flight-Controller/Drone-Flight-Controller-top.pos'.
+Info: Component count: 46.
+Back (bottom side) placement file: '/Users/bentley/TSA-UAV-Flight-Controller/Drone-Flight-Controller/Drone-Flight-Controller-bottom.pos'.
+Info: Component count: 1.
+Info: Full component count: 47.
+Info: Done.
