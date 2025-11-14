@@ -1,0 +1,50 @@
+### Footprint positions - created on 2025-11-14T12:28:44-0500 ###
+### Printed by KiCad version 9.0.1
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val                   Package                                                 PosX       PosY       Rot  Side
+C1        UWG1V2R2MCL1GB        C_Elec_4x5.4                                         15.8000   -14.9000  180.0000  top
+C2        CGA2B1X7T0G105M050BC  C_0402_1005Metric                                    23.6000   -38.6000  -90.0000  top
+C3        CGA2B1X7T0G105M050BC  C_0402_1005Metric                                    23.6000   -40.6000   90.0000  top
+C4        C1005X5R1C104K050BA   C_0402_1005Metric                                    19.4000   -18.4000  -90.0000  top
+C5        UWG1A330MCL1GB        C_Elec_5x5.4                                         16.8000   -22.4000   90.0000  top
+C6        C1005X5R1C104K050BA   C_0402_1005Metric                                    23.8000   -43.2000  -90.0000  top
+C7        C1005X5R1C104K050BA   C_0402_1005Metric                                    25.0000   -47.8000  -90.0000  top
+C8        CL05B104KP5VPNC       C_0402_1005Metric                                    30.5850   -42.8000  180.0000  top
+C9        C1005X5R1C104K050BA   C_0402_1005Metric                                    23.8000   -45.2000  -90.0000  top
+C10       CL05B104KP5VPNC       C_0402_1005Metric                                    30.5850   -41.6750    0.0000  top
+D1        SML-D12U1WT86         LED_0603_1608Metric                                  14.2125   -29.0000    0.0000  top
+D2        SML-D12U1WT86         LED_0603_1608Metric                                  14.2125   -32.0000    0.0000  top
+F1        JB12F2001R            Fuse_1206_3216Metric                                 21.4000   -13.8000  180.0000  top
+L1        ASPI-6045S-6R8M-T     L_1812_4532Metric                                    21.7850   -23.4750  -90.0000  top
+Q2        BSS138                SOT-23                                               29.0625   -50.0625  -90.0000  top
+Q3        BSS138                SOT-23                                               32.8000   -50.0625  -90.0000  top
+Q4        BSS138                SOT-23                                               29.0500   -56.5375  -90.0000  top
+Q5        BSS138                SOT-23                                               32.7875   -56.5375  -90.0000  top
+R1        CRCW02011K50FNEDAT    R_0402_1005Metric                                    31.3850   -15.6750  -90.0000  top
+R2        CRCW02011K00JNEDAT    R_0402_1005Metric                                    32.3850   -15.6750   90.0000  top
+R3        ERJ-S02J104X          R_0402_1005Metric                                    14.8000   -18.0000    0.0000  top
+R4        ERA-2APB1372X         R_0402_1005Metric                                    16.7100   -18.0000    0.0000  top
+R5        RK73G1ERTTP1002F      R_0402_1005Metric                                    33.4000   -22.4000   90.0000  top
+R6        RK73G1ERTTP1002F      R_0402_1005Metric                                    32.4000   -22.4000  -90.0000  top
+R7        CRCW040268R0FKTD      R_0402_1005Metric                                    13.7000   -30.4000    0.0000  top
+R8        RK73G1ERTTP1002F      R_0402_1005Metric                                    32.3850   -67.8750  180.0000  top
+R9        RK73G1ERTTP1002F      R_0402_1005Metric                                    32.3850   -65.4750  180.0000  top
+R10       RK73G1ERTTP1002F      R_0402_1005Metric                                    32.3850   -66.4750  180.0000  top
+R11       RK73G1ERTTP1002F      R_0402_1005Metric                                    26.6000   -49.9100   90.0000  top
+R12       RK73G1ERTTP1002F      R_0402_1005Metric                                    35.2000   -50.0900  -90.0000  top
+R13       RK73G1ERTTP1002F      R_0402_1005Metric                                    26.5875   -55.5100  -90.0000  top
+R14       RK73G1ERTTP1002F      R_0402_1005Metric                                    35.1875   -55.5100  -90.0000  top
+R15       RK73G1ERTTP1002F      R_0402_1005Metric                                    29.6900   -52.6000    0.0000  top
+R16       RK73G1ERTTP1002F      R_0402_1005Metric                                    32.2000   -52.6000  180.0000  top
+R17       RK73G1ERTTP1002F      R_0402_1005Metric                                    29.5875   -59.2000    0.0000  top
+R18       RK73G1ERTTP1002F      R_0402_1005Metric                                    32.2000   -59.2000  180.0000  top
+R19       CRCW040268R0FKTD      R_0402_1005Metric                                    13.7000   -33.4000    0.0000  top
+SW1       TL3301NF160QG-KR      SW_Push_1P1T_NO_CK_KMR2                              34.4000   -71.6000  -90.0000  top
+U1        MCP1700x-180xxMB      SOT-89-3                                             27.0000   -39.6000    0.0000  top
+U2        LMR51430              SOT-23-6                                             22.0000   -18.4000   90.0000  top
+U3        ADC101C021CIMK        SOT-23-6                                             32.3850   -18.8750  -90.0000  top
+U4        ICM-20948             InvenSense_QFN-24_3x3mm_P0.4mm                       27.2000   -44.6500  -90.0000  top
+U5        BMP280                Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering    33.1850   -42.6750  -90.0000  top
+U6        PCA9531PW             TSSOP-16_4.4x5mm_P0.65mm                             27.1850   -68.0750    0.0000  top
+## End

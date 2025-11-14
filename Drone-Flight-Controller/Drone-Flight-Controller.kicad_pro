@@ -509,8 +509,8 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "../Production-Outputs/",
-      "pos_files": "",
+      "plot": "fab-outputs/",
+      "pos_files": "fab-outputs/",
       "specctra_dsn": "",
       "step": "Drone-Flight-Controller.step",
       "svg": "",
@@ -557,7 +557,7 @@
           "group_by": false,
           "label": "Datasheet",
           "name": "Datasheet",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -596,10 +596,10 @@
           "show": false
         },
         {
-          "group_by": true,
+          "group_by": false,
           "label": "DNP",
           "name": "${DNP}",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,

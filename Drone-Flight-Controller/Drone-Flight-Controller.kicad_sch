@@ -1257,174 +1257,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:D"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "D"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_0_1"
-				(polyline
-					(pts
-						(xy -1.27 1.27) (xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:Fuse"
 			(pin_numbers
 				(hide yes)
@@ -3495,38 +3327,27 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Sensor_Pressure:BMP280"
+		(symbol "Sensor_Pressure:BMP390"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U"
-				(at -7.62 10.16 0)
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 				)
 			)
-			(property "Value" "BMP280"
-				(at 5.08 10.16 0)
+			(property "Value" "BMP390"
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 				)
 			)
-			(property "Footprint" "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering"
-				(at 0 -17.78 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BMP280-DS001.pdf"
+			(property "Footprint" "Package_LGA:ST_HLGA-10_2x2mm_P0.5mm_LayoutBorder3x2y"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3535,7 +3356,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Absolute Barometric Pressure Sensor, LGA-8"
+			(property "Datasheet" "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3544,7 +3365,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "I2C, SPI, pressure, temperature, sensor"
+			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -3553,19 +3374,10 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "Bosch*LGA*2x2.5mm*P0.65mm*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "BMP280_0_1"
+			(symbol "BMP390_0_1"
 				(rectangle
-					(start -7.62 -5.08)
-					(end 5.08 7.62)
+					(start -5.08 -1.27)
+					(end 10.16 -15.24)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -3575,11 +3387,29 @@
 					)
 				)
 			)
-			(symbol "BMP280_1_1"
+			(symbol "BMP390_1_1"
 				(pin input line
-					(at -10.16 5.08 0)
+					(at -7.62 -3.81 0)
 					(length 2.54)
 					(name "SCK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -7.62 -6.35 0)
+					(length 2.54)
+					(name "SDI"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3595,25 +3425,7 @@
 					)
 				)
 				(pin bidirectional line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "SDI"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -10.16 0 0)
+					(at -7.62 -8.89 0)
 					(length 2.54)
 					(name "SDO"
 						(effects
@@ -3631,27 +3443,9 @@
 					)
 				)
 				(pin input line
-					(at -10.16 -2.54 0)
+					(at -7.62 -11.43 0)
 					(length 2.54)
 					(name "CSB"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 10.16 270)
-					(length 2.54)
-					(name "VDDIO"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3666,10 +3460,28 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -7.62 90)
+				(pin input line
+					(at -7.62 -13.97 0)
 					(length 2.54)
-					(name "GND"
+					(name "INT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 2.54 1.27 270)
+					(length 2.54)
+					(name "VDDIO"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3685,9 +3497,45 @@
 					)
 				)
 				(pin power_in line
-					(at 2.54 10.16 270)
+					(at 2.54 -17.78 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 5.08 1.27 270)
 					(length 2.54)
 					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 5.08 -17.78 90)
+					(length 2.54)
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3703,7 +3551,7 @@
 					)
 				)
 				(pin power_in line
-					(at 2.54 -7.62 90)
+					(at 7.62 -17.78 90)
 					(length 2.54)
 					(name "GND"
 						(effects
@@ -3712,7 +3560,7 @@
 							)
 						)
 					)
-					(number "7"
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4783,6 +4631,12 @@
 		)
 	)
 	(junction
+		(at 154.94 186.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0147a057-bcf1-43d9-aaad-8d1fc1551bb5")
+	)
+	(junction
 		(at 172.72 237.49)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4799,6 +4653,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0ccd516c-2947-4570-813f-633cfdfa82df")
+	)
+	(junction
+		(at 157.48 186.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "17bf99af-1c14-4ae6-9203-9db07611ecdc")
 	)
 	(junction
 		(at 49.53 101.6)
@@ -4837,12 +4697,6 @@
 		(uuid "35ae3859-7cb1-4f0e-8890-56b192820830")
 	)
 	(junction
-		(at 82.55 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3c280ba2-c40d-4ee0-a7ca-b184315577ee")
-	)
-	(junction
 		(at 40.64 109.22)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4859,18 +4713,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "787430d9-350a-49ac-85bb-4056ccac0677")
-	)
-	(junction
-		(at 154.94 185.42)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "78fbd220-e9a3-4250-ae5d-331a89e353b2")
-	)
-	(junction
-		(at 157.48 167.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7da1a894-8d70-4fc4-ae48-00f478765dfe")
 	)
 	(junction
 		(at 26.67 53.34)
@@ -4895,12 +4737,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "984eac6f-7e5a-43cc-9036-349e41778d47")
-	)
-	(junction
-		(at 154.94 167.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a260081a-c8b3-45b7-9222-5d168ad6c553")
 	)
 	(junction
 		(at 172.72 240.03)
@@ -4939,7 +4775,7 @@
 		(uuid "f87adf53-f28a-41f0-83ab-62fb2467c4e2")
 	)
 	(junction
-		(at 87.63 60.96)
+		(at 88.9 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fcc57827-77df-45cb-97bf-867e88b87204")
@@ -4968,13 +4804,13 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 167.64) (xy 157.48 167.64)
+			(xy 157.48 186.69) (xy 160.02 186.69)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "09cfec30-78e2-4db2-903d-b0d186ad81b1")
+		(uuid "142f3304-bb7b-4062-a414-f6caa8154c15")
 	)
 	(wire
 		(pts
@@ -5048,13 +4884,13 @@
 	)
 	(wire
 		(pts
-			(xy 157.48 167.64) (xy 160.02 167.64)
+			(xy 154.94 186.69) (xy 157.48 186.69)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4b194741-16b3-4389-a21c-63eade5c6003")
+		(uuid "49d59798-d96b-4990-abac-412e211f8857")
 	)
 	(wire
 		(pts
@@ -5078,13 +4914,33 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 60.96) (xy 82.55 60.96)
+			(xy 68.58 60.96) (xy 88.9 60.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "4f8b6bb4-c780-4313-a779-0cc0651cdf8f")
+	)
+	(wire
+		(pts
+			(xy 99.06 185.42) (xy 102.87 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5047205d-7950-49c8-8fdb-cc0ee27db8b6")
+	)
+	(wire
+		(pts
+			(xy 157.48 167.64) (xy 160.02 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "55a7d5a2-41a9-441f-a690-20d325390150")
 	)
 	(wire
 		(pts
@@ -5095,6 +4951,16 @@
 			(type default)
 		)
 		(uuid "57c7ce46-eb92-4ec4-a431-eda2becda3b4")
+	)
+	(wire
+		(pts
+			(xy 99.06 173.99) (xy 102.87 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b80f466-57d4-439e-a4cb-109aadfa34ea")
 	)
 	(wire
 		(pts
@@ -5228,16 +5094,6 @@
 	)
 	(wire
 		(pts
-			(xy 87.63 60.96) (xy 82.55 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b30c7319-a7c9-4689-86e3-399aee3e9b91")
-	)
-	(wire
-		(pts
 			(xy 67.31 60.96) (xy 68.58 60.96)
 		)
 		(stroke
@@ -5338,16 +5194,6 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 185.42) (xy 157.48 185.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d613a4ad-0672-4dfc-937e-3a5a5506fc72")
-	)
-	(wire
-		(pts
 			(xy 68.58 68.58) (xy 68.58 69.85)
 		)
 		(stroke
@@ -5378,7 +5224,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 60.96) (xy 87.63 60.96)
+			(xy 90.17 60.96) (xy 88.9 60.96)
 		)
 		(stroke
 			(width 0)
@@ -5671,6 +5517,28 @@
 		(uuid "332d46c7-2292-46d4-8e08-9002fbd7449c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 134.7193 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BAROMETER_INT"
+		(shape input)
+		(at 34.29 248.92 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "33785e5c-b0af-4b29-a390-69fa77c660a8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 16.4882 248.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6120,7 +5988,7 @@
 	)
 	(global_label "LED_STATUS"
 		(shape input)
-		(at 91.44 182.88 180)
+		(at 91.44 185.42 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6129,7 +5997,7 @@
 		)
 		(uuid "9e1def42-40ae-4359-bf52-9a89cdd2b685")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 91.44 182.88 0)
+			(at 91.44 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6305,6 +6173,28 @@
 		(uuid "c4e2ed7c-af66-4bf4-aedc-ed96dfb7980c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 131.6349 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BAROMETER_INT"
+		(shape input)
+		(at 144.78 182.88 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c6552ec6-7a47-4fcd-b6a4-ee752908202a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 126.9782 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6730,7 +6620,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 95.25 182.88 180)
+		(at 95.25 185.42 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6738,23 +6628,23 @@
 		(dnp no)
 		(uuid "0903bc45-a113-40bf-adba-6a24e9080489")
 		(property "Reference" "D2"
-			(at 95.504 176.53 0)
+			(at 95.25 177.292 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LED"
-			(at 95.504 179.07 0)
+		(property "Value" "SML-D12U1WT86"
+			(at 95.25 179.832 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
-			(at 95.25 182.88 0)
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
+			(at 95.25 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6763,7 +6653,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 95.25 182.88 0)
+			(at 95.25 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6772,7 +6662,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 95.25 182.88 0)
+			(at 95.25 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6781,12 +6671,20 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 95.25 182.88 0)
+			(at 95.25 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 95.25 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -6859,6 +6757,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 41.91 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "4"
 			(uuid "14aec3bf-1722-4e41-b8de-8cebc3773c45")
 		)
@@ -6888,7 +6794,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 27.94 40.64 270)
+		(at 27.94 35.56 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6897,7 +6803,7 @@
 		(fields_autoplaced yes)
 		(uuid "09eec205-3e1e-4efe-bd63-a6794afbbbf9")
 		(property "Reference" "J2"
-			(at 33.02 39.3699 90)
+			(at 33.02 34.2899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6906,7 +6812,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 33.02 41.9099 90)
+			(at 33.02 36.8299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6915,24 +6821,6 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 27.94 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 27.94 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
 			(at 27.94 40.64 0)
 			(effects
 				(font
@@ -6941,13 +6829,39 @@
 				(hide yes)
 			)
 		)
-		(property "Field5" ""
-			(at 27.94 40.64 90)
+		(property "Datasheet" "~"
+			(at 27.94 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 27.94 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Field5" ""
+			(at 27.94 35.56 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 27.94 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -7289,7 +7203,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 25.4 40.64 0)
+		(at 25.4 35.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7297,7 +7211,7 @@
 		(dnp no)
 		(uuid "1098902b-7347-4a3b-834a-998d13eb9392")
 		(property "Reference" "#PWR01"
-			(at 25.4 46.99 0)
+			(at 25.4 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7306,7 +7220,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 21.844 42.418 0)
+			(at 21.844 37.338 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7314,7 +7228,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 25.4 40.64 0)
+			(at 25.4 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7323,7 +7237,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 25.4 40.64 0)
+			(at 25.4 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7332,7 +7246,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 25.4 40.64 0)
+			(at 25.4 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7408,6 +7322,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 204.47 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "35802a2b-da6d-4ff6-821c-ca19f0708d0a")
 		)
@@ -7421,94 +7343,6 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "Q3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Sensor_Pressure:BMP280")
-		(at 154.94 177.8 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "149897ba-fbc9-4d57-b49b-8bb685d077a1")
-		(property "Reference" "U5"
-			(at 161.29 175.2599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BMP280"
-			(at 161.29 177.7999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering"
-			(at 154.94 195.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST-BMP280-DS001.pdf"
-			(at 154.94 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Absolute Barometric Pressure Sensor, LGA-8"
-			(at 154.94 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "09fff035-aa80-4a6b-bf6c-510a3b0e753e")
-		)
-		(pin "7"
-			(uuid "479b7e9d-8200-4203-92eb-f7e4b5a3ee15")
-		)
-		(pin "5"
-			(uuid "859eb873-0fee-410c-adf2-1d6d5a558cbe")
-		)
-		(pin "8"
-			(uuid "cd5c1c87-4e3f-4de5-a1e4-a6fd9ddaa6d2")
-		)
-		(pin "3"
-			(uuid "fec831ae-4f43-4068-b0d3-6c7580a39b14")
-		)
-		(pin "6"
-			(uuid "bde14c78-523c-4ec8-8c5e-bb1554daa5aa")
-		)
-		(pin "2"
-			(uuid "75d45aa2-dc8e-4ab7-bcde-2297a86b638a")
-		)
-		(pin "4"
-			(uuid "da676a42-cb0a-4ede-9479-871fa4bd9cc5")
-		)
-		(instances
-			(project ""
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "U5")
 					(unit 1)
 				)
 			)
@@ -7599,8 +7433,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 205.486 144.018 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 208.534 144.018 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7635,6 +7469,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 209.55 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "31e48e2d-c422-4a3d-8dbe-9d276f1957b3")
 		)
@@ -7652,7 +7494,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 25.4 40.64 90)
+		(at 25.4 35.56 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7661,7 +7503,7 @@
 		(fields_autoplaced yes)
 		(uuid "1e592f6f-60c3-4e28-ba46-129936c5895f")
 		(property "Reference" "J1"
-			(at 22.098 35.56 90)
+			(at 22.098 30.48 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7669,7 +7511,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 22.098 38.1 90)
+			(at 22.098 33.02 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7677,7 +7519,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 25.4 35.56 0)
+			(at 25.4 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7686,7 +7528,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 25.4 35.56 0)
+			(at 25.4 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7695,7 +7537,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 25.4 40.64 0)
+			(at 25.4 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7704,12 +7546,20 @@
 			)
 		)
 		(property "Field5" ""
-			(at 25.4 40.64 90)
+			(at 25.4 35.56 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 25.4 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -7785,75 +7635,6 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "#PWR043")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 102.87 191.77 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "220d6d10-75db-42a3-bc4d-2fe201019721")
-		(property "Reference" "R7"
-			(at 101.6 197.612 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "85Ohm"
-			(at 103.886 201.422 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 103.124 190.754 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 102.87 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 102.87 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "21d57d62-9339-4ac0-a647-e52f60890e15")
-		)
-		(pin "1"
-			(uuid "fed387d6-5162-4d2f-ba19-215ff5f78a68")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -7943,8 +7724,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 195.326 144.018 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 183.388 144.018 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7979,6 +7760,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 199.39 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "ad178fbb-9b4f-45d4-b9dd-4ac71505c9d8")
 		)
@@ -7996,7 +7785,7 @@
 	)
 	(symbol
 		(lib_id "power:+12V")
-		(at 27.94 48.26 90)
+		(at 27.94 43.18 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8005,7 +7794,7 @@
 		(fields_autoplaced yes)
 		(uuid "29695f36-d662-4c77-816a-f70ffdddeee9")
 		(property "Reference" "#PWR04"
-			(at 31.75 48.26 0)
+			(at 31.75 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8014,7 +7803,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 24.13 48.2599 90)
+			(at 24.13 43.1799 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8023,7 +7812,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 27.94 48.26 0)
+			(at 27.94 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8032,7 +7821,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 27.94 48.26 0)
+			(at 27.94 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8041,7 +7830,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 27.94 48.26 0)
+			(at 27.94 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8079,7 +7868,7 @@
 				)
 			)
 		)
-		(property "Value" "MCP1700x-180xxMB"
+		(property "Value" "MCP1700T-1802E/MB"
 			(at 40.64 97.79 0)
 			(effects
 				(font
@@ -8114,6 +7903,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 40.64 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "3"
 			(uuid "33e19942-53c0-4565-9b53-d51e787a1ffb")
 		)
@@ -8142,7 +7939,7 @@
 		(dnp no)
 		(uuid "3b8088c7-c3d1-47d8-86e2-2f3a539507de")
 		(property "Reference" "C10"
-			(at 163.576 165.354 0)
+			(at 163.83 161.544 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8150,8 +7947,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
-			(at 163.576 163.068 0)
+		(property "Value" "CL05B104KP5VPNC"
+			(at 163.576 164.592 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8184,6 +7981,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 160.02 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -8254,6 +8059,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 146.05 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "24"
@@ -8345,7 +8158,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "43602ba9-b7d2-4e83-a249-b4cfd83c8ed6")
 		(property "Reference" "R3"
 			(at 71.12 63.4999 0)
@@ -8356,8 +8168,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100kOhm"
-			(at 71.12 66.0399 0)
+		(property "Value" "ERJ-S02J104X"
+			(at 71.12 65.786 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8390,6 +8202,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 68.58 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -8471,6 +8291,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "41934acd-21e3-4fde-a4e4-c1946546076b")
 		)
@@ -8484,84 +8312,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED")
-		(at 95.25 191.77 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "482a9209-d9b3-46a3-97c3-40333ccdb3a8")
-		(property "Reference" "D3"
-			(at 95.504 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LED"
-			(at 95.504 187.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "a9711d49-f4cd-44ae-86f8-623e3c406fb1")
-		)
-		(pin "1"
-			(uuid "7b84b9e3-3819-49db-aa99-92d2139038c5")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "D3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 87.63 60.96 0)
+		(at 88.9 60.96 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8570,7 +8322,7 @@
 		(fields_autoplaced yes)
 		(uuid "49f7799a-48da-4bc5-8960-a6a323c8abe1")
 		(property "Reference" "TP1"
-			(at 90.17 56.3879 0)
+			(at 91.44 56.3879 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8579,7 +8331,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 90.17 58.9279 0)
+			(at 91.44 58.9279 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8588,7 +8340,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 92.71 60.96 0)
+			(at 93.98 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8597,7 +8349,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 92.71 60.96 0)
+			(at 93.98 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8606,12 +8358,20 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 87.63 60.96 0)
+			(at 88.9 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 88.9 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -8679,6 +8439,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 182.88 232.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "10"
@@ -8804,7 +8572,7 @@
 	)
 	(symbol
 		(lib_id "Device:Fuse")
-		(at 27.94 44.45 0)
+		(at 27.94 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8813,7 +8581,7 @@
 		(fields_autoplaced yes)
 		(uuid "4d75b028-3b5b-41b5-a612-873dd163f8af")
 		(property "Reference" "F1"
-			(at 30.48 43.1799 0)
+			(at 30.48 38.0999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8821,8 +8589,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2A"
-			(at 30.48 45.7199 0)
+		(property "Value" "JB12F2001R"
+			(at 30.48 40.6399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8831,7 +8599,7 @@
 			)
 		)
 		(property "Footprint" "Fuse:Fuse_1206_3216Metric"
-			(at 26.162 44.45 90)
+			(at 26.162 39.37 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8840,7 +8608,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 27.94 44.45 0)
+			(at 27.94 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8849,7 +8617,7 @@
 			)
 		)
 		(property "Description" "Fuse"
-			(at 27.94 44.45 0)
+			(at 27.94 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8858,12 +8626,20 @@
 			)
 		)
 		(property "Field5" ""
-			(at 27.94 44.45 0)
+			(at 27.94 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 27.94 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -8957,7 +8733,7 @@
 		(dnp no)
 		(uuid "50de68fb-e8e1-48ce-a5f4-00baea04c713")
 		(property "Reference" "R1"
-			(at 43.688 75.184 0)
+			(at 40.386 75.184 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8965,8 +8741,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1.5kOhm"
-			(at 38.862 77.216 0)
+		(property "Value" "CRCW02011K50FNEDAT"
+			(at 24.384 77.216 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8999,6 +8775,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 48.26 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -9101,8 +8885,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 205.486 103.378 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 208.788 103.378 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9135,6 +8919,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 209.55 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -9274,6 +9066,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 204.47 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "f2687af1-abdd-48b3-997a-a12880f20e9e")
 		)
@@ -9294,7 +9094,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 158.75 144.78 0)
+		(at 166.37 137.16 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9303,7 +9103,7 @@
 		(fields_autoplaced yes)
 		(uuid "54d0719d-e50e-4782-ba6f-57e5646c2a9b")
 		(property "Reference" "#PWR039"
-			(at 158.75 151.13 0)
+			(at 172.72 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9312,7 +9112,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 158.75 149.86 0)
+			(at 171.45 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9320,7 +9120,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 158.75 144.78 0)
+			(at 166.37 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9329,7 +9129,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 158.75 144.78 0)
+			(at 166.37 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9338,7 +9138,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 158.75 144.78 0)
+			(at 166.37 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9376,7 +9176,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "CL05B104KP5VPNC"
 			(at 151.384 164.592 0)
 			(effects
 				(font
@@ -9410,6 +9210,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 154.94 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -9491,6 +9299,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d2b2640e-14ac-46f7-8587-4ade28d1dd01")
 		)
@@ -9564,6 +9380,100 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Sensor_Pressure:BMP390")
+		(at 152.4 168.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "60314e07-85cc-4a01-b5e2-d81eb3b3ff37")
+		(property "Reference" "U7"
+			(at 163.83 175.8949 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "BMP390"
+			(at 163.83 178.4349 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_LGA:ST_HLGA-10_2x2mm_P0.5mm_LayoutBorder3x2y"
+			(at 152.4 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf"
+			(at 152.4 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 152.4 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "004b34ca-3adc-4467-9c43-36e634deb4e6")
+		)
+		(pin "6"
+			(uuid "82cc0ece-fd2d-441e-ad7c-4c5848a810bd")
+		)
+		(pin "5"
+			(uuid "6102fa61-d8cb-411c-9322-d2eb48d57a93")
+		)
+		(pin "7"
+			(uuid "01170733-be02-48e7-8b88-4016e46bd2f2")
+		)
+		(pin "2"
+			(uuid "4347553f-f354-4391-94ee-9a1823292ecc")
+		)
+		(pin "1"
+			(uuid "c14917c5-2d5c-4272-bcc8-6800d870e7ab")
+		)
+		(pin "10"
+			(uuid "81574687-46da-42d3-8b48-bcdbef74188f")
+		)
+		(pin "3"
+			(uuid "f5eeb412-3a68-4e31-a373-84d28bb146c2")
+		)
+		(pin "8"
+			(uuid "e1c4b01f-eeec-4f64-8732-9918f9025559")
+		)
+		(pin "9"
+			(uuid "2674f209-1341-40a9-b83e-348eacf87454")
+		)
+		(instances
+			(project ""
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "U7")
 					(unit 1)
 				)
 			)
@@ -9686,6 +9596,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 52.07 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "9991accd-29b0-49c0-93f0-b8c7a56a6ea9")
 		)
@@ -9719,7 +9637,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "CGA2B1X7T0G105M050BC"
 			(at 53.086 104.648 0)
 			(effects
 				(font
@@ -9755,6 +9673,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 49.53 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d952147a-1f9c-4bf9-b427-6bea950271db")
 		)
@@ -9765,91 +9691,6 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "C3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D")
-		(at 137.16 43.18 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "66130567-8a04-499f-8fdb-7c0ca0060a39")
-		(property "Reference" "D5"
-			(at 141.478 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "D"
-			(at 141.478 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0805_2012Metric"
-			(at 137.16 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 137.16 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 137.16 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 137.16 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 137.16 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "3d8363a1-f190-4846-aff4-cbaaf36ac5e7")
-		)
-		(pin "1"
-			(uuid "ce1207fb-ef73-4fda-9a2f-234ee701a734")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -10068,8 +9909,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 195.326 103.378 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 183.388 103.378 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10104,6 +9945,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 199.39 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "0104524e-b109-4246-9790-af900cf22d54")
 		)
@@ -10114,73 +9963,6 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "R11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 99.06 173.99 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6e8a95ef-4f4a-479a-82a2-ea5c2dacc8bc")
-		(property "Reference" "#PWR023"
-			(at 105.41 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 102.87 173.9899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 99.06 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 99.06 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 99.06 173.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e9ed64f7-3697-433b-8c07-c864cecb1fab")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -10204,8 +9986,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 205.486 164.338 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 208.788 164.338 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10238,6 +10020,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 209.55 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -10273,8 +10063,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 205.486 123.698 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 208.788 123.698 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10307,6 +10097,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 209.55 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -10406,8 +10204,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1kOhm"
-			(at 40.386 85.09 0)
+		(property "Value" "CRCW02011K00JNEDAT"
+			(at 24.384 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10440,6 +10238,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 48.26 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -10475,7 +10281,7 @@
 				)
 			)
 		)
-		(property "Value" "Raspberry_Pi_4"
+		(property "Value" "2044-2X20G00RA"
 			(at 67.31 203.2 0)
 			(effects
 				(font
@@ -10511,6 +10317,14 @@
 				)
 				(justify left)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 67.31 231.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "18"
@@ -10637,73 +10451,6 @@
 			(project ""
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "J3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 91.44 191.77 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7e5252af-2af7-487f-918c-d5039f67c0a8")
-		(property "Reference" "#PWR022"
-			(at 95.25 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 87.63 191.7699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 91.44 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 91.44 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 91.44 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "189925a9-79b8-416c-b2fa-ce791380f4de")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -10914,18 +10661,17 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "82b1e9bf-63d8-4c84-919b-d0f26e32abd3")
 		(property "Reference" "SW1"
-			(at 121.92 228.6 0)
+			(at 121.92 228.346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "SW_Omron_B3FS"
-			(at 121.92 231.14 0)
+		(property "Value" "TL3301NF160QG-KR"
+			(at 124.206 231.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10959,6 +10705,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 121.92 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "29faeef1-1cb6-4e2a-8e5d-2c869b305f1a")
 		)
@@ -10975,92 +10729,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D")
-		(at 137.16 38.1 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "82d5d6d1-b283-460d-84ec-ddd1563f4f05")
-		(property "Reference" "D4"
-			(at 137.16 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "D"
-			(at 137.16 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0805_2012Metric"
-			(at 137.16 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 137.16 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 137.16 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 137.16 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 137.16 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "dbbf4c9b-13ec-4e34-8ef1-8c81478a62b7")
-		)
-		(pin "1"
-			(uuid "b8a6bc83-881d-483e-8e85-7a9907c609a3")
-		)
-		(instances
-			(project ""
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "D4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:L")
 		(at 63.5 60.96 90)
 		(unit 1)
@@ -11068,7 +10736,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "84920a97-9587-4e3b-88f7-3226e2db989a")
 		(property "Reference" "L1"
 			(at 63.5 55.88 90)
@@ -11078,8 +10745,8 @@
 				)
 			)
 		)
-		(property "Value" "6.8uH"
-			(at 63.5 58.42 90)
+		(property "Value" "ASPI-6045S-6R8M-T"
+			(at 72.644 58.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11113,6 +10780,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 63.5 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "2a1285e8-5db9-459e-b6fd-f4f985ca75a5")
 		)
@@ -11123,6 +10798,82 @@
 			(project ""
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "L1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 106.68 173.99 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "881c667e-6213-4c10-81cd-f3ac05361b75")
+		(property "Reference" "R7"
+			(at 106.68 167.64 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "CRCW040268R0FKTD"
+			(at 106.68 170.18 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 106.934 172.974 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 106.68 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 106.68 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 106.68 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "32616c06-230c-46e7-a054-58046b607a10")
+		)
+		(pin "2"
+			(uuid "66877da5-4dda-4af1-8308-a698c6aa1187")
+		)
+		(instances
+			(project ""
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -11190,6 +10941,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 140.97 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -11400,6 +11159,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "aa07bb63-5615-4aff-b08f-eb256dc5dc86")
 		)
@@ -11480,73 +11247,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 106.68 191.77 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "986e7309-bee5-42a2-a328-556e370d5c7f")
-		(property "Reference" "#PWR027"
-			(at 113.03 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 110.49 191.7699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 106.68 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 106.68 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 106.68 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "16c35ee0-5d82-4426-aa0a-94977452ad63")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR027")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 171.45 218.44 0)
 		(unit 1)
@@ -11556,7 +11256,7 @@
 		(dnp no)
 		(uuid "9a1e1ca2-ab91-463f-959b-d86f4d556c90")
 		(property "Reference" "R10"
-			(at 165.608 217.17 0)
+			(at 165.608 215.646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11564,8 +11264,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 161.798 219.456 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 151.638 217.932 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11598,6 +11298,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 171.45 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -11679,6 +11387,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "bf35bc86-6bb8-426e-ad84-6adeeecedbfb")
 		)
@@ -11710,7 +11426,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "13.7kOhm"
+		(property "Value" "ERA-2APB1372X"
 			(at 71.12 76.1999 0)
 			(effects
 				(font
@@ -11746,6 +11462,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 68.58 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "232ed0c2-35e3-4f85-b0c5-832c2bc87964")
 		)
@@ -11756,6 +11480,72 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 154.94 186.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a25f8b6e-a7a0-4f50-8e9a-8b1431ff0fdc")
+		(property "Reference" "#PWR052"
+			(at 154.94 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 154.94 191.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.94 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 154.94 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6760d8f5-c306-4645-a6f9-b28fde63a895")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -11780,7 +11570,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10kOhm"
+		(property "Value" "RK73G1ERTTP1002F"
 			(at 88.9 134.6199 0)
 			(effects
 				(font
@@ -11816,6 +11606,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 86.36 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "5bd79658-9a64-4d5e-b4eb-3a6c97d63e35")
 		)
@@ -11849,8 +11647,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 150.368 221.996 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 139.7 221.996 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11885,6 +11683,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 160.02 220.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "d227b493-8080-4e53-bb35-4b66436304c5")
 		)
@@ -11902,7 +11708,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 82.55 64.77 0)
+		(at 88.9 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11910,7 +11716,7 @@
 		(dnp no)
 		(uuid "a7fe0301-2e46-439c-a237-e150bfade9b4")
 		(property "Reference" "C5"
-			(at 86.868 63.5 0)
+			(at 93.218 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11918,8 +11724,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "33uF"
-			(at 86.868 66.04 0)
+		(property "Value" "UWG1A330MCL1GB"
+			(at 93.218 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11928,7 +11734,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_Elec_5x5.4"
-			(at 83.5152 68.58 0)
+			(at 89.8652 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11937,7 +11743,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 82.55 64.77 0)
+			(at 88.9 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11946,12 +11752,20 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 82.55 64.77 0)
+			(at 88.9 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 88.9 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -11971,7 +11785,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 133.35 43.18 270)
+		(at 140.97 43.18 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11979,7 +11793,7 @@
 		(dnp no)
 		(uuid "a9f4330b-9823-4967-98d0-dda9376a6250")
 		(property "Reference" "#PWR030"
-			(at 127 43.18 0)
+			(at 134.62 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11988,7 +11802,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 129.54 43.18 0)
+			(at 137.16 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11996,7 +11810,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 133.35 43.18 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12005,7 +11819,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 133.35 43.18 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12014,7 +11828,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 133.35 43.18 0)
+			(at 140.97 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12163,6 +11977,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "b8a4b259-a138-4fc1-a371-318b003815e4")
 		)
@@ -12177,7 +11999,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 133.35 38.1 90)
+		(at 140.97 38.1 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12185,7 +12007,7 @@
 		(dnp no)
 		(uuid "aa52d18a-4844-42cf-ae85-5525e469fba5")
 		(property "Reference" "#PWR029"
-			(at 137.16 38.1 0)
+			(at 144.78 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12194,7 +12016,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 129.286 38.354 0)
+			(at 136.906 38.354 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12202,7 +12024,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 133.35 38.1 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12211,7 +12033,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 133.35 38.1 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12220,7 +12042,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 133.35 38.1 0)
+			(at 140.97 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12241,16 +12063,16 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 99.06 182.88 90)
+		(at 110.49 173.99 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "b0575652-195e-4fa1-b3b8-b05b788fc287")
-		(property "Reference" "#PWR024"
-			(at 105.41 182.88 0)
+		(uuid "af5bd94e-e0ee-459f-a1fa-a1fbf7b1b17d")
+		(property "Reference" "#PWR027"
+			(at 116.84 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12259,7 +12081,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 102.87 182.8799 90)
+			(at 114.3 173.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12268,7 +12090,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 99.06 182.88 0)
+			(at 110.49 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12277,7 +12099,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 99.06 182.88 0)
+			(at 110.49 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12286,7 +12108,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 99.06 182.88 0)
+			(at 110.49 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12295,12 +12117,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "00d45f5d-1ca8-4d76-a5ab-e31b89250c34")
+			(uuid "6ef0e50d-7a35-4085-b254-be00c00e6fab")
 		)
 		(instances
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR024")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -12438,6 +12260,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 106.68 185.42 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b5bfa136-9ebe-4bc0-8032-b640659c2454")
+		(property "Reference" "R19"
+			(at 106.68 179.07 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "CRCW040268R0FKTD"
+			(at 106.68 181.61 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 106.934 184.404 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 106.68 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 106.68 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 106.68 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9dd014e4-c394-472a-b3db-b7d09d1e1255")
+		)
+		(pin "2"
+			(uuid "9be8d798-2f7b-41cd-bd7e-61d8f99ddd30")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 140.97 78.74 270)
 		(unit 1)
@@ -12501,6 +12399,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "783e0038-87e7-40f2-8be8-a09a7fae40df")
 		)
@@ -12515,7 +12421,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 158.75 140.97 0)
+		(at 162.56 137.16 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12523,7 +12429,7 @@
 		(dnp no)
 		(uuid "b9f938b5-d5a3-46d7-bae6-78ada5148bd8")
 		(property "Reference" "C9"
-			(at 162.306 142.494 0)
+			(at 161.544 134.112 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12531,8 +12437,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
-			(at 162.306 140.208 0)
+		(property "Value" "C1005X5R1C104K050BA"
+			(at 163.576 134.366 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12541,7 +12447,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 159.7152 144.78 0)
+			(at 166.37 136.1948 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12550,7 +12456,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 158.75 140.97 0)
+			(at 162.56 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12559,12 +12465,20 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 158.75 140.97 0)
+			(at 162.56 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 162.56 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -12577,72 +12491,6 @@
 			(project "Drone-Flight-Controller"
 				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
 					(reference "C9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 154.94 185.42 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "baf3c87c-5929-4310-984c-d2b6ce2ec026")
-		(property "Reference" "#PWR037"
-			(at 154.94 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 154.94 190.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 154.94 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 154.94 185.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a8fb2b84-c1a1-4104-9053-a3d945849eb1")
-		)
-		(instances
-			(project "Drone-Flight-Controller"
-				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
-					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -12666,7 +12514,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C1005X5R1C104K050BA"
 			(at 57.15 49.022 0)
 			(effects
 				(font
@@ -12702,6 +12550,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 55.88 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a525f301-2bb3-423c-b4bd-140375df9f3d")
 		)
@@ -12718,17 +12574,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 88.9 60.96 270)
+		(lib_id "power:GND")
+		(at 110.49 185.42 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c16ffa53-e216-4fed-9145-5fc99d64a176")
-		(property "Reference" "#PWR020"
-			(at 85.09 60.96 0)
+		(uuid "bd7a1ba0-5f6e-4a4b-a85c-d7c59d6dbf9e")
+		(property "Reference" "#PWR051"
+			(at 116.84 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12736,17 +12592,17 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+5V"
-			(at 92.71 60.9599 90)
+		(property "Value" "GND"
+			(at 114.3 185.4199 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 60.96 0)
+			(at 110.49 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12755,7 +12611,74 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 60.96 0)
+			(at 110.49 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 110.49 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ff7fd75a-3467-42ac-8910-5f4f12c3dd78")
+		)
+		(instances
+			(project "Drone-Flight-Controller"
+				(path "/20c79442-de0c-42ae-8f84-ae00e3f39788"
+					(reference "#PWR051")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 90.17 60.96 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c16ffa53-e216-4fed-9145-5fc99d64a176")
+		(property "Reference" "#PWR020"
+			(at 86.36 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 93.98 60.9599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 90.17 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12764,7 +12687,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 88.9 60.96 0)
+			(at 90.17 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12802,7 +12725,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C1005X5R1C104K050BA"
 			(at 151.638 110.744 0)
 			(effects
 				(font
@@ -12836,6 +12759,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 152.4 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -13113,6 +13044,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d489f27a-7497-409d-a035-8f77ec488a7b")
 		)
@@ -13176,6 +13115,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 52.07 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -13247,6 +13194,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 204.47 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -13351,8 +13306,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 195.326 164.338 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 183.388 164.338 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13385,6 +13340,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 199.39 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -13420,8 +13383,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 138.938 227.076 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 127.254 227.076 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13454,6 +13417,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 148.59 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -13553,7 +13524,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2.2uF 35v"
+		(property "Value" "UWG1V2R2MCL1GB"
 			(at 13.208 58.674 0)
 			(effects
 				(font
@@ -13562,7 +13533,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_Elec_4x5.4"
 			(at 27.6352 60.96 0)
 			(effects
 				(font
@@ -13587,6 +13558,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 26.67 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -13668,6 +13647,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 140.97 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "b25488cc-753e-447c-81d0-871e80df5fe8")
 		)
@@ -13698,7 +13685,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C1005X5R1C104K050BA"
 			(at 138.938 110.744 0)
 			(effects
 				(font
@@ -13734,6 +13721,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 139.7 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "cf4c041e-8088-4247-9feb-e924e232ceb5")
 		)
@@ -13767,7 +13762,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "CGA2B1X7T0G105M050BC"
 			(at 28.194 106.172 0)
 			(effects
 				(font
@@ -13803,6 +13798,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 31.75 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "fbe576ab-e5d5-41aa-a161-a30c3c6b59d0")
 		)
@@ -13828,22 +13831,22 @@
 		(dnp no)
 		(uuid "e85e0ad1-043c-4132-b5db-80d163d77bfc")
 		(property "Reference" "D1"
-			(at 95.504 167.64 0)
+			(at 95.25 165.608 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LED"
-			(at 95.504 170.18 0)
+		(property "Value" "SML-D12U1WT86"
+			(at 95.25 168.148 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0402_1005Metric"
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 95.25 173.99 0)
 			(effects
 				(font
@@ -13879,6 +13882,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 95.25 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "9d1b3552-47dc-4f09-8258-6dd478fe7fa2")
 		)
@@ -13912,8 +13923,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10kOhm"
-			(at 195.326 123.698 0)
+		(property "Value" "RK73G1ERTTP1002F"
+			(at 183.388 123.698 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13946,6 +13957,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 199.39 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
@@ -13982,7 +14001,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10kOhm"
+		(property "Value" "RK73G1ERTTP1002F"
 			(at 88.9 124.4599 0)
 			(effects
 				(font
@@ -14018,6 +14037,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 86.36 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "d516e22d-eec5-42b7-9a86-e0a08f913eee")
 		)
@@ -14035,7 +14062,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 82.55 68.58 0)
+		(at 88.9 68.58 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14044,7 +14071,7 @@
 		(fields_autoplaced yes)
 		(uuid "f0dce221-5c00-43a4-8d55-803cf51249ec")
 		(property "Reference" "#PWR017"
-			(at 82.55 74.93 0)
+			(at 88.9 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14053,7 +14080,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 82.55 73.66 0)
+			(at 88.9 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14061,7 +14088,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 82.55 68.58 0)
+			(at 88.9 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14070,7 +14097,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 82.55 68.58 0)
+			(at 88.9 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14079,7 +14106,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 82.55 68.58 0)
+			(at 88.9 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14221,6 +14248,14 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 204.47 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "7c6680bb-518b-40fd-bd62-003beb22fc3c")
 		)
@@ -14291,6 +14326,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 69.85 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "3"
@@ -14449,6 +14492,14 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 140.97 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
