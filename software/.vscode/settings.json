@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "string": "cpp"
+        "string": "cpp",
+        "atomic": "cpp",
+        "iostream": "cpp",
+        "thread": "cpp",
+        "vector": "cpp",
+        "array": "cpp",
+        "mutex": "cpp"
     }
 }
