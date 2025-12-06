@@ -177,9 +177,9 @@ int main() {
         res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
     });
 
-    svr.Get("/send_serial_data", [](const httplib::Request &, httplib::Response &res) {
+    svr.Get("/send_serial_data", [](const httplib::Request &req, httplib::Response &res) {
         if (req.has_param("data")) {
-            auto data = Request.get_param_value("data");
+            auto data = req.get_param_value("data");
             for(char c : data) {
                 com.WriteChar(c);
             }
