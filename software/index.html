@@ -5,6 +5,8 @@
         <div id="rawDataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto;"></div>
         <button onclick="getParsedData()">Get Parsed Serial Data</button>
         <div id="parsedDataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto;"></div>
+        <button onclick="sendSerialData()">Send Serial Data</button>
+        <textarea id="sendDataBox" style="width: 300px; height: 50px; margin-top: 10px; padding: 5px;"></textarea>
         <script>
             async function getRawData() {
                 try {
@@ -28,6 +30,19 @@
                     document.getElementById('parsedDataBox').innerText = data;
                 } catch (error) {
                     document.getElementById('parsedDataBox').innerText = 'Error fetching data: ' + error.message;
+                }
+            }
+            async function sendSerialData(){
+                try {
+                    const dataToSend = document.getElementById('sendDataBox').value;
+                    const response = await fetch('/send_serial_data?data=' + dataToSend);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    const result = await response.text();
+                    alert('Data sent successfully: ' + result);
+                } catch (error) {
+                    alert('Error sending data: ' + error.message);
                 }
             }
         </script>

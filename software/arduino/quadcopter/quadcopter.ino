@@ -320,7 +320,7 @@ void receiveControl() {
       } else if (command == "stop") {
         throttle = THROTTLE_MINIMUM;
       } else if (command == "calibrateAngles") {
-        calibrateAngleOffsets();
+        //calibrateAngleOffsets();
       } else if (command == "gainP+") {
         gain_p[PITCH] += 0.1;
         gain_p[ROLL] += 0.1;

@@ -177,6 +177,13 @@ int main() {
         res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
     });
 
+    svr.Get("/send_serial_data", [](const httplib::Request &, httplib::Response &res) {
+        if (req.has_param("data")) {
+            auto data = req.get_param_value("data");
+            com.WriteData(data.c_str(), data.size());
+        }
+    });
+
     svr.listen("0.0.0.0", 8008);
 
     return 0;
