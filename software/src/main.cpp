@@ -28,7 +28,7 @@ std::string readSerialData() {
         return getTimestampSeconds() + ": Error reading from serial port";
     }
     if (initialChar != 'B') {
-        std::cout << getTimestampSeconds() + ": Invalid start character: %c\n", initialChar);
+        std::cout << getTimestampSeconds() + ": Invalid start character: %c\n", initialChar;
         // retry, eventually we will get a message
         // TODO: implement a timeout here to avoid infinite loops
         readSerialData();
@@ -64,7 +64,7 @@ std::vector<char> readSerialDataBuffer(){
         return std::vector<char>();
     }
     if (initialChar != 'B') {
-        std::cout << getTimestampSeconds() + ": Invalid start character: %c\n", initialChar);
+        std::cout << getTimestampSeconds() + ": Invalid start character: %c\n", initialChar;
         // retry, eventually we will get a message
         // TODO: implement a timeout here to avoid infinite loops
         readSerialData();
