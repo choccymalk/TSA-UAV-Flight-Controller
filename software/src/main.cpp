@@ -53,6 +53,7 @@ std::string readSerialData() {
 std::string parseMessage(const std::string& data) {
     size_t pos = 0;
     size_t sizeOfCurrentBlock = 0;  // iterator for current block size, each block is 8 bytes
+    std::string fullMessage;
     if (data[0] != 'B') return "Invalid start character";
 
     pos = 1;  // Skip 'B'
@@ -70,9 +71,10 @@ std::string parseMessage(const std::string& data) {
         float value;
         std::memcpy(&value, data.c_str() + pos, sizeof(float));
         std::cout << "Parsed float: " << value << std::endl;
-
+        fullMessage += std::to_string(value) + (data[pos + 8] == '|' ? "|" : "");
         pos += 8;  // Move to next 8-byte block
     }
+    return fullMessage;
 }
 
 int main(){
@@ -90,8 +92,12 @@ int main(){
         res.set_file_content("index.html", "text/html");
     });
 
-    svr.Get("/get_serial_data", [](const httplib::Request &, httplib::Response &res) {
+    svr.Get("/get_raw_serial_data", [](const httplib::Request &, httplib::Response &res) {
         res.set_content(readSerialData(), "text/plain");
+    });
+
+    svr.Get("/get_parsed_serial_data", [](const httplib::Request &, httplib::Response &res) {
+        res.set_content(parseMessage(readSerialData()), "text/plain");
     });
 
     svr.listen("0.0.0.0", 8008);
