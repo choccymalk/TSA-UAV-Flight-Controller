@@ -59,6 +59,10 @@
         <textarea id="sendDataBox" style="width: 300px; height: 50px; margin-top: 10px; padding: 5px;" placeholder="Or manually enter data here..."></textarea>
 
         <script>
+            // allow serial device 20 seconds to initialize before allowing data fetches
+            setTimeout(() => {
+                console.log('Serial device should be initialized now.');
+            }, 20000);
             async function getParsedData() {
                 try {
                     const response = await fetch('/get_parsed_serial_data');
@@ -115,27 +119,44 @@
             }
 
             async function sendSerialData(){
-                const dataToSend = document.getElementById('sendDataBox').value;
+                let dataToSend = document.getElementById('sendDataBox').value;
+                let notTextBox = false;
                 // to change throttle, pitch, roll, yaw values, send data in the following format:
                 // .t1200, where 1200 is the desired throttle value, the minimum is 1200 and the maximum is 1800.
                 // the maximum value for roll, pitch, and yaw is 45 degrees, and the minimum value is -45 degrees.
                 // get data from sliders if textarea is empty
+                // multiple commands cannot be sent in one call
                 if(dataToSend.trim() === ''){
                     const throttle = document.getElementById('userThrottleSlider').value;
                     const pitch = document.getElementById('userPitchSlider').value;
                     const roll = document.getElementById('userRollSlider').value;
                     const yaw = document.getElementById('userYawSlider').value;
-                    dataToSend = `.t${throttle}.p${pitch}.r${roll}.y${yaw}`;
+                    notTextBox = true;
                 }
-                try {
-                    const response = await fetch('/send_serial_data?data=' + dataToSend);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
+                if(!notTextBox){
+                    try {
+                        const response = await fetch('/send_serial_data?data=' + dataToSend);
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        const result = await response.text();
+                        console.log('Data sent successfully');
+                    } catch (error) {
+                        alert('Error sending data: ' + error.message);
                     }
-                    const result = await response.text();
-                    console.log('Data sent successfully');
-                } catch (error) {
-                    alert('Error sending data: ' + error.message);
+                } else {
+                    try {
+                        const response = await fetch('/send_serial_data?data=' + '.t' + throttle);
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        await fetch('/send_serial_data?data=' + '.p' + pitch);
+                        await fetch('/send_serial_data?data=' + '.r' + roll);
+                        await fetch('/send_serial_data?data=' + '.y' + yaw);
+                        console.log('Data sent successfully from sliders');
+                    } catch (error) {
+                        alert('Error sending data: ' + error.message);
+                    }
                 }
             }
 
