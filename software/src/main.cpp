@@ -145,12 +145,12 @@ std::string parseMessage(std::vector<char> data) {
             continue;
         }
 
-        // Extract 4-byte float
-        float value;
-        std::memcpy(&value, &data[pos], sizeof(float));
-        std::cout << std::to_string(getTimestampMilliseconds()) << ": Parsed float: " << value << std::endl;
+        // Extract 8-byte double
+        double value;
+        std::memcpy(&value, &data[pos], sizeof(double));
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": Parsed double: " << value << std::endl;
         fullMessage += std::to_string(value);
-        pos += sizeof(float);
+        pos += sizeof(double);
     }
     
     return fullMessage;
