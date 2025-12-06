@@ -122,7 +122,7 @@ std::string parseMessage(std::vector<char> data) {
 
 int main(){
 
-    std::cout << "Opening port %s.\n",com.GetPort().c_str();
+    std::cout << "Opening port %s.\n",com.GetPort();
 	if (com.Open() == 0) {
 		std::cout << getTimestampSeconds() + ": Serial comms with arduino ok.\n";
 	}
