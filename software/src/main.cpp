@@ -25,10 +25,10 @@ std::string readSerialData() {
     bool readSuccess = true; // assume serial will read successfully, com.readChar will update this if it wasn't
     char initialChar = com.ReadChar(readSuccess);
     if(!readSuccess) {
-        return getTimestampSeconds() << ": Error reading from serial port";
+        return std::to_string(getTimestampSeconds()) ": Error reading from serial port";
     }
     if (initialChar != 'B') {
-        std::cout << getTimestampSeconds() << ": Invalid start character: %c\n", initialChar;
+        std::cout << std::to_string(getTimestampSeconds()) << ": Invalid start character: %c\n", initialChar;
         // retry, eventually we will get a message
         // TODO: implement a timeout here to avoid infinite loops
         readSerialData();
@@ -40,7 +40,7 @@ std::string readSerialData() {
     while (true) {
         char nextChar = com.ReadChar(readSuccess);
         if(!readSuccess) {
-            return getTimestampSeconds() << ": Error reading from serial port";
+            return std::to_string(getTimestampSeconds()) + ": Error reading from serial port";
         }
         if (nextChar == 'E') {
             break;  // End of message
@@ -60,11 +60,11 @@ std::vector<char> readSerialDataBuffer(){
     bool readSuccess = true; // assume serial will read successfully, com.readChar will update this if it wasn't
     char initialChar = com.ReadChar(readSuccess);
     if(!readSuccess) {
-        std::cout << getTimestampSeconds() << ": Error reading from serial port";
+        std::cout << std::to_string(getTimestampSeconds()) << ": Error reading from serial port";
         return std::vector<char>();
     }
     if (initialChar != 'B') {
-        std::cout << getTimestampSeconds() << ": Invalid start character: %c\n", initialChar;
+        std::cout << std::to_string(getTimestampSeconds()) << ": Invalid start character: %c\n", initialChar;
         // retry, eventually we will get a message
         // TODO: implement a timeout here to avoid infinite loops
         readSerialData();
@@ -76,7 +76,7 @@ std::vector<char> readSerialDataBuffer(){
     while (true) {
         char nextChar = com.ReadChar(readSuccess);
         if(!readSuccess) {
-            std::cout << getTimestampSeconds() << ": Error reading from serial port";
+            std::cout << std::to_string(getTimestampSeconds()) << ": Error reading from serial port";
             return std::vector<char>();
         }
         if (nextChar == 'E') {
@@ -97,7 +97,7 @@ std::string parseMessage(std::vector<char> data) {
     size_t pos = 0;
     size_t sizeOfCurrentBlock = 0;  // iterator for current block size, each block is 8 bytes
     std::string fullMessage;
-    if (data[0] != 'B') return getTimestampSeconds() << ": Invalid start character";
+    if (data[0] != 'B') return std::to_string(getTimestampSeconds()) + ": Invalid start character";
 
     pos = 1;  // Skip 'B'
     
@@ -113,7 +113,7 @@ std::string parseMessage(std::vector<char> data) {
         // Extract 8-byte float (assuming 4 bytes for float, 4 padding)
         float value;
         std::memcpy(&value, data.at(pos), sizeof(float));
-        std::cout << getTimestampSeconds() << ": Parsed float: " << value << std::endl;
+        std::cout << std::to_string(getTimestampSeconds()) << ": Parsed float: " << value << std::endl;
         fullMessage += std::to_string(value) + (data[pos + 8] == '|' ? "|" : "");
         pos += 8;  // Move to next 8-byte block
     }
@@ -124,10 +124,10 @@ int main(){
 
     printf("Opening port %s.\n",com.GetPort().c_str());
 	if (com.Open() == 0) {
-		std::cout << getTimestampSeconds() << ": Serial comms with arduino ok.\n";
+		std::cout << std::to_string(getTimestampSeconds()) << ": Serial comms with arduino ok.\n";
 	}
 	else {
-		std::cout << getTimestampSeconds() << ": Serial comms with arduino not ok.\n";
+		std::cout << std::to_string(getTimestampSeconds()) << ": Serial comms with arduino not ok.\n";
 		return 1;
 	}
 
