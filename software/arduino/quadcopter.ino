@@ -1,5 +1,8 @@
 #include <Wire.h>
 #include <Servo.h>
+#include <cstring>
+#include <array>
+#include <iostream>
 #include "AHRSProtocol.h"             // navX-Sensor Register Definition header file
 
 /* --- SETTINGS --- */
@@ -11,7 +14,7 @@ int THROTTLE_MAXIMUM = 1800;                        // Maximum throttle of a mot
 
 float COMPLEMENTARY_FILTER = 0.98;                   // Complementary filter for combining acc and gyro
 
-double throttle = 1000;                             // Desired throttle
+float throttle = 1000;                             // Desired throttle
 float angle_desired[3] = {0.0, 0.0, 0.0};           // Desired angle
 
 float gain_p[3] = {1.5, 1.5, 1.5};                    // Gain proportional
@@ -461,19 +464,77 @@ void receiveControl() {
 }
 
 /**
+ * Utility to convert a float to a padded byte array, for serial communication
+ */
+std::array<unsigned char, 8> floatToPaddedByteArray(float value) {
+    std::array<unsigned char, 8> byteArray;
+    // Initialize all bytes to 0 (or any other desired padding value)
+    byteArray.fill(0); 
+
+    // Copy the 4 bytes of the float into the beginning of the 8-byte array
+    std::memcpy(byteArray.data(), &value, sizeof(float)); 
+    return byteArray;
+}
+
+/**
  * Sends the controller's settings and measured data for three dimensions to the remote controller
  */
 void sendData() {
-  Serial.println("B" +
-    String(throttle) + "|" + 
-    String(angle_current[YAW]) + "|" + 
-    String(angle_current[PITCH]) + "|" + 
-    String(angle_current[ROLL]) + "|" + 
-    String(angle_desired[YAW]) + "|" +
-    String(angle_desired[PITCH]) + "|" +
-    String(angle_desired[ROLL]) + "|" +
-    String(pid_current[YAW]) + "|" + 
-    String(pid_current[PITCH]) + "|" + 
-    String(pid_current[ROLL]) + "E"
-  );
+  // Serial.println("B" +
+  //   String(throttle) + "|" + 
+  //   String(angle_current[YAW]) + "|" + 
+  //   String(angle_current[PITCH]) + "|" + 
+  //   String(angle_current[ROLL]) + "|" + 
+  //   String(angle_desired[YAW]) + "|" +
+  //   String(angle_desired[PITCH]) + "|" +
+  //   String(angle_desired[ROLL]) + "|" +
+  //   String(pid_current[YAW]) + "|" + 
+  //   String(pid_current[PITCH]) + "|" + 
+  //   String(pid_current[ROLL]) + "E"
+  // );
+  // start of message, "B"
+  Serial.write(0x42);
+  // convert to 8 byte array and send each byte
+  for (unsigned char byte : floatToPaddedByteArray(throttle)) {
+    Serial.write(byte);
+  }
+  // the pipe "|" character separates each part, 0x7C
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(angle_current[YAW])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(angle_current[PITCH])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(angle_current[ROLL])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(angle_desired[YAW])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(angle_desired[PITCH])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(angle_desired[ROLL])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(pid_current[YAW])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(pid_current[PITCH])) {
+    Serial.write(byte);
+  }
+  Serial.write(0x7C);
+  for (unsigned char byte : floatToPaddedByteArray(pid_current[ROLL])) {
+    Serial.write(byte);
+  }
+  // "E" ends the message
+  Serial.write(0x45);
 }

@@ -18,8 +18,8 @@ httplib::Server svr;
 std::string readSerialData(){
     char initialChar = com.ReadChar(true);
     char nextChar;
-    //char charsFromMessage = new char[1024];
-    std::string message;
+    char charsFromMessage = new char[800];
+    //std::string message;
     int i = 0;
     if(initialChar == "B"){
         while(true){
@@ -27,13 +27,15 @@ std::string readSerialData(){
             if(nextChar == "E"){
                 break;
             } else {
-                message.append(nextChar);
-                //charsFromMessage[i] = nextChar;
+                //message.append(nextChar);
+                charsFromMessage[i] = nextChar;
                 i++;
             }
         }
+    } else {
+        readSerialData();
     }
-
+    return str(charsFromMessage[0], charsFromMessage[800]);
 }
 
 int main(){
