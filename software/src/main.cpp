@@ -11,18 +11,24 @@
 #include <string.h>
 #include "ceSerial.h"
 #include "httplib.h"
+#include <chrono>
+#include <ctime>
 
 ceSerial com("/dev/ttyACM0",115200,8,'N',1);
 httplib::Server svr;
+
+int getTimestampSeconds() {
+    return static_cast<int>(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
+}
 
 std::string readSerialData() {
     bool readSuccess = true; // assume serial will read successfully, com.readChar will update this if it wasn't
     char initialChar = com.ReadChar(readSuccess);
     if(!readSuccess) {
-        return "Error reading from serial port";
+        return getTimestampSeconds() + ": Error reading from serial port";
     }
     if (initialChar != 'B') {
-        printf("Invalid start character: %c\n", initialChar);
+        printf(getTimestampSeconds() + ": Invalid start character: %c\n", initialChar);
         // retry, eventually we will get a message
         // TODO: implement a timeout here to avoid infinite loops
         readSerialData();
@@ -34,7 +40,7 @@ std::string readSerialData() {
     while (true) {
         char nextChar = com.ReadChar(readSuccess);
         if(!readSuccess) {
-            return "Error reading from serial port";
+            return getTimestampSeconds() + ": Error reading from serial port";
         }
         if (nextChar == 'E') {
             break;  // End of message
@@ -50,14 +56,49 @@ std::string readSerialData() {
     return std::string(buffer.data(), i);
 }
 
-std::string parseMessage(const std::string& data) {
+std::vector<char> readSerialDataBuffer(){
+    bool readSuccess = true; // assume serial will read successfully, com.readChar will update this if it wasn't
+    char initialChar = com.ReadChar(readSuccess);
+    if(!readSuccess) {
+        return getTimestampSeconds() + ": Error reading from serial port";
+    }
+    if (initialChar != 'B') {
+        printf(getTimestampSeconds() + ": Invalid start character: %c\n", initialChar);
+        // retry, eventually we will get a message
+        // TODO: implement a timeout here to avoid infinite loops
+        readSerialData();
+    }
+
+    std::vector<char> buffer(800);  // Use vector for safe memory management
+    int i = 0;
+
+    while (true) {
+        char nextChar = com.ReadChar(readSuccess);
+        if(!readSuccess) {
+            return getTimestampSeconds() + ": Error reading from serial port";
+        }
+        if (nextChar == 'E') {
+            break;  // End of message
+        }
+        if (i < buffer.size()) {
+            buffer[i++] = nextChar;
+        } else {
+            break;  // Buffer full
+        }
+    }
+
+    // just return the buffer
+    return buffer.data()
+}
+
+std::string parseMessage(std::vector<char> data) {
     size_t pos = 0;
     size_t sizeOfCurrentBlock = 0;  // iterator for current block size, each block is 8 bytes
     std::string fullMessage;
-    if (data[0] != 'B') return "Invalid start character";
+    if (data[0] != 'B') return getTimestampSeconds() + ": Invalid start character";
 
     pos = 1;  // Skip 'B'
-
+    
     while (pos < data.size()) {
         if (data[pos] == 'E') break;
         sizeOfCurrentBlock++;
@@ -70,7 +111,7 @@ std::string parseMessage(const std::string& data) {
         // Extract 8-byte float (assuming 4 bytes for float, 4 padding)
         float value;
         std::memcpy(&value, data.c_str() + pos, sizeof(float));
-        std::cout << "Parsed float: " << value << std::endl;
+        std::cout << getTimestampSeconds() + ": Parsed float: " << value << std::endl;
         fullMessage += std::to_string(value) + (data[pos + 8] == '|' ? "|" : "");
         pos += 8;  // Move to next 8-byte block
     }
@@ -81,10 +122,10 @@ int main(){
 
     printf("Opening port %s.\n",com.GetPort().c_str());
 	if (com.Open() == 0) {
-		printf("Serial comms with arduino ok.\n");
+		printf(getTimestampSeconds() + ": Serial comms with arduino ok.\n");
 	}
 	else {
-		printf("Serial comms with arduino not ok.\n");
+		printf(getTimestampSeconds() + ": Serial comms with arduino not ok.\n");
 		return 1;
 	}
 
@@ -97,7 +138,7 @@ int main(){
     });
 
     svr.Get("/get_parsed_serial_data", [](const httplib::Request &, httplib::Response &res) {
-        res.set_content(parseMessage(readSerialData()), "text/plain");
+        res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
     });
 
     svr.listen("0.0.0.0", 8008);
