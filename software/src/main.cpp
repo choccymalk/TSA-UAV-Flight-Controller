@@ -179,8 +179,10 @@ int main() {
 
     svr.Get("/send_serial_data", [](const httplib::Request &, httplib::Response &res) {
         if (req.has_param("data")) {
-            auto data = req.get_param_value("data");
-            com.WriteData(data.c_str(), data.size());
+            auto data = Request.get_param_value("data");
+            for(char c : data) {
+                com.WriteChar(c);
+            }
         }
     });
 
