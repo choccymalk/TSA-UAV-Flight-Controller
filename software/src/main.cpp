@@ -18,7 +18,7 @@ ceSerial com("/dev/ttyACM0",115200,8,'N',1);
 httplib::Server svr;
 
 int getTimestampSeconds() {
-    return static_cast<int>(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
+    return static_cast<int>(std::time(nullptr););
 }
 
 std::string readSerialData() {
