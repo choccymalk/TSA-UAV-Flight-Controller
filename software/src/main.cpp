@@ -27,7 +27,7 @@ int getTimestampMilliseconds() {
     // Cast the duration to milliseconds and get the count as an integer
     auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(duration_since_epoch).count();
 
-    return milliseconds_since_epoch;
+    return -milliseconds_since_epoch;
 }
 
 std::string readSerialData() {
