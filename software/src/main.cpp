@@ -90,7 +90,7 @@ std::vector<char> readSerialDataBuffer(){
     }
 
     // just return the buffer
-    return buffer.data()
+    return std::vector<char>(buffer.begin(), buffer.begin() + i);
 }
 
 std::string parseMessage(std::vector<char> data) {
@@ -112,7 +112,7 @@ std::string parseMessage(std::vector<char> data) {
 
         // Extract 8-byte float (assuming 4 bytes for float, 4 padding)
         float value;
-        std::memcpy(&value, data.c_str() + pos, sizeof(float));
+        std::memcpy(&value, data + pos, sizeof(float));
         std::cout << getTimestampSeconds() + ": Parsed float: " << value << std::endl;
         fullMessage += std::to_string(value) + (data[pos + 8] == '|' ? "|" : "");
         pos += 8;  // Move to next 8-byte block
