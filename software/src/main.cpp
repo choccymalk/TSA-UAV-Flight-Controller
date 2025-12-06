@@ -12,6 +12,8 @@
 #include "httplib.h"
 #include <chrono>
 #include <ctime>
+#include <iomanip> // For std::hex, std::setfill, std::setw
+#include <sstream> // For std::ostringstream
 
 ceSerial com("/dev/ttyACM0", 115200, 8, 'N', 1);
 httplib::Server svr;
@@ -21,6 +23,13 @@ long long getTimestampMilliseconds() {
     auto duration_since_epoch = now.time_since_epoch();
     auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(duration_since_epoch).count();
     return milliseconds_since_epoch;  // Return positive value
+}
+
+std::string charToHexString(char c) {
+    std::ostringstream oss;
+    oss << std::hex << std::uppercase << std::setfill('0') << std::setw(2) 
+        << static_cast<int>(static_cast<unsigned char>(c));
+    return oss.str();
 }
 
 std::string readSerialData() {
@@ -34,7 +43,7 @@ std::string readSerialData() {
     // Implement timeout to avoid infinite recursion
     int retries = 0;
     while (initialChar != 'B' && retries < 100) {
-        std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << initialChar << std::endl;
+        std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << charToHexString(initialChar) << std::endl;
         initialChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
             return std::to_string(getTimestampMilliseconds()) + ": Error reading from serial port";
@@ -79,7 +88,7 @@ std::vector<char> readSerialDataBuffer() {
     // Implement timeout to avoid infinite recursion
     int retries = 0;
     while (initialChar != 'B' && retries < 100) {
-        std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << initialChar << std::endl;
+        std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << charToHexString(initialChar) << std::endl;
         initialChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
             std::cerr << std::to_string(getTimestampMilliseconds()) << ": Error reading from serial port" << std::endl;
