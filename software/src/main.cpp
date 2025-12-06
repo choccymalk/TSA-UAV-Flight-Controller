@@ -112,7 +112,7 @@ std::string parseMessage(std::vector<char> data) {
 
         // Extract 8-byte float (assuming 4 bytes for float, 4 padding)
         float value;
-        std::memcpy(&value, data + pos, sizeof(float));
+        std::memcpy(&value, data.at(pos), sizeof(float));
         std::cout << getTimestampSeconds() + ": Parsed float: " << value << std::endl;
         fullMessage += std::to_string(value) + (data[pos + 8] == '|' ? "|" : "");
         pos += 8;  // Move to next 8-byte block
