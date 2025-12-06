@@ -25,7 +25,7 @@ std::string readSerialData() {
     bool readSuccess = true; // assume serial will read successfully, com.readChar will update this if it wasn't
     char initialChar = com.ReadChar(readSuccess);
     if(!readSuccess) {
-        return std::to_string(getTimestampSeconds()) ": Error reading from serial port";
+        return std::to_string(getTimestampSeconds()) + ": Error reading from serial port";
     }
     if (initialChar != 'B') {
         std::cout << std::to_string(getTimestampSeconds()) << ": Invalid start character: %c\n", initialChar;
