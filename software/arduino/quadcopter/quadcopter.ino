@@ -143,7 +143,7 @@ void loop() {
     setSpeedForAllMotors(THROTTLE_MINIMUM);
   }
 
-  if (sendDataCounter > 200) {
+  if (sendDataCounter > 20) {
     sendData();
     sendDataCounter = 0;
   }
@@ -630,6 +630,6 @@ void sendData() {
   Serial.write("E");
 
   // carriage return line feed
-  Serial.write(0x0D);
-  Serial.write(0x0A);
+  //Serial.write(0x0D);
+  //Serial.write(0x0A);
 }
