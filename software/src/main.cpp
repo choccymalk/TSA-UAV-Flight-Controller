@@ -12,30 +12,57 @@
 #include "ceSerial.h"
 #include "httplib.h"
 
-ceSerial com("/dev/ttyS0",115200,8,'N',1);
+ceSerial com("/dev/ttyACM0",115200,8,'N',1);
 httplib::Server svr;
 
-std::string readSerialData(){
+std::string readSerialData() {
     char initialChar = com.ReadChar(true);
-    char nextChar;
-    char charsFromMessage = new char[800];
-    //std::string message;
-    int i = 0;
-    if(initialChar == "B"){
-        while(true){
-            nextChar = com.ReadChar(true);
-            if(nextChar == "E"){
-                break;
-            } else {
-                //message.append(nextChar);
-                charsFromMessage[i] = nextChar;
-                i++;
-            }
-        }
-    } else {
-        readSerialData();
+    if (initialChar != 'B') {
+        return "";  // Not a valid message
     }
-    return str(charsFromMessage[0], charsFromMessage[800]);
+
+    std::vector<char> buffer(800);  // Use vector for safe memory management
+    int i = 0;
+
+    while (true) {
+        char nextChar = com.ReadChar(true);
+        if (nextChar == 'E') {
+            break;  // End of message
+        }
+        if (i < buffer.size()) {
+            buffer[i++] = nextChar;
+        } else {
+            break;  // Buffer full
+        }
+    }
+
+    // Convert buffer to string
+    return std::string(buffer.data(), i);
+}
+
+std::string parseMessage(const std::string& data) {
+    size_t pos = 0;
+    size_t sizeOfCurrentBlock = 0;  // iterator for current block size, each block is 8 bytes
+    if (data[0] != 'B') return;
+
+    pos = 1;  // Skip 'B'
+
+    while (pos < data.size()) {
+        if (data[pos] == 'E') break;
+        sizeOfCurrentBlock++;
+        if (data[pos] == '|' && sizeOfCurrentBlock == 7) {
+            pos++;  // Skip '|'
+            sizeOfCurrentBlock = 0;
+            continue;
+        }
+
+        // Extract 8-byte float (assuming 4 bytes for float, 4 padding)
+        float value;
+        std::memcpy(&value, data.c_str() + pos, sizeof(float));
+        std::cout << "Parsed float: " << value << std::endl;
+
+        pos += 8;  // Move to next 8-byte block
+    }
 }
 
 int main(){
@@ -54,8 +81,7 @@ int main(){
     });
 
     svr.Get("/get_serial_data", [](const httplib::Request &, httplib::Response &res) {
-        com.ReadChar(true);
-        res.set_content("Hello World!", "text/plain");
+        res.set_content(readSerialData(), "text/plain");
     });
 
     svr.listen("0.0.0.0", 8008);
