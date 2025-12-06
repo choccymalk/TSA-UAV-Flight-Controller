@@ -136,12 +136,12 @@ void loop() {
     setSpeedForAllMotors(THROTTLE_MINIMUM);
   }
 
-  if (sendDataCounter > 20) {
-    sendData();
-    sendDataCounter = 0;
-  }
+  //if (sendDataCounter > 150) {
+  //  sendData();
+  //  sendDataCounter = 0;
+  //}
 
-  sendDataCounter += 1;
+  //sendDataCounter += 1;
 
   blinkLED();
 }
@@ -309,6 +309,8 @@ void receiveControl() {
         angle_desired[ROLL] = command.substring(2).toFloat();
       } else if (command[1] == 'y') {
         angle_desired[YAW] = command.substring(2).toFloat();
+      } else if (command[1] == 's'){
+        sendData();
       }
 
       lastCommand = millis();

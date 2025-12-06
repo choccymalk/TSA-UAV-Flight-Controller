@@ -34,6 +34,8 @@ std::string charToHexString(char c) {
 
 std::string readSerialData() {
     bool readSuccess = true;
+    com.WriteChar('.'); // these two lines request that data be sent back
+    com.WriteChar('s');
     char initialChar = com.ReadChar(readSuccess);
     
     if (!readSuccess) {
@@ -44,6 +46,8 @@ std::string readSerialData() {
     int retries = 0;
     while (initialChar != 'B' && retries < 100) {
         std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << charToHexString(initialChar) << std::endl;
+        com.WriteChar('.'); // these two lines request that data be sent back
+        com.WriteChar('s');
         initialChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
             return std::to_string(getTimestampMilliseconds()) + ": Error reading from serial port";
@@ -59,6 +63,8 @@ std::string readSerialData() {
     int i = 0;
 
     while (true) {
+        com.WriteChar('.'); // these two lines request that data be sent back
+        com.WriteChar('s');
         char nextChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
             return std::to_string(getTimestampMilliseconds()) + ": Error reading from serial port";
@@ -78,6 +84,8 @@ std::string readSerialData() {
 
 std::vector<char> readSerialDataBuffer() {
     bool readSuccess = true;
+    com.WriteChar('.'); // these two lines request that data be sent back
+    com.WriteChar('s');
     char initialChar = com.ReadChar(readSuccess);
     
     if (!readSuccess) {
@@ -89,6 +97,8 @@ std::vector<char> readSerialDataBuffer() {
     int retries = 0;
     while (initialChar != 'B' && retries < 100) {
         std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << charToHexString(initialChar) << std::endl;
+        com.WriteChar('.'); // these two lines request that data be sent back
+        com.WriteChar('s');
         initialChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
             std::cerr << std::to_string(getTimestampMilliseconds()) << ": Error reading from serial port" << std::endl;
@@ -106,6 +116,8 @@ std::vector<char> readSerialDataBuffer() {
     int i = 0;
 
     while (true) {
+        com.WriteChar('.'); // these two lines request that data be sent back
+        com.WriteChar('s');
         char nextChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
             std::cerr << std::to_string(getTimestampMilliseconds()) << ": Error reading from serial port" << std::endl;
