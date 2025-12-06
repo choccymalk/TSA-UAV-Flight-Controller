@@ -125,12 +125,12 @@ std::vector<char> readSerialDataBuffer() {
 }
 
 std::string parseMessage(std::vector<char> data) {
-    if (data.empty() || data[0] != 'B') {
-        std::cout << std::to_string(getTimestampMilliseconds()) + ": " + data[0] << std::endl;
-        return std::to_string(getTimestampMilliseconds()) + ": Invalid start character";
-    }
+    // if (data.empty() || data[0] != 'B') {
+    //     std::cout << std::to_string(getTimestampMilliseconds()) + ": " + data[0] << std::endl;
+    //     return std::to_string(getTimestampMilliseconds()) + ": Invalid start character";
+    // }
 
-    size_t pos = 1;  // Skip 'B'
+    size_t pos = 0;  // 'B' gets removed before parsing
     std::string fullMessage;
     
     while (pos < data.size()) {
