@@ -1,38 +1,122 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <button onclick="getRawData()">Get Raw Serial Data</button>
-        <div id="rawDataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto;"></div>
         <button onclick="getParsedData()">Get Parsed Serial Data</button>
         <div id="parsedDataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto;"></div>
-        <button onclick="sendSerialData()">Send Serial Data</button>
-        <textarea id="sendDataBox" style="width: 300px; height: 50px; margin-top: 10px; padding: 5px;"></textarea>
+        
+        <!--the user shouldn't be able to change these. these are for data sent back-->
+        <h3>Received Data (Read-Only)</h3>
+        <div>
+            <label>Throttle: <span id="throttleValue">1500</span></label><br>
+            <input type="range" id="throttleSlider" min="1200" max="1800" value="1500" step="1" disabled />
+        </div>
+        <div>
+            <label>Actual Pitch: <span id="actualPitchValue">0</span>°</label><br>
+            <input type="range" id="pitchSlider" min="-45" max="45" value="0" step="1" disabled />
+        </div>
+        <div>
+            <label>Actual Roll: <span id="actualRollValue">0</span>°</label><br>
+            <input type="range" id="rollSlider" min="-45" max="45" value="0" step="1" disabled />
+        </div>
+        <div>
+            <label>Actual Yaw: <span id="actualYawValue">0</span>°</label><br>
+            <input type="range" id="yawSlider" min="-45" max="45" value="0" step="1" disabled />
+        </div>
+        <div>
+            <label>Target Pitch: <span id="targetPitchValue">0</span>°</label><br>
+            <input type="range" id="targetPitchSlider" min="-45" max="45" value="0" step="1" disabled />
+        </div>
+        <div>
+            <label>Target Roll: <span id="targetRollValue">0</span>°</label><br>
+            <input type="range" id="targetRollSlider" min="-45" max="45" value="0" step="1" disabled />
+        </div>
+        <div>
+            <label>Target Yaw: <span id="targetYawValue">0</span>°</label><br>
+            <input type="range" id="targetYawSlider" min="-45" max="45" value="0" step="1" disabled />
+        </div>
+
+        <!--the user can change these-->
+        <h3>Send Commands</h3>
+        <div>
+            <label>Throttle: <span id="userThrottleValue">1500</span></label><br>
+            <input type="range" id="userThrottleSlider" min="1200" max="1800" value="1500" step="1" oninput="updateUserThrottle()" />
+        </div>
+        <div>
+            <label>Pitch: <span id="userPitchValue">0</span>°</label><br>
+            <input type="range" id="userPitchSlider" min="-45" max="45" value="0" step="1" oninput="updateUserPitch()" />
+        </div>
+        <div>
+            <label>Roll: <span id="userRollValue">0</span>°</label><br>
+            <input type="range" id="userRollSlider" min="-45" max="45" value="0" step="1" oninput="updateUserRoll()" />
+        </div>
+        <div>
+            <label>Yaw: <span id="userYawValue">0</span>°</label><br>
+            <input type="range" id="userYawSlider" min="-45" max="45" value="0" step="1" oninput="updateUserYaw()" />
+        </div>
+
+        <button onclick="sendSerialData()" style="margin-top: 10px;">Send Serial Data</button>
+        <textarea id="sendDataBox" style="width: 300px; height: 50px; margin-top: 10px; padding: 5px;" placeholder="Or manually enter data here..."></textarea>
+
         <script>
-            async function getRawData() {
-                try {
-                    const response = await fetch('/get_raw_serial_data');
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    const data = await response.text();
-                    document.getElementById('rawDataBox').innerText = data;
-                } catch (error) {
-                    document.getElementById('rawDataBox').innerText = 'Error fetching data: ' + error.message;
-                }
-            }
             async function getParsedData() {
                 try {
                     const response = await fetch('/get_parsed_serial_data');
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
+                    // example response: 1742.000000|-0.020000|-0.570000|-1.850000|0.000000|0.000000|0.000000|0.059049|-0.870000|-2.760000
                     const data = await response.text();
                     document.getElementById('parsedDataBox').innerText = data;
+                    
+                    // Parse and display the data
+                    const parsed = parseDataFurther(data);
+                    
+                    // Update read-only sliders and values
+                    document.getElementById('throttleSlider').value = parsed.throttle;
+                    document.getElementById('throttleValue').innerText = parsed.throttle.toFixed(2);
+                    
+                    document.getElementById('pitchSlider').value = parsed.actualPitch;
+                    document.getElementById('actualPitchValue').innerText = parsed.actualPitch.toFixed(2);
+                    
+                    document.getElementById('rollSlider').value = parsed.actualRoll;
+                    document.getElementById('actualRollValue').innerText = parsed.actualRoll.toFixed(2);
+                    
+                    document.getElementById('yawSlider').value = parsed.actualYaw;
+                    document.getElementById('actualYawValue').innerText = parsed.actualYaw.toFixed(2);
+                    
+                    document.getElementById('targetPitchSlider').value = parsed.targetPitch;
+                    document.getElementById('targetPitchValue').innerText = parsed.targetPitch.toFixed(2);
+                    
+                    document.getElementById('targetRollSlider').value = parsed.targetRoll;
+                    document.getElementById('targetRollValue').innerText = parsed.targetRoll.toFixed(2);
+                    
+                    document.getElementById('targetYawSlider').value = parsed.targetYaw;
+                    document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
                 } catch (error) {
                     document.getElementById('parsedDataBox').innerText = 'Error fetching data: ' + error.message;
                 }
             }
+
+            function updateUserThrottle() {
+                document.getElementById('userThrottleValue').innerText = document.getElementById('userThrottleSlider').value;
+            }
+
+            function updateUserPitch() {
+                document.getElementById('userPitchValue').innerText = document.getElementById('userPitchSlider').value;
+            }
+
+            function updateUserRoll() {
+                document.getElementById('userRollValue').innerText = document.getElementById('userRollSlider').value;
+            }
+
+            function updateUserYaw() {
+                document.getElementById('userYawValue').innerText = document.getElementById('userYawSlider').value;
+            }
+
             async function sendSerialData(){
+                // to change throttle, pitch, roll, yaw values, send data in the following format:
+                // .t1200, where 1200 is the desired throttle value, the minimum is 1200 and the maximum is 1800.
+                // the maximum value for roll, pitch, and yaw is 45 degrees, and the minimum value is -45 degrees.
                 try {
                     const dataToSend = document.getElementById('sendDataBox').value;
                     const response = await fetch('/send_serial_data?data=' + dataToSend);
@@ -40,10 +124,27 @@
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
                     const result = await response.text();
-                    alert('Data sent successfully: ' + result);
+                    console.log('Data sent successfully');
                 } catch (error) {
                     alert('Error sending data: ' + error.message);
                 }
             }
+
+            function parseDataFurther(data){
+                const dataArray = data.split('|');
+                return {
+                    throttle: parseFloat(dataArray[0]),
+                    actualPitch: parseFloat(dataArray[1]),
+                    actualRoll: parseFloat(dataArray[2]),
+                    actualYaw: parseFloat(dataArray[3]),
+                    targetPitch: parseFloat(dataArray[4]),
+                    targetRoll: parseFloat(dataArray[5]),
+                    targetYaw: parseFloat(dataArray[6]),
+                    pidOutputPitch: parseFloat(dataArray[7]),
+                    pidOutputRoll: parseFloat(dataArray[8]),
+                    pidOutputYaw: parseFloat(dataArray[9])
+                };
+            }
         </script>
     </body>
+</html>
