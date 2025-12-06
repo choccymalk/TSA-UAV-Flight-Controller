@@ -4,7 +4,7 @@ project(quadcopter VERSION 1.0)
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_CXX_FLAGS "-fpermissive")
+#set(CMAKE_CXX_FLAGS "-fpermissive")
 
 # Define a list of source files
 set(SOURCES
