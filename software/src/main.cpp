@@ -150,7 +150,7 @@ std::string parseMessage(std::vector<char> data) {
         std::memcpy(&value, &data[pos], sizeof(float));
         std::cout << std::to_string(getTimestampMilliseconds()) << ": Parsed float: " << value << std::endl;
         fullMessage += std::to_string(value);
-        pos += sizeof(float) + 4; // throw away the 4 padding bytes
+        pos += sizeof(float);
     }
     
     return fullMessage;
