@@ -115,11 +115,19 @@
             }
 
             async function sendSerialData(){
+                const dataToSend = document.getElementById('sendDataBox').value;
                 // to change throttle, pitch, roll, yaw values, send data in the following format:
                 // .t1200, where 1200 is the desired throttle value, the minimum is 1200 and the maximum is 1800.
                 // the maximum value for roll, pitch, and yaw is 45 degrees, and the minimum value is -45 degrees.
+                // get data from sliders if textarea is empty
+                if(dataToSend.trim() === ''){
+                    const throttle = document.getElementById('userThrottleSlider').value;
+                    const pitch = document.getElementById('userPitchSlider').value;
+                    const roll = document.getElementById('userRollSlider').value;
+                    const yaw = document.getElementById('userYawSlider').value;
+                    dataToSend = `.t${throttle}.p${pitch}.r${roll}.y${yaw}`;
+                }
                 try {
-                    const dataToSend = document.getElementById('sendDataBox').value;
                     const response = await fetch('/send_serial_data?data=' + dataToSend);
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
