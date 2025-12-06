@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button onclick="getData()">Get Serial Data</button>
+        <!-- a box with a black outline where the data will go, the data is just a string, no parsing needed -->
+        <div id="dataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto;"></div>
+        <script>
+            async function getData() {
+                try {
+                    const response = await fetch('/get_serial_data');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    const data = await response.text();
+                    document.getElementById('dataBox').innerText = data;
+                } catch (error) {
+                    document.getElementById('dataBox').innerText = 'Error fetching data: ' + error.message;
+                }
+            }
+        </script>
+    </body>
