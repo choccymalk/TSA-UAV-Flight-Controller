@@ -22,7 +22,10 @@ std::string readSerialData() {
         return "Error reading from serial port";
     }
     if (initialChar != 'B') {
-        return "Not a valid message";  // Not a valid message
+        printf("Invalid start character: %c\n", initialChar);
+        // retry, eventually we will get a message
+        // TODO: implement a timeout here to avoid infinite loops
+        readSerialData();
     }
 
     std::vector<char> buffer(800);  // Use vector for safe memory management
