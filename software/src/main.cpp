@@ -8,21 +8,24 @@
 #include <mutex>
 #include <thread>
 #include <iostream>
+#include <set>
 #include "ceSerial.h"
 #include "httplib.h"
 #include <chrono>
 #include <ctime>
-#include <iomanip> // For std::hex, std::setfill, std::setw
-#include <sstream> // For std::ostringstream
+#include <iomanip>
+#include <sstream>
 
 ceSerial com("/dev/ttyACM0", 115200, 8, 'N', 1);
 httplib::Server svr;
+std::set<httplib::WebSocket*> g_websockets;
+std::mutex g_websockets_mutex;
 
 long long getTimestampMilliseconds() {
     auto now = std::chrono::system_clock::now();
     auto duration_since_epoch = now.time_since_epoch();
     auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(duration_since_epoch).count();
-    return milliseconds_since_epoch;  // Return positive value
+    return milliseconds_since_epoch;
 }
 
 std::string charToHexString(char c) {
@@ -32,59 +35,9 @@ std::string charToHexString(char c) {
     return oss.str();
 }
 
-std::string readSerialData() {
-    bool readSuccess = true;
-    com.WriteChar('.'); // these two lines request that data be sent back
-    com.WriteChar('s');
-    char initialChar = com.ReadChar(readSuccess);
-    
-    if (!readSuccess) {
-        return std::to_string(getTimestampMilliseconds()) + ": Error reading from serial port";
-    }
-    
-    // Implement timeout to avoid infinite recursion
-    int retries = 0;
-    while (initialChar != 'B' && retries < 100) {
-        std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << charToHexString(initialChar) << std::endl;
-        com.WriteChar('.'); // these two lines request that data be sent back
-        com.WriteChar('s');
-        initialChar = com.ReadChar(readSuccess);
-        if (!readSuccess) {
-            return std::to_string(getTimestampMilliseconds()) + ": Error reading from serial port";
-        }
-        retries++;
-    }
-    
-    if (initialChar != 'B') {
-        return std::to_string(getTimestampMilliseconds()) + ": Failed to find valid start character after retries";
-    }
-
-    std::vector<char> buffer(800);
-    int i = 0;
-
-    while (true) {
-        com.WriteChar('.'); // these two lines request that data be sent back
-        com.WriteChar('s');
-        char nextChar = com.ReadChar(readSuccess);
-        if (!readSuccess) {
-            return std::to_string(getTimestampMilliseconds()) + ": Error reading from serial port";
-        }
-        if (nextChar == 'E') {
-            break;
-        }
-        if (i < buffer.size()) {
-            buffer[i++] = nextChar;
-        } else {
-            break;
-        }
-    }
-
-    return std::string(buffer.data(), i);
-}
-
 std::vector<char> readSerialDataBuffer() {
     bool readSuccess = true;
-    com.WriteChar('.'); // these two lines request that data be sent back
+    com.WriteChar('.');
     com.WriteChar('s');
     char initialChar = com.ReadChar(readSuccess);
     
@@ -93,11 +46,10 @@ std::vector<char> readSerialDataBuffer() {
         return std::vector<char>();
     }
     
-    // Implement timeout to avoid infinite recursion
     int retries = 0;
     while (initialChar != 'B' && retries < 100) {
         std::cerr << std::to_string(getTimestampMilliseconds()) << ": Invalid start character: " << charToHexString(initialChar) << std::endl;
-        com.WriteChar('.'); // these two lines request that data be sent back
+        com.WriteChar('.');
         com.WriteChar('s');
         initialChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
@@ -111,12 +63,11 @@ std::vector<char> readSerialDataBuffer() {
         std::cerr << std::to_string(getTimestampMilliseconds()) << ": Failed to find valid start character after retries" << std::endl;
         return std::vector<char>();
     }
-
+    
     std::vector<char> buffer(800);
     int i = 0;
-
     while (true) {
-        com.WriteChar('.'); // these two lines request that data be sent back
+        com.WriteChar('.');
         com.WriteChar('s');
         char nextChar = com.ReadChar(readSuccess);
         if (!readSuccess) {
@@ -132,23 +83,16 @@ std::vector<char> readSerialDataBuffer() {
             break;
         }
     }
-
     return std::vector<char>(buffer.begin(), buffer.begin() + i);
 }
 
 std::string parseMessage(std::vector<char> data) {
-    // if (data.empty() || data[0] != 'B') {
-    //     std::cout << std::to_string(getTimestampMilliseconds()) + ": " + data[0] << std::endl;
-    //     return std::to_string(getTimestampMilliseconds()) + ": Invalid start character";
-    // }
-
-    size_t pos = 0;  // 'B' gets removed before parsing
+    size_t pos = 0;
     std::string fullMessage;
     
     while (pos < data.size()) {
         if (data[pos] == 'E') break;
         
-        // Check if we have enough bytes for a float
         if (pos + sizeof(float) > data.size()) break;
         
         if (data[pos] == '|') {
@@ -156,8 +100,7 @@ std::string parseMessage(std::vector<char> data) {
             pos++;
             continue;
         }
-
-        // Extract 4-byte float
+        
         float value;
         std::memcpy(&value, &data[pos], sizeof(float));
         std::cout << std::to_string(getTimestampMilliseconds()) << ": Parsed float: " << value << std::endl;
@@ -168,6 +111,33 @@ std::string parseMessage(std::vector<char> data) {
     return fullMessage;
 }
 
+void broadcastData(const std::string& message) {
+    std::lock_guard<std::mutex> lock(g_websockets_mutex);
+    for (auto ws : g_websockets) {
+        if (ws && ws->is_open()) {
+            ws->send_text(message);
+        }
+    }
+}
+
+void serialDataThread() {
+    while (true) {
+        try {
+            std::vector<char> rawData = readSerialDataBuffer();
+            if (!rawData.empty()) {
+                std::string parsedData = parseMessage(rawData);
+                if (!parsedData.empty()) {
+                    broadcastData(parsedData);
+                }
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        } catch (const std::exception& e) {
+            std::cerr << "Error in serialDataThread: " << e.what() << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
+    }
+}
+
 int main() {
     printf("Opening port %s.\n", com.GetPort().c_str());
     if (com.Open() == 0) {
@@ -176,32 +146,55 @@ int main() {
         std::cout << std::to_string(getTimestampMilliseconds()) << ": Serial comms with arduino not ok.\n";
         return 1;
     }
-
+    
+    // Start serial data reading thread
+    std::thread serialThread(serialDataThread);
+    serialThread.detach();
+    
     svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
         res.set_file_content("index.html", "text/html");
     });
-
-    svr.Get("/get_raw_serial_data", [](const httplib::Request &, httplib::Response &res) {
-        res.set_content(readSerialData(), "text/plain");
+    
+    svr.set_open_socket_callback([](httplib::socket_t sock) {
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": New socket opened" << std::endl;
     });
-
-    svr.Get("/get_parsed_serial_data", [](const httplib::Request &, httplib::Response &res) {
-        res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
+    
+    svr.set_close_socket_callback([](httplib::socket_t sock) {
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": Socket closed" << std::endl;
     });
-
-    svr.Get("/send_serial_data", [](const httplib::Request &req, httplib::Response &res) {
-        if (req.has_param("data")) {
-            auto data = req.get_param_value("data");
-            for(char c : data) {
+    
+    svr.set_post_routing_handler([](const httplib::Request &, httplib::Response &) {
+        // Clean up closed websockets
+        std::lock_guard<std::mutex> lock(g_websockets_mutex);
+        g_websockets.erase(
+            std::remove_if(g_websockets.begin(), g_websockets.end(),
+                [](httplib::WebSocket* ws) { return !ws || !ws->is_open(); }),
+            g_websockets.end()
+        );
+    });
+    
+    svr.set_ws_open_handler([](const httplib::Request &, httplib::WebSocket &ws) {
+        std::lock_guard<std::mutex> lock(g_websockets_mutex);
+        g_websockets.insert(&ws);
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket opened, total connections: " << g_websockets.size() << std::endl;
+    });
+    
+    svr.set_ws_close_handler([](const httplib::Request &, httplib::WebSocket &ws) {
+        std::lock_guard<std::mutex> lock(g_websockets_mutex);
+        g_websockets.erase(&ws);
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket closed, total connections: " << g_websockets.size() << std::endl;
+    });
+    
+    svr.set_ws_message_handler([](const httplib::Request &, httplib::WebSocket &ws, const httplib::WsMessage &msg) {
+        if (msg.data().find("send:") == 0) {
+            std::string dataToSend = msg.data().substr(5);
+            for (char c : dataToSend) {
                 com.WriteChar(c);
             }
-            // give the device time to process the data before getting response 
-            ceSerial::Delay(2000);
-            res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
+            std::cout << std::to_string(getTimestampMilliseconds()) << ": Sent data via WebSocket: " << dataToSend << std::endl;
         }
     });
-
+    
     svr.listen("0.0.0.0", 8008);
-
     return 0;
 }

@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
-
 <body>
-    <button onclick="getParsedData()">Get Parsed Serial Data</button>
-    <div id="parsedDataBox"
-        style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto;">
+    <h2>Serial Data Monitor (WebSocket)</h2>
+    <div id="status" style="color: red; margin-bottom: 10px; font-weight: bold;">Disconnected</div>
+    
+    <button onclick="startAutoRefresh()">Start Auto Refresh</button>
+    <button onclick="stopAutoRefresh()">Stop Auto Refresh</button>
+    
+    <div id="parsedDataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto; background-color: #f5f5f5;">
+        Waiting for data...
     </div>
-
-    <!--the user shouldn't be able to change these. these are for data sent back-->
+    
     <h3>Received Data (Read-Only)</h3>
     <div>
         <label>Throttle: <span id="throttleValue">1500</span></label><br>
@@ -38,8 +41,7 @@
         <label>Target Yaw: <span id="targetYawValue">0</span>°</label><br>
         <input type="range" id="targetYawSlider" min="-45" max="45" value="0" step="1" disabled />
     </div>
-
-    <!--the user can change these-->
+    
     <h3>Send Commands</h3>
     <div>
         <label>Throttle: <span id="userThrottleValue">1500</span></label><br>
@@ -58,138 +60,129 @@
         <label>Yaw: <span id="userYawValue">0</span>°</label><br>
         <input type="range" id="userYawSlider" min="-45" max="45" value="0" step="1" oninput="updateUserYaw()" />
     </div>
-
     <button onclick="sendSerialData()" style="margin-top: 10px;">Send Serial Data</button>
     <textarea id="sendDataBox" style="width: 300px; height: 50px; margin-top: 10px; padding: 5px;"
         placeholder="Or manually enter data here..."></textarea>
 
     <script>
-        // allow serial device 20 seconds to initialize before allowing data fetches
-        setTimeout(() => {
-            console.log('Serial device should be initialized now.');
-        }, 20000);
-        async function getParsedData() {
-            try {
-                const response = await fetch('/get_parsed_serial_data');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                // example response: 1742.000000|-0.020000|-0.570000|-1.850000|0.000000|0.000000|0.000000|0.059049|-0.870000|-2.760000
-                const data = await response.text();
+        let ws = null;
+        let autoRefreshEnabled = false;
+        
+        function connectWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            ws = new WebSocket(protocol + '//' + window.location.host + '/ws');
+            
+            ws.onopen = function() {
+                console.log('WebSocket connected');
+                document.getElementById('status').style.color = 'green';
+                document.getElementById('status').innerText = 'Connected';
+            };
+            
+            ws.onmessage = function(event) {
+                const data = event.data;
                 document.getElementById('parsedDataBox').innerText = data;
-
-                // Parse and display the data
                 const parsed = parseDataFurther(data);
-
-                // Update read-only sliders and values
-                document.getElementById('throttleSlider').value = parsed.throttle;
-                document.getElementById('throttleValue').innerText = parsed.throttle.toFixed(2);
-
-                document.getElementById('pitchSlider').value = parsed.actualPitch;
-                document.getElementById('actualPitchValue').innerText = parsed.actualPitch.toFixed(2);
-
-                document.getElementById('rollSlider').value = parsed.actualRoll;
-                document.getElementById('actualRollValue').innerText = parsed.actualRoll.toFixed(2);
-
-                document.getElementById('yawSlider').value = parsed.actualYaw;
-                document.getElementById('actualYawValue').innerText = parsed.actualYaw.toFixed(2);
-
-                document.getElementById('targetPitchSlider').value = parsed.targetPitch;
-                document.getElementById('targetPitchValue').innerText = parsed.targetPitch.toFixed(2);
-
-                document.getElementById('targetRollSlider').value = parsed.targetRoll;
-                document.getElementById('targetRollValue').innerText = parsed.targetRoll.toFixed(2);
-
-                document.getElementById('targetYawSlider').value = parsed.targetYaw;
-                document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
-            } catch (error) {
-                document.getElementById('parsedDataBox').innerText = 'Error fetching data: ' + error.message;
-            }
+                updateDisplayValues(parsed);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+                document.getElementById('status').style.color = 'orange';
+                document.getElementById('status').innerText = 'Error';
+            };
+            
+            ws.onclose = function() {
+                console.log('WebSocket disconnected');
+                document.getElementById('status').style.color = 'red';
+                document.getElementById('status').innerText = 'Disconnected';
+                // Attempt to reconnect after 3 seconds
+                setTimeout(connectWebSocket, 3000);
+            };
         }
-
+        
+        function updateDisplayValues(parsed) {
+            document.getElementById('throttleSlider').value = parsed.throttle;
+            document.getElementById('throttleValue').innerText = parsed.throttle.toFixed(2);
+            document.getElementById('pitchSlider').value = parsed.actualPitch;
+            document.getElementById('actualPitchValue').innerText = parsed.actualPitch.toFixed(2);
+            document.getElementById('rollSlider').value = parsed.actualRoll;
+            document.getElementById('actualRollValue').innerText = parsed.actualRoll.toFixed(2);
+            document.getElementById('yawSlider').value = parsed.actualYaw;
+            document.getElementById('actualYawValue').innerText = parsed.actualYaw.toFixed(2);
+            document.getElementById('targetPitchSlider').value = parsed.targetPitch;
+            document.getElementById('targetPitchValue').innerText = parsed.targetPitch.toFixed(2);
+            document.getElementById('targetRollSlider').value = parsed.targetRoll;
+            document.getElementById('targetRollValue').innerText = parsed.targetRoll.toFixed(2);
+            document.getElementById('targetYawSlider').value = parsed.targetYaw;
+            document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
+        }
+        
+        function startAutoRefresh() {
+            autoRefreshEnabled = true;
+            console.log('Auto refresh started');
+        }
+        
+        function stopAutoRefresh() {
+            autoRefreshEnabled = false;
+            console.log('Auto refresh stopped');
+        }
+        
         function updateUserThrottle() {
             document.getElementById('userThrottleValue').innerText = document.getElementById('userThrottleSlider').value;
         }
-
+        
         function updateUserPitch() {
             document.getElementById('userPitchValue').innerText = document.getElementById('userPitchSlider').value;
         }
-
+        
         function updateUserRoll() {
             document.getElementById('userRollValue').innerText = document.getElementById('userRollSlider').value;
         }
-
+        
         function updateUserYaw() {
             document.getElementById('userYawValue').innerText = document.getElementById('userYawSlider').value;
         }
-
-        async function sendSerialData() {
+        
+        function sendSerialData() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('WebSocket not connected');
+                return;
+            }
+            
             let dataToSend = document.getElementById('sendDataBox').value;
-            let notTextBox = false;
-            let throttle, pitch, roll, yaw;
-            // to change throttle, pitch, roll, yaw values, send data in the following format:
-            // .t1200, where 1200 is the desired throttle value, the minimum is 1200 and the maximum is 1800.
-            // the maximum value for roll, pitch, and yaw is 45 degrees, and the minimum value is -45 degrees.
-            // get data from sliders if textarea is empty
-            // multiple commands cannot be sent in one call
+            
             if (dataToSend.trim() === '') {
-                throttle = document.getElementById('userThrottleSlider').value;
-                pitch = document.getElementById('userPitchSlider').value;
-                roll = document.getElementById('userRollSlider').value;
-                yaw = document.getElementById('userYawSlider').value;
-                notTextBox = true;
+                const throttle = document.getElementById('userThrottleSlider').value;
+                const pitch = document.getElementById('userPitchSlider').value;
+                const roll = document.getElementById('userRollSlider').value;
+                const yaw = document.getElementById('userYawSlider').value;
+                dataToSend = '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s";
             }
-            if (!notTextBox) {
-                try {
-                    const response = await fetch('/send_serial_data?data=' + dataToSend);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    const result = await response.text();
-                    console.log('Data sent successfully');
-                } catch (error) {
-                    alert('Error sending data: ' + error.message);
-                }
-            } else {
-                try {
-                    const response = await fetch('/send_serial_data?data=' + '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s");
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    // sleep(2000);
-                    // await fetch('/send_serial_data?data=' + '.p' + pitch + ";");
-                    // sleep(2000);
-                    // await fetch('/send_serial_data?data=' + '.r' + roll + ";");
-                    // sleep(2000);
-                    // await fetch('/send_serial_data?data=' + '.y' + yaw + ";");
-                    // sleep(2000);
-                    console.log('Data sent successfully from sliders');
-                } catch (error) {
-                    alert('Error sending data: ' + error.message);
-                }
-            }
+            
+            ws.send('send:' + dataToSend);
+            console.log('Data sent via WebSocket: ' + dataToSend);
         }
-
+        
         function parseDataFurther(data) {
             const dataArray = data.split('|');
             return {
-                throttle: parseFloat(dataArray[0]),
-                actualPitch: parseFloat(dataArray[1]),
-                actualRoll: parseFloat(dataArray[2]),
-                actualYaw: parseFloat(dataArray[3]),
-                targetPitch: parseFloat(dataArray[4]),
-                targetRoll: parseFloat(dataArray[5]),
-                targetYaw: parseFloat(dataArray[6]),
-                pidOutputPitch: parseFloat(dataArray[7]),
-                pidOutputRoll: parseFloat(dataArray[8]),
-                pidOutputYaw: parseFloat(dataArray[9])
+                throttle: parseFloat(dataArray[0]) || 0,
+                actualPitch: parseFloat(dataArray[1]) || 0,
+                actualRoll: parseFloat(dataArray[2]) || 0,
+                actualYaw: parseFloat(dataArray[3]) || 0,
+                targetPitch: parseFloat(dataArray[4]) || 0,
+                targetRoll: parseFloat(dataArray[5]) || 0,
+                targetYaw: parseFloat(dataArray[6]) || 0,
+                pidOutputPitch: parseFloat(dataArray[7]) || 0,
+                pidOutputRoll: parseFloat(dataArray[8]) || 0,
+                pidOutputYaw: parseFloat(dataArray[9]) || 0
             };
         }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
+        
+        // Initialize WebSocket connection on page load
+        window.addEventListener('load', function() {
+            setTimeout(connectWebSocket, 1000);
+        });
     </script>
 </body>
-
 </html>
