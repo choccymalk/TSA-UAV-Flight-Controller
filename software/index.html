@@ -156,13 +156,13 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    sleep(200);
+                    sleep(2000);
                     await fetch('/send_serial_data?data=' + '.p' + pitch);
-                    sleep(200);
+                    sleep(2000);
                     await fetch('/send_serial_data?data=' + '.r' + roll);
-                    sleep(200);
+                    sleep(2000);
                     await fetch('/send_serial_data?data=' + '.y' + yaw);
-                    sleep(200);
+                    sleep(2000);
                     console.log('Data sent successfully from sliders');
                 } catch (error) {
                     alert('Error sending data: ' + error.message);
