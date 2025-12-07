@@ -9,6 +9,7 @@
 #include <thread>
 #include <iostream>
 #include <set>
+#include <memory>
 #include "ceSerial.h"
 #include "httplib.h"
 #include <chrono>
@@ -16,10 +17,18 @@
 #include <iomanip>
 #include <sstream>
 
+// WebSocket++ headers
+#include <websocketpp/config/asio_no_tls.hpp>
+#include <websocketpp/server.hpp>
+
+typedef websocketpp::server<websocketpp::config::asio> ws_server;
+typedef websocketpp::connection_hdl connection_hdl;
+
 ceSerial com("/dev/ttyACM0", 115200, 8, 'N', 1);
 httplib::Server svr;
-std::set<httplib::WebSocket*> g_websockets;
-std::mutex g_websockets_mutex;
+ws_server wsServer;
+std::set<connection_hdl, std::owner_less<connection_hdl>> g_connections;
+std::mutex g_connections_mutex;
 
 long long getTimestampMilliseconds() {
     auto now = std::chrono::system_clock::now();
@@ -112,10 +121,12 @@ std::string parseMessage(std::vector<char> data) {
 }
 
 void broadcastData(const std::string& message) {
-    std::lock_guard<std::mutex> lock(g_websockets_mutex);
-    for (auto ws : g_websockets) {
-        if (ws && ws->is_open()) {
-            ws->send_text(message);
+    std::lock_guard<std::mutex> lock(g_connections_mutex);
+    for (auto hdl : g_connections) {
+        try {
+            wsServer.send(hdl, message, websocketpp::frame::opcode::text);
+        } catch (const std::exception& e) {
+            std::cerr << "Error sending message: " << e.what() << std::endl;
         }
     }
 }
@@ -138,6 +149,30 @@ void serialDataThread() {
     }
 }
 
+void onWSOpen(connection_hdl hdl) {
+    std::lock_guard<std::mutex> lock(g_connections_mutex);
+    g_connections.insert(hdl);
+    std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket opened, total connections: " << g_connections.size() << std::endl;
+}
+
+void onWSClose(connection_hdl hdl) {
+    std::lock_guard<std::mutex> lock(g_connections_mutex);
+    g_connections.erase(hdl);
+    std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket closed, total connections: " << g_connections.size() << std::endl;
+}
+
+void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
+    std::string payload = msg->get_payload();
+    
+    if (payload.find("send:") == 0) {
+        std::string dataToSend = payload.substr(5);
+        for (char c : dataToSend) {
+            com.WriteChar(c);
+        }
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": Sent data via WebSocket: " << dataToSend << std::endl;
+    }
+}
+
 int main() {
     printf("Opening port %s.\n", com.GetPort().c_str());
     if (com.Open() == 0) {
@@ -147,52 +182,34 @@ int main() {
         return 1;
     }
     
+    // Configure WebSocket server
+    try {
+        wsServer.set_access_channels(websocketpp::log::alevel::all);
+        wsServer.clear_access_channels(websocketpp::log::alevel::frame_payload);
+        
+        wsServer.init_asio();
+        wsServer.set_open_handler(&onWSOpen);
+        wsServer.set_close_handler(&onWSClose);
+        wsServer.set_message_handler(&onWSMessage);
+        
+        wsServer.listen(8009);
+        wsServer.start_accept();
+    } catch (websocketpp::exception const & e) {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
+    
     // Start serial data reading thread
     std::thread serialThread(serialDataThread);
     serialThread.detach();
     
+    // Start WebSocket server in separate thread
+    std::thread wsThread([](){ wsServer.run(); });
+    wsThread.detach();
+    
+    // HTTP server for serving static files
     svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
         res.set_file_content("index.html", "text/html");
-    });
-    
-    svr.set_open_socket_callback([](httplib::socket_t sock) {
-        std::cout << std::to_string(getTimestampMilliseconds()) << ": New socket opened" << std::endl;
-    });
-    
-    svr.set_close_socket_callback([](httplib::socket_t sock) {
-        std::cout << std::to_string(getTimestampMilliseconds()) << ": Socket closed" << std::endl;
-    });
-    
-    svr.set_post_routing_handler([](const httplib::Request &, httplib::Response &) {
-        // Clean up closed websockets
-        std::lock_guard<std::mutex> lock(g_websockets_mutex);
-        g_websockets.erase(
-            std::remove_if(g_websockets.begin(), g_websockets.end(),
-                [](httplib::WebSocket* ws) { return !ws || !ws->is_open(); }),
-            g_websockets.end()
-        );
-    });
-    
-    svr.set_ws_open_handler([](const httplib::Request &, httplib::WebSocket &ws) {
-        std::lock_guard<std::mutex> lock(g_websockets_mutex);
-        g_websockets.insert(&ws);
-        std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket opened, total connections: " << g_websockets.size() << std::endl;
-    });
-    
-    svr.set_ws_close_handler([](const httplib::Request &, httplib::WebSocket &ws) {
-        std::lock_guard<std::mutex> lock(g_websockets_mutex);
-        g_websockets.erase(&ws);
-        std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket closed, total connections: " << g_websockets.size() << std::endl;
-    });
-    
-    svr.set_ws_message_handler([](const httplib::Request &, httplib::WebSocket &ws, const httplib::WsMessage &msg) {
-        if (msg.data().find("send:") == 0) {
-            std::string dataToSend = msg.data().substr(5);
-            for (char c : dataToSend) {
-                com.WriteChar(c);
-            }
-            std::cout << std::to_string(getTimestampMilliseconds()) << ": Sent data via WebSocket: " << dataToSend << std::endl;
-        }
     });
     
     svr.listen("0.0.0.0", 8008);
