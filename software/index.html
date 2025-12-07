@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Flight Controller Monitor + Gamepad Mapping</title>
+<title>Pilot Station</title>
+<script src="communication.js"></script>
 <style>
   :root {
     --bg: #0f172a;
@@ -11,635 +12,359 @@
     --accent: #06b6d4;
     --muted: #94a3b8;
     --text: #e6eef8;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
   }
   html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071029);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-  .wrap{max-width:1100px;margin:28px auto;padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);}
-  h1{margin:0 0 6px;font-size:20px;}
+  .container{max-width:1600px;margin:0 auto;padding:16px;}
+  h1{margin:0 0 24px;font-size:24px;font-weight:700;}
+  h2{font-size:16px;margin:16px 0 12px;font-weight:700;color:var(--accent);}
   p.lead{margin:0 0 18px;color:var(--muted);font-size:13px;}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;}
-  .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);}
-  .sliders{display:flex;flex-direction:column;gap:14px;}
+  .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);}
+  .status-bar{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
+  .status-item{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--card);border-radius:8px;font-size:13px;}
+  .status-indicator{width:8px;height:8px;border-radius:50%;}
+  .status-indicator.connected{background:var(--success);}
+  .status-indicator.disconnected{background:var(--error);}
+  
+  .main-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:20px;}
+  .video-section{grid-column:1/-1;}
+  .video-feed{width:100%;height:360px;background:#031621;border-radius:10px;border:2px solid rgba(6,182,212,0.2);display:flex;align-items:center;justify-content:center;color:var(--muted);overflow:hidden;}
+  .video-feed img, .video-feed video{width:100%;height:100%;object-fit:cover;}
+  .video-placeholder{font-size:14px;text-align:center;}
+
+  .controls-section{display:flex;flex-direction:column;gap:16px;}
+  .sliders{display:flex;flex-direction:column;gap:12px;}
   .control{display:flex;gap:12px;align-items:center;}
-  .label{width:110px;font-weight:600;}
+  .label{width:120px;font-weight:600;font-size:14px;}
   input[type=range]{flex:1;appearance:none;height:10px;border-radius:6px;background:linear-gradient(90deg,#243447,#1a2936);outline:none;}
   input[type=range]::-webkit-slider-thumb{appearance:none;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 2px 6px rgba(0,0,0,0.6);}
-  .value{width:70px;text-align:right;font-variant-numeric:tabular-nums;}
+  input[type=range]:disabled{opacity:0.6;}
+  .value{width:65px;text-align:right;font-variant-numeric:tabular-nums;font-weight:500;}
   .small{font-size:13px;color:var(--muted);}
-  .sidebar{display:flex;flex-direction:column;gap:12px;}
-  select,input[type=checkbox]{width:100%;}
-  button{background:var(--accent);border:none;padding:8px;border-radius:8px;color:#022;cursor:pointer;font-weight:700;}
-  .muted{color:var(--muted);font-size:13px;}
-  .row{display:flex;gap:8px;}
+  
+  .telemetry-section{display:grid;gap:12px;}
+  .telemetry-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .telemetry-item{display:flex;flex-direction:column;}
+  .telemetry-label{font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:600;}
+  .telemetry-value{font-size:20px;font-weight:700;color:var(--accent);}
+  
+  .sidebar{display:flex;flex-direction:column;gap:16px;}
+  .menu-tabs{display:flex;gap:8px;margin-bottom:12px;border-bottom:2px solid rgba(255,255,255,0.05);}
+  .menu-tab{padding:10px 14px;border:none;background:none;color:var(--muted);cursor:pointer;font-weight:600;border-bottom:2px solid transparent;transition:all 0.2s;}
+  .menu-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .menu-tab:hover{color:var(--text);}
+  
+  .menu-content{display:none;}
+  .menu-content.active{display:block;}
+  
+  select,input[type=checkbox]{width:100%;padding:8px;background:#051621;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--text);}
+  select:focus,input[type=checkbox]:focus{outline:none;border-color:var(--accent);}
+  
+  button{background:var(--accent);border:none;padding:8px 12px;border-radius:6px;color:#022;cursor:pointer;font-weight:700;font-size:13px;transition:all 0.2s;}
+  button:hover{opacity:0.9;transform:translateY(-1px);}
+  button:active{transform:translateY(0);}
+  
   .raw-values{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-  .chip{background:#071827;padding:6px 8px;border-radius:6px;font-size:13px;color:var(--muted);}
-  .notice{padding:10px;border-radius:8px;background:linear-gradient(180deg,#051426,#071622);font-size:13px;}
-  footer{margin-top:14px;font-size:12px;color:var(--muted);}
+  .chip{background:#071827;padding:6px 8px;border-radius:6px;font-size:12px;color:var(--muted);}
+  
+  .notice{padding:10px;border-radius:8px;background:linear-gradient(180deg,#051426,#071622);font-size:13px;border-left:3px solid var(--accent);}
+  
+  textarea{width:100%;padding:8px;background:#031621;color:var(--muted);border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-family:monospace;font-size:12px;}
+  textarea:focus{outline:none;border-color:var(--accent);}
+  
+  .button-group{display:flex;gap:8px;}
+  .button-group button{flex:1;}
+  
+  .section-title{font-weight:700;margin-bottom:8px;color:var(--text);}
+  
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  label.inline{display:flex;align-items:center;gap:8px;}
-  .section-title{font-weight:700;margin-bottom:8px;}
-  @media (max-width:980px){ .grid{grid-template-columns:1fr;} .sidebar{order:2} }
-  /* small visual separator */
-  .sep{height:10px;}
+  label.inline{display:flex;align-items:center;gap:8px;font-size:13px;}
+  label.inline input{width:auto;margin:0;}
+  
+  @media (max-width:1200px){
+    .main-grid{grid-template-columns:1fr;}
+    .telemetry-row{grid-template-columns:1fr;}
+  }
+  
+  @media (max-width:768px){
+    .container{padding:12px;}
+    .status-bar{flex-direction:column;}
+    .sidebar{order:2;}
+  }
+  
+  footer{margin-top:20px;font-size:12px;color:var(--muted);text-align:center;}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Flight Controller Monitor — WebSocket + Joystick Mapping</h1>
-    <p class="lead">This page shows telemetry from your flight controller over WebSocket and lets you map a physical joystick/gamepad to the continuous command sliders (throttle, pitch, roll, yaw). Use the <strong>Learn</strong> buttons or Auto-map to match axes.</p>
+  <div class="container">
+    <h1>Pilot Station</h1>
+    
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-indicator disconnected" id="connIndicator"></div>
+        <span>Connection: <strong id="connStatus">Disconnected</strong></span>
+      </div>
+      <div class="status-item">
+        <div class="status-indicator disconnected" id="gpIndicator"></div>
+        <span>Gamepad: <strong id="gpStatus">Not connected</strong></span>
+      </div>
+    </div>
 
-    <div class="grid">
-      <!-- LEFT: Controls (send sliders + received display) -->
-      <div class="card">
-        <div style="display:flex;gap:14px;align-items:flex-start;">
-          <div style="flex:1;">
-            <div class="section-title">Send Commands (Continuous)</div>
-            <div class="sliders">
-              <!-- Throttle (user control) -->
-              <div>
-                <div class="control">
-                  <div class="label">Throttle (send)</div>
-                  <input id="userThrottleSlider" type="range" min="1200" max="1800" step="1" value="1500" />
-                  <div class="value" id="userThrottleValue">1500</div>
-                </div>
-                <div class="small muted">This slider is sent continuously to the server.</div>
-              </div>
+    <!-- Video Feed Section -->
+    <div class="card video-section">
+      <h2>Flight Controller Video Feed</h2>
+      <div class="video-feed" id="videoFeed">
+        <div class="video-placeholder">
+          <p>Waiting for video stream...</p>
+          <p style="font-size:12px;color:var(--muted);">Configure stream URL in settings</p>
+        </div>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <input type="text" id="videoUrl" placeholder="Video stream URL (e.g., http://192.168.1.100:8080)" style="flex:1;padding:8px;background:#051621;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--text);" />
+        <button onclick="loadVideoFeed()">Load Stream</button>
+      </div>
+    </div>
 
-              <!-- Pitch (user control) -->
-              <div>
-                <div class="control">
-                  <div class="label">Pitch (send)</div>
-                  <input id="userPitchSlider" type="range" min="-45" max="45" step="1" value="0" />
-                  <div class="value" id="userPitchValue">0°</div>
-                </div>
-                <div class="small muted">Forward/back control (mapped from an axis).</div>
-              </div>
-
-              <!-- Roll (user control) -->
-              <div>
-                <div class="control">
-                  <div class="label">Roll (send)</div>
-                  <input id="userRollSlider" type="range" min="-45" max="45" step="1" value="0" />
-                  <div class="value" id="userRollValue">0°</div>
-                </div>
-                <div class="small muted">Left/right control (mapped from an axis).</div>
-              </div>
-
-              <!-- Yaw (user control) -->
-              <div>
-                <div class="control">
-                  <div class="label">Yaw (send)</div>
-                  <input id="userYawSlider" type="range" min="-45" max="45" step="1" value="0" />
-                  <div class="value" id="userYawValue">0°</div>
-                </div>
-                <div class="small muted">Twist/rudder (mapped from an axis).</div>
+    <!-- Main Content Grid -->
+    <div class="main-grid">
+      <!-- Left: Controls & Telemetry -->
+      <div class="controls-section">
+        <div class="card">
+          <h2>Flight Controls</h2>
+          <p class="lead">Use gamepad or sliders below to control the aircraft</p>
+          <div class="sliders">
+            <div>
+              <div class="control">
+                <div class="label">Throttle</div>
+                <input id="userThrottleSlider" type="range" min="1200" max="1800" step="1" value="1500" />
+                <div class="value" id="userThrottleValue">1500</div>
               </div>
             </div>
-
-            <div class="sep"></div>
-
-            <div class="section-title">Received Data (Read-Only)</div>
-            <div style="display:grid;gap:10px;">
-              <div>
-                <label>Throttle (rc): <span id="throttleValue">1500</span></label><br/>
-                <input type="range" id="throttleSlider" min="1200" max="1800" value="1500" step="1" disabled />
+            <div>
+              <div class="control">
+                <div class="label">Pitch</div>
+                <input id="userPitchSlider" type="range" min="-45" max="45" step="1" value="0" />
+                <div class="value" id="userPitchValue">0°</div>
               </div>
-              <div>
-                <label>Actual Pitch: <span id="actualPitchValue">0</span>°</label><br/>
-                <input type="range" id="pitchSlider" min="-45" max="45" value="0" step="1" disabled />
-              </div>
-              <div>
-                <label>Actual Roll: <span id="actualRollValue">0</span>°</label><br/>
-                <input type="range" id="rollSlider" min="-45" max="45" value="0" step="1" disabled />
-              </div>
-              <div>
-                <label>Actual Yaw: <span id="actualYawValue">0</span>°</label><br/>
-                <input type="range" id="yawSlider" min="-45" max="45" value="0" step="1" disabled />
-              </div>
-
-              <div>
-                <label>Target Pitch: <span id="targetPitchValue">0</span>°</label><br/>
-                <input type="range" id="targetPitchSlider" min="-45" max="45" value="0" step="1" disabled />
-              </div>
-              <div>
-                <label>Target Roll: <span id="targetRollValue">0</span>°</label><br/>
-                <input type="range" id="targetRollSlider" min="-45" max="45" value="0" step="1" disabled />
-              </div>
-              <div>
-                <label>Target Yaw: <span id="targetYawValue">0</span>°</label><br/>
-                <input type="range" id="targetYawSlider" min="-45" max="45" value="0" step="1" disabled />
-              </div>
-
-              <div style="margin-top:8px;">
-                <div class="small">Telemetry panel</div>
-                <div id="parsedDataBox" style="border:1px solid rgba(255,255,255,0.06);padding:6px;height:90px;overflow:auto;background:#031621;color:var(--muted);font-size:13px;margin-top:6px;">
-                  Waiting for telemetry...
-                </div>
-                <div style="display:flex;gap:8px;margin-top:8px;">
-                  <button onclick="requestTelemetry()">Request Telemetry</button>
-                  <button onclick="toggleAutoTelemetry()" id="autoTelBtn">Auto Telemetry (every 5s)</button>
-                </div>
-                <div id="status" class="muted" style="margin-top:8px;color:orange;font-weight:700;">Disconnected</div>
-              </div>
-
             </div>
-
-            <div class="sep"></div>
-
-            <div class="section-title">Manual Command</div>
-            <textarea id="sendDataBox" style="width:100%;height:72px;padding:6px;background:#031621;color:var(--muted);border-radius:8px;"
-              placeholder="Or manually enter data here..."></textarea>
-            <div style="margin-top:8px;display:flex;gap:8px;">
-              <button onclick="sendManualData()">Send Manual Command</button>
+            <div>
+              <div class="control">
+                <div class="label">Roll</div>
+                <input id="userRollSlider" type="range" min="-45" max="45" step="1" value="0" />
+                <div class="value" id="userRollValue">0°</div>
+              </div>
             </div>
+            <div>
+              <div class="control">
+                <div class="label">Yaw</div>
+                <input id="userYawSlider" type="range" min="-45" max="45" step="1" value="0" />
+                <div class="value" id="userYawValue">0°</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- Telemetry -->
+        <div class="card">
+          <h2>Telemetry & Status</h2>
+          <div class="telemetry-section">
+            <div class="telemetry-row">
+              <div class="telemetry-item">
+                <div class="telemetry-label">RC Throttle</div>
+                <div class="telemetry-value" id="throttleValue">1500</div>
+              </div>
+              <div class="telemetry-item">
+                <div class="telemetry-label">Actual Pitch</div>
+                <div class="telemetry-value" id="actualPitchValue">0°</div>
+              </div>
+            </div>
+            <div class="telemetry-row">
+              <div class="telemetry-item">
+                <div class="telemetry-label">Actual Roll</div>
+                <div class="telemetry-value" id="actualRollValue">0°</div>
+              </div>
+              <div class="telemetry-item">
+                <div class="telemetry-label">Actual Yaw</div>
+                <div class="telemetry-value" id="actualYawValue">0°</div>
+              </div>
+            </div>
+            <div class="telemetry-row">
+              <div class="telemetry-item">
+                <div class="telemetry-label">Target Pitch</div>
+                <div class="telemetry-value" id="targetPitchValue">0°</div>
+              </div>
+              <div class="telemetry-item">
+                <div class="telemetry-label">Target Roll</div>
+                <div class="telemetry-value" id="targetRollValue">0°</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <button onclick="requestTelemetry()">Request Update</button>
+            <button id="autoTelBtn" onclick="toggleAutoTelemetry()">Auto (5s)</button>
+          </div>
+          <div id="parsedDataBox" style="border:1px solid rgba(255,255,255,0.06);padding:10px;height:80px;overflow-y:auto;background:#031621;color:var(--muted);font-size:12px;margin-top:12px;border-radius:6px;font-family:monospace;">
+            Waiting for telemetry...
+          </div>
+        </div>
+
+        <!-- Manual Command -->
+        <div class="card">
+          <h2>Manual Command</h2>
+          <textarea id="sendDataBox" placeholder="Enter JSON command..." style="height:80px;"></textarea>
+          <div style="margin-top:8px;">
+            <button onclick="sendManualData()" style="width:100%;">Send Command</button>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT: Mapping & Gamepad controls -->
+      <!-- Right: Gamepad Settings & Configuration -->
       <aside class="sidebar">
+        <!-- Gamepad Configuration Card -->
         <div class="card">
-          <div class="small">Gamepad status</div>
-          <div id="gpStatus" class="notice" style="margin-top:8px;">No gamepad connected. Connect and move controls to appear.</div>
+          <div class="menu-tabs">
+            <button class="menu-tab active" onclick="switchMenu('config')">Configuration</button>
+            <button class="menu-tab" onclick="switchMenu('status')">Status</button>
+          </div>
 
-          <hr style="border:none;height:10px" />
-
-          <div class="small" style="margin-top:8px;">Axis mapping</div>
-          <div style="display:grid;gap:8px;margin-top:8px;">
-            <label class="small">Roll axis
-              <div class="row"><select id="mapRoll"></select><button id="learnRoll">Learn</button></div>
-            </label>
-
-            <label class="small">Pitch axis
-              <div class="row"><select id="mapPitch"></select><button id="learnPitch">Learn</button></div>
-            </label>
-
-            <label class="small">Yaw axis
-              <div class="row"><select id="mapYaw"></select><button id="learnYaw">Learn</button></div>
-            </label>
-
-            <label class="small">Throttle axis
-              <div class="row"><select id="mapThrottle"></select><button id="learnThrottle">Learn</button></div>
-            </label>
-
-            <div class="two-col" style="margin-top:6px;">
-              <label class="inline small">Invert Pitch <input type="checkbox" id="invertPitch" /></label>
-              <label class="inline small">Invert Throttle <input type="checkbox" id="invertThrottle" /></label>
+          <!-- Config Menu -->
+          <div id="config" class="menu-content active">
+            <div style="margin-bottom:14px;">
+              <div class="section-title">Axis Mapping</div>
+              <div style="display:grid;gap:10px;">
+                <div>
+                  <label class="small">Roll Axis</label>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <select id="mapRoll" style="flex:1;"></select>
+                    <button id="learnRoll" style="width:auto;padding:8px 12px;">Learn</button>
+                  </div>
+                </div>
+                <div>
+                  <label class="small">Pitch Axis</label>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <select id="mapPitch" style="flex:1;"></select>
+                    <button id="learnPitch" style="width:auto;padding:8px 12px;">Learn</button>
+                  </div>
+                </div>
+                <div>
+                  <label class="small">Yaw Axis</label>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <select id="mapYaw" style="flex:1;"></select>
+                    <button id="learnYaw" style="width:auto;padding:8px 12px;">Learn</button>
+                  </div>
+                </div>
+                <div>
+                  <label class="small">Throttle Axis</label>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <select id="mapThrottle" style="flex:1;"></select>
+                    <button id="learnThrottle" style="width:auto;padding:8px 12px;">Learn</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div style="display:flex;gap:8px;">
+            <div style="margin-bottom:14px;">
+              <div class="section-title">Options</div>
+              <div style="display:grid;gap:8px;">
+                <label class="inline small">
+                  <input type="checkbox" id="invertPitch" />
+                  Invert Pitch
+                </label>
+                <label class="inline small">
+                  <input type="checkbox" id="invertThrottle" />
+                  Invert Throttle
+                </label>
+              </div>
+            </div>
+
+            <div class="button-group">
               <button id="autoMap">Auto-map</button>
-              <button id="calibrateZero">Set current → zero (sliders)</button>
+              <button id="calibrateZero">Zero Point</button>
             </div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="small">Raw axes</div>
-          <div id="rawAxes" class="raw-values"></div>
+          <!-- Status Menu -->
+          <div id="status" class="menu-content">
+            <div class="notice" style="margin-bottom:12px;">
+              <div class="small" style="color:var(--accent);margin-bottom:6px;">Gamepad Status</div>
+              <div id="gpStatusDetail">No gamepad connected</div>
+            </div>
+            
+            <div style="margin-bottom:12px;">
+              <div class="section-title">Raw Axis Values</div>
+              <div id="rawAxes" class="raw-values" style="margin-top:8px;"></div>
+            </div>
 
-          <hr style="border:none;height:8px" />
-
-          <div class="small">Controls</div>
-          <div style="display:flex;gap:8px;margin-top:8px;">
-            <button id="connectHint">Rescan gamepads</button>
-            <button id="stopPolling">Stop</button>
+            <div class="button-group">
+              <button id="connectHint">Rescan</button>
+              <button id="stopPolling">Stop</button>
+            </div>
           </div>
         </div>
       </aside>
     </div>
+
+    <footer>
+      <p>Pilot Station — Real-time flight control interface</p>
+    </footer>
   </div>
 
-<script>
-/* --------------------------------------------------------
-   First: Your original WebSocket code — pasted verbatim.
-   (I did NOT change any logic in this block.)
-   -------------------------------------------------------- */
-
-let ws = null;
-let autoTelemetryEnabled = false;
-let commandSendInterval = null;
-
-function connectWebSocket() {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const wsUrl = protocol + '//' + window.location.hostname + ':8009';
-    ws = new WebSocket(wsUrl);
-
-    ws.onopen = function() {
-        console.log('WebSocket connected');
-        document.getElementById('status').style.color = 'green';
-        document.getElementById('status').innerText = 'Connected';
-
-        // Start sending control commands at safe refresh rate
-        if (!commandSendInterval) {
-            commandSendInterval = setInterval(sendControlCommands, 25); // 40Hz - but server adds 5ms delay
-        }
-    };
-
-    ws.onmessage = function(event) {
-        const data = event.data;
-        document.getElementById('parsedDataBox').innerText = data;
-        const parsed = parseDataFurther(data);
-        updateDisplayValues(parsed);
-    };
-
-    ws.onerror = function(error) {
-        console.error('WebSocket error:', error);
-        document.getElementById('status').style.color = 'orange';
-        document.getElementById('status').innerText = 'Error';
-    };
-
-    ws.onclose = function() {
-        console.log('WebSocket disconnected');
-        document.getElementById('status').style.color = 'red';
-        document.getElementById('status').innerText = 'Disconnected';
-        if (commandSendInterval) {
-            clearInterval(commandSendInterval);
-            commandSendInterval = null;
-        }
-        // Attempt to reconnect after 3 seconds
-        setTimeout(connectWebSocket, 3000);
-    };
-}
-
-function sendControlCommands() {
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return;
+  <script>
+    function switchMenu(name) {
+      document.querySelectorAll('.menu-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.menu-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(name).classList.add('active');
+      event.target.classList.add('active');
     }
 
-    const throttle = document.getElementById('userThrottleSlider').value;
-    const pitch = document.getElementById('userPitchSlider').value;
-    const roll = document.getElementById('userRollSlider').value;
-    const yaw = document.getElementById('userYawSlider').value;
-
-    const command = '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s";
-    ws.send('send:' + command);
-}
-
-function sendManualData() {
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
-        alert('WebSocket not connected');
-        return;
+    function loadVideoFeed() {
+      const url = document.getElementById('videoUrl').value;
+      if (!url) return;
+      const feed = document.getElementById('videoFeed');
+      feed.innerHTML = `<img src="${url}" alt="Flight Controller Video" onerror="this.parentElement.innerHTML='<div class=\\'video-placeholder\\'><p>Failed to load video stream</p><p style=\\'font-size:12px;color:var(--muted)\\'>${url}</p></div>'" />`;
     }
 
-    const dataToSend = document.getElementById('sendDataBox').value;
-    if (dataToSend.trim() !== '') {
-        ws.send('send:' + dataToSend);
-        console.log('Manual data sent: ' + dataToSend);
+    function requestTelemetry() {
+      if (window.requestTelemetry) window.requestTelemetry();
     }
-}
 
-function requestTelemetry() {
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
-        alert('WebSocket not connected');
-        return;
+    function toggleAutoTelemetry() {
+      if (window.toggleAutoTelemetry) window.toggleAutoTelemetry();
     }
-    ws.send('get_data');
-    console.log('Telemetry requested');
-}
 
-function toggleAutoTelemetry() {
-    autoTelemetryEnabled = !autoTelemetryEnabled;
-    if (autoTelemetryEnabled) {
-        console.log('Auto telemetry enabled');
-        autoTelemetryLoop();
-    } else {
-        console.log('Auto telemetry disabled');
+    function sendManualData() {
+      const data = document.getElementById('sendDataBox').value;
+      if (data && window.sendData) window.sendData(data);
     }
-}
 
-function autoTelemetryLoop() {
-    if (autoTelemetryEnabled && ws && ws.readyState === WebSocket.OPEN) {
-        ws.send('get_data');
-    }
-    if (autoTelemetryEnabled) {
-        setTimeout(autoTelemetryLoop, 5000); // Request telemetry every 5 seconds
-    }
-}
-
-function updateDisplayValues(parsed) {
-    document.getElementById('throttleSlider').value = parsed.throttle;
-    document.getElementById('throttleValue').innerText = parsed.throttle.toFixed(2);
-    document.getElementById('pitchSlider').value = parsed.actualPitch;
-    document.getElementById('actualPitchValue').innerText = parsed.actualPitch.toFixed(2);
-    document.getElementById('rollSlider').value = parsed.actualRoll;
-    document.getElementById('actualRollValue').innerText = parsed.actualRoll.toFixed(2);
-    document.getElementById('yawSlider').value = parsed.actualYaw;
-    document.getElementById('actualYawValue').innerText = parsed.actualYaw.toFixed(2);
-    document.getElementById('targetPitchSlider').value = parsed.targetPitch;
-    document.getElementById('targetPitchValue').innerText = parsed.targetPitch.toFixed(2);
-    document.getElementById('targetRollSlider').value = parsed.targetRoll;
-    document.getElementById('targetRollValue').innerText = parsed.targetRoll.toFixed(2);
-    document.getElementById('targetYawSlider').value = parsed.targetYaw;
-    document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
-}
-
-function updateUserThrottle() {
-    document.getElementById('userThrottleValue').innerText = document.getElementById('userThrottleSlider').value;
-}
-
-function updateUserPitch() {
-    document.getElementById('userPitchValue').innerText = document.getElementById('userPitchSlider').value;
-}
-
-function updateUserRoll() {
-    document.getElementById('userRollValue').innerText = document.getElementById('userRollSlider').value;
-}
-
-function updateUserYaw() {
-    document.getElementById('userYawValue').innerText = document.getElementById('userYawSlider').value;
-}
-
-function parseDataFurther(data) {
-    const dataArray = data.split('|');
-    return {
-        throttle: parseFloat(dataArray[0]) || 0,
-        actualPitch: parseFloat(dataArray[1]) || 0,
-        actualRoll: parseFloat(dataArray[2]) || 0,
-        actualYaw: parseFloat(dataArray[3]) || 0,
-        targetPitch: parseFloat(dataArray[4]) || 0,
-        targetRoll: parseFloat(dataArray[5]) || 0,
-        targetYaw: parseFloat(dataArray[6]) || 0,
-        pidOutputPitch: parseFloat(dataArray[7]) || 0,
-        pidOutputRoll: parseFloat(dataArray[8]) || 0,
-        pidOutputYaw: parseFloat(dataArray[9]) || 0
-    };
-}
-
-// Initialize WebSocket connection on page load
-window.addEventListener('load', function() {
-    setTimeout(connectWebSocket, 1000);
-});
-
-/* --------------------------------------------------------
-   Second: Gamepad mapping code (mapping + learn + UI)
-   This block complements the UI and updates the user* sliders
-   — it does not modify your WebSocket logic above.
-   -------------------------------------------------------- */
-
-const doc = id => document.getElementById(id);
-
-let gpIndex = null;
-let pollingGamepad = true;
-let pollHandle = null;
-let lastAxes = [];
-let listeningFor = null; // { control, startedAt }
-
-const state = {
-  map: { roll: 0, pitch: 1, yaw: 2, throttle: 3 },
-  invert: { pitch: false, throttle: false },
-  zeroOffsets: { roll:0, pitch:0, yaw:0, throttle:0 }
-};
-
-// elements for mapping UI
-const selects = {
-  roll: doc('mapRoll'),
-  pitch: doc('mapPitch'),
-  yaw: doc('mapYaw'),
-  throttle: doc('mapThrottle')
-};
-const learnBtns = {
-  roll: doc('learnRoll'),
-  pitch: doc('learnPitch'),
-  yaw: doc('learnYaw'),
-  throttle: doc('learnThrottle')
-};
-const invertPitch = doc('invertPitch');
-const invertThrottle = doc('invertThrottle');
-const autoMapBtn = doc('autoMap');
-const calibrateZeroBtn = doc('calibrateZero');
-const connectHintBtn = doc('connectHint');
-const stopPollingBtn = doc('stopPolling');
-
-function fxClamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
-function setStatus(text){ doc('gpStatus').textContent = text; }
-
-function populateAxesSelects(count){
-  [selects.roll, selects.pitch, selects.yaw, selects.throttle].forEach(s => {
-    const prev = s.value;
-    s.innerHTML = '';
-    for(let i=0;i<count;i++){
-      const opt = document.createElement('option');
-      opt.value = String(i);
-      opt.textContent = `Axis ${i}`;
-      s.appendChild(opt);
-    }
-    if(prev !== '' && +prev < count) s.value = prev;
-  });
-}
-
-// seed selects with default 6
-populateAxesSelects(6);
-
-// gamepad connect/disconnect
-window.addEventListener("gamepadconnected", (e) => {
-  gpIndex = e.gamepad.index;
-  setStatus(`Gamepad connected: ${e.gamepad.id} — ${e.gamepad.axes.length} axes, ${e.gamepad.buttons.length} buttons.`);
-  populateAxesSelects(e.gamepad.axes.length);
-  // ensure mapping indices valid
-  for (const k in state.map) {
-    if (state.map[k] >= e.gamepad.axes.length) state.map[k] = 0;
-  }
-  selects.roll.value = state.map.roll;
-  selects.pitch.value = state.map.pitch;
-  selects.yaw.value = state.map.yaw;
-  selects.throttle.value = state.map.throttle;
-  // start poll loop
-  if (!pollHandle) loopGamepad();
-});
-window.addEventListener("gamepaddisconnected", (e) => {
-  setStatus('Gamepad disconnected.');
-  gpIndex = null;
-  doc('rawAxes').innerHTML = '';
-});
-
-// update mapping from selects
-selects.roll.addEventListener('change', () => state.map.roll = +selects.roll.value);
-selects.pitch.addEventListener('change', () => state.map.pitch = +selects.pitch.value);
-selects.yaw.addEventListener('change', () => state.map.yaw = +selects.yaw.value);
-selects.throttle.addEventListener('change', () => state.map.throttle = +selects.throttle.value);
-invertPitch.addEventListener('change', () => state.invert.pitch = invertPitch.checked);
-invertThrottle.addEventListener('change', () => state.invert.throttle = invertThrottle.checked);
-
-// auto-map heuristic
-autoMapBtn.addEventListener('click', () => {
-  const gps = navigator.getGamepads ? navigator.getGamepads() : [];
-  const gp = gps[gpIndex] || null;
-  const axes = gp ? gp.axes.length : 6;
-  state.map.roll = Math.min(0, axes-1);
-  state.map.pitch = Math.min(1, axes-1);
-  state.map.yaw = Math.min(2, axes-1);
-  state.map.throttle = Math.min(3, axes-1);
-  selects.roll.value = state.map.roll;
-  selects.pitch.value = state.map.pitch;
-  selects.yaw.value = state.map.yaw;
-  selects.throttle.value = state.map.throttle;
-  setStatus('Auto-mapped axes (0→roll,1→pitch,2→yaw,3→throttle).');
-});
-
-// calibrate zero
-calibrateZeroBtn.addEventListener('click', () => {
-  const gps = navigator.getGamepads ? navigator.getGamepads() : [];
-  const gp = gps[gpIndex];
-  if (!gp){ setStatus('No gamepad to calibrate.'); return; }
-  state.zeroOffsets.roll = gp.axes[state.map.roll] || 0;
-  state.zeroOffsets.pitch = gp.axes[state.map.pitch] || 0;
-  state.zeroOffsets.yaw = gp.axes[state.map.yaw] || 0;
-  state.zeroOffsets.throttle = gp.axes[state.map.throttle] || 0;
-  setStatus('Calibrated current positions as zero offsets.');
-});
-
-// connect hint (rescan)
-connectHintBtn.addEventListener('click', () => {
-  const gps = navigator.getGamepads();
-  let found = false;
-  for (let i=0;i<gps.length;i++){
-    if (gps[i]) { gpIndex = i; found = true; populateAxesSelects(gps[i].axes.length); break; }
-  }
-  setStatus(found ? `Found gamepad: ${gps[gpIndex].id}` : 'No gamepad found. Connect a controller and move a control.');
-});
-
-// stop / resume polling
-stopPollingBtn.addEventListener('click', () => {
-  pollingGamepad = !pollingGamepad;
-  stopPollingBtn.textContent = pollingGamepad ? 'Stop' : 'Resume';
-  if (pollingGamepad) loopGamepad();
-});
-
-// Learn buttons
-Object.keys(learnBtns).forEach(control => {
-  learnBtns[control].addEventListener('click', () => {
-    listeningFor = { control, startedAt: performance.now() };
-    setStatus(`Learning ${control} — move the desired control (within 3s).`);
-    setTimeout(() => {
-      if (listeningFor && listeningFor.control === control) {
-        listeningFor = null;
-        setStatus('Learn timed out. Try again.');
+    // Update connection status
+    function updateConnectionStatus(connected) {
+      const indicator = document.getElementById('connIndicator');
+      const status = document.getElementById('connStatus');
+      if (connected) {
+        indicator.className = 'status-indicator connected';
+        status.textContent = 'Connected';
+      } else {
+        indicator.className = 'status-indicator disconnected';
+        status.textContent = 'Disconnected';
       }
-    }, 3000);
-  });
-});
-
-function detectMovedAxis(axes, lastAxesLocal){
-  let bestIdx = -1;
-  let bestDelta = 0.05;
-  for (let i=0;i<axes.length;i++){
-    const prev = (lastAxesLocal && lastAxesLocal[i] != null) ? lastAxesLocal[i] : 0;
-    const delta = Math.abs(axes[i] - prev);
-    if (delta > bestDelta){
-      bestDelta = delta;
-      bestIdx = i;
     }
-  }
-  return bestIdx;
-}
 
-function readAxisFromGamepad(gp, key){
-  const idx = state.map[key];
-  let v = 0;
-  if (idx != null && idx < gp.axes.length) v = gp.axes[idx];
-  v = v - (state.zeroOffsets[key] || 0);
-  v = fxClamp(v, -1, 1);
-  return v;
-}
-
-// Main polling loop for mapping
-function loopGamepad(){
-  if (!pollingGamepad) return;
-  const gps = navigator.getGamepads ? navigator.getGamepads() : [];
-  let gp = null;
-  if (gpIndex != null && gps[gpIndex]) gp = gps[gpIndex];
-  else {
-    for (let i=0;i<gps.length;i++) if (gps[i]) { gp = gps[i]; gpIndex = i; break; }
-  }
-
-  if (!gp){
-    doc('gpStatus').textContent = 'No gamepad connected. Connect controller / joystick and move controls.';
-    doc('rawAxes').innerHTML = '';
-    lastAxes = [];
-    pollHandle = requestAnimationFrame(loopGamepad);
-    return;
-  }
-
-  // show gamepad id
-  doc('gpStatus').textContent = `Gamepad: ${gp.id} — axes: ${gp.axes.length}, buttons: ${gp.buttons.length}`;
-
-  // raw axes
-  doc('rawAxes').innerHTML = '';
-  gp.axes.forEach((v,i) => {
-    const chip = document.createElement('div');
-    chip.className = 'chip';
-    chip.textContent = `A${i}: ${Number(v).toFixed(3)}`;
-    doc('rawAxes').appendChild(chip);
-  });
-
-  // Learn detection
-  if (listeningFor){
-    const idx = detectMovedAxis(gp.axes, lastAxes);
-    if (idx >= 0){
-      const c = listeningFor.control;
-      state.map[c] = idx;
-      selects[c].value = String(idx);
-      setStatus(`Assigned axis ${idx} → ${c}.`);
-      listeningFor = null;
+    // Update gamepad status
+    function updateGamepadStatus(connected) {
+      const indicator = document.getElementById('gpIndicator');
+      const status = document.getElementById('gpStatus');
+      if (connected) {
+        indicator.className = 'status-indicator connected';
+        status.textContent = 'Connected';
+      } else {
+        indicator.className = 'status-indicator disconnected';
+        status.textContent = 'Not connected';
+      }
     }
-  }
-
-  // read mapped axes
-  let rawRoll = readAxisFromGamepad(gp,'roll');
-  let rawPitch = readAxisFromGamepad(gp,'pitch');
-  let rawYaw = readAxisFromGamepad(gp,'yaw');
-  let rawThrottle = readAxisFromGamepad(gp,'throttle');
-
-  if (state.invert.pitch) rawPitch = -rawPitch;
-
-  // throttle mapping: [-1..1] -> [1200..1800]
-  let thr01 = (rawThrottle + 1) / 2;
-  if (state.invert.throttle) thr01 = 1 - thr01;
-  thr01 = fxClamp(thr01, 0, 1);
-  const throttleVal = Math.round(thr01 * (1800 - 1200) + 1200);
-
-  // convert pitch/roll/yaw to -45..45
-  const pitchVal = Math.round(fxClamp(rawPitch * 45, -45, 45));
-  const rollVal = Math.round(fxClamp(rawRoll * 45, -45, 45));
-  const yawVal = Math.round(fxClamp(rawYaw * 45, -45, 45));
-
-  // update the send sliders (these are the exact DOM IDs your WS code reads)
-  const ut = doc('userThrottleSlider'), up = doc('userPitchSlider'), ur = doc('userRollSlider'), uy = doc('userYawSlider');
-  if (ut && +ut.value !== throttleVal) ut.value = throttleVal;
-  if (up && +up.value !== pitchVal) up.value = pitchVal;
-  if (ur && +ur.value !== rollVal) ur.value = rollVal;
-  if (uy && +uy.value !== yawVal) uy.value = yawVal;
-
-  // trigger the existing updateUser... functions so UI numeric labels update exactly as before
-  try {
-    if (typeof updateUserPitch === 'function') updateUserPitch();
-    if (typeof updateUserRoll === 'function') updateUserRoll();
-    if (typeof updateUserYaw === 'function') updateUserYaw();
-    if (typeof updateUserThrottle === 'function') updateUserThrottle();
-  } catch (e) {
-    console.warn('updateUser functions not available yet', e);
-  }
-
-  lastAxes = gp.axes.slice();
-  pollHandle = requestAnimationFrame(loopGamepad);
-}
-
-/* --------------------------------------------------------
-   End gamepad mapping block
-   -------------------------------------------------------- */
-
-/* Make sure user sliders call the same update functions when manually adjusted */
-['userThrottleSlider','userPitchSlider','userRollSlider','userYawSlider'].forEach(id => {
-  const el = doc(id);
-  if (!el) return;
-  el.addEventListener('input', () => {
-    if (id === 'userThrottleSlider') updateUserThrottle();
-    if (id === 'userPitchSlider') updateUserPitch();
-    if (id === 'userRollSlider') updateUserRoll();
-    if (id === 'userYawSlider') updateUserYaw();
-  });
-});
-</script>
+  </script>
 </body>
 </html>

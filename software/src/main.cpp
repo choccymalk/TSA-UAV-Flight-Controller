@@ -16,6 +16,7 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include "mjpeg_streamer.hpp"
 
 // WebSocket++ headers
 #include <websocketpp/config/asio_no_tls.hpp>
@@ -24,6 +25,7 @@
 typedef websocketpp::server<websocketpp::config::asio> ws_server;
 typedef websocketpp::connection_hdl connection_hdl;
 
+using MJPEGStreamer = nadjieb::MJPEGStreamer;
 ceSerial com("/dev/ttyACM0", 115200, 8, 'N', 1);
 httplib::Server svr;
 ws_server wsServer;
@@ -208,5 +210,43 @@ int main() {
     });
     
     svr.listen("0.0.0.0", 8008);
+
+    cv::VideoCapture cap(0);
+    if (!cap.isOpened()) {
+        std::cerr << "VideoCapture not opened\n";
+        //exit(EXIT_FAILURE);
+    }
+
+    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 90};
+
+    MJPEGStreamer streamer;
+
+    // By default "/shutdown" is the target to graceful shutdown the streamer
+    // if you want to change the target to graceful shutdown:
+    //   streamer.setShutdownTarget("/stop");
+
+    // By default std::thread::hardware_concurrency() workers is used for streaming
+    // if you want to use 4 workers instead:
+    //   streamer.start(8080, 4);
+    streamer.start(8010);
+
+    // Visit /shutdown or another defined target to stop the loop and graceful shutdown
+    while (streamer.isRunning()) {
+        cv::Mat frame;
+        cap >> frame;
+        if (frame.empty()) {
+            std::cerr << "frame not grabbed\n";
+            //exit(EXIT_FAILURE);
+        }
+
+        // http://localhost:8080/bgr
+        std::vector<uchar> buff_bgr;
+        cv::imencode(".jpg", frame, buff_bgr, params);
+        streamer.publish("/stream", std::string(buff_bgr.begin(), buff_bgr.end()));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
+    streamer.stop();
+
     return 0;
 }
