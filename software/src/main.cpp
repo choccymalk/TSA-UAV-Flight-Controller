@@ -132,20 +132,26 @@ void broadcastData(const std::string& message) {
 }
 
 void serialDataThread() {
+    int i = 0;
     while (true) {
-        try {
-            std::vector<char> rawData = readSerialDataBuffer();
-            if (!rawData.empty()) {
-                std::string parsedData = parseMessage(rawData);
-                if (!parsedData.empty()) {
-                    broadcastData(parsedData);
+        if(i == 100){
+            try {
+                i = 0;
+                std::vector<char> rawData = readSerialDataBuffer();
+                if (!rawData.empty()) {
+                    std::string parsedData = parseMessage(rawData);
+                    if (!parsedData.empty()) {
+                        broadcastData(parsedData);
+                    }
                 }
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            } catch (const std::exception& e) {
+                std::cerr << "Error in serialDataThread: " << e.what() << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        } catch (const std::exception& e) {
-            std::cerr << "Error in serialDataThread: " << e.what() << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
+    } else {
+        i++;
     }
 }
 
