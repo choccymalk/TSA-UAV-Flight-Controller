@@ -152,17 +152,17 @@
                 }
             } else {
                 try {
-                    const response = await fetch('/send_serial_data?data=' + '.t' + throttle);
+                    const response = await fetch('/send_serial_data?data=' + '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s");
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    sleep(2000);
-                    await fetch('/send_serial_data?data=' + '.p' + pitch);
-                    sleep(2000);
-                    await fetch('/send_serial_data?data=' + '.r' + roll);
-                    sleep(2000);
-                    await fetch('/send_serial_data?data=' + '.y' + yaw);
-                    sleep(2000);
+                    // sleep(2000);
+                    // await fetch('/send_serial_data?data=' + '.p' + pitch + ";");
+                    // sleep(2000);
+                    // await fetch('/send_serial_data?data=' + '.r' + roll + ";");
+                    // sleep(2000);
+                    // await fetch('/send_serial_data?data=' + '.y' + yaw + ";");
+                    // sleep(2000);
                     console.log('Data sent successfully from sliders');
                 } catch (error) {
                     alert('Error sending data: ' + error.message);

@@ -112,6 +112,8 @@ void setup() {
 
 
 void loop() {
+  receiveControl();
+
   time_prev = time_current;
   time_current = millis();
   time_elapsed = (time_current - time_prev) / 1000;
@@ -122,11 +124,9 @@ void loop() {
   }
 
   getDataFromNAVX();
-
   receiveControl();
-
   calculatePid();
-
+  receiveControl();
   if (throttle > 1010) {
     if (millis() > lastCommand + 1000) {
       emergencyLanding();
@@ -136,7 +136,7 @@ void loop() {
   } else {
     setSpeedForAllMotors(THROTTLE_MINIMUM);
   }
-
+  receiveControl();
   //if (sendDataCounter > 150) {
   //  sendData();
   //  sendDataCounter = 0;
