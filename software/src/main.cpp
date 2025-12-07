@@ -132,7 +132,17 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
     std::string payload = msg->get_payload();
     
     if (payload == "get_data") {
-        // Client requests serial data
+        // Client requests serial data - pause control commands briefly
+        {
+            std::lock_guard<std::mutex> lock(g_serial_mutex);
+            // Send request to flight controller
+            com.WriteChar('.');
+            com.WriteChar('s');
+        }
+        
+        // Give flight controller time to respond
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        
         std::vector<char> rawData = readSerialDataBuffer();
         if (!rawData.empty()) {
             std::string parsedData = parseMessage(rawData);
@@ -153,6 +163,8 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
                 com.WriteChar(c);
             }
         }
+        // Small delay to let flight controller process command
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
         std::cout << std::to_string(getTimestampMilliseconds()) << ": Sent data via WebSocket: " << dataToSend << std::endl;
     }
 }

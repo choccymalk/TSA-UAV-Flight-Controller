@@ -81,9 +81,9 @@
                 document.getElementById('status').style.color = 'green';
                 document.getElementById('status').innerText = 'Connected';
                 
-                // Start sending control commands at high refresh rate
+                // Start sending control commands at safe refresh rate
                 if (!commandSendInterval) {
-                    commandSendInterval = setInterval(sendControlCommands, 50); // 20Hz
+                    commandSendInterval = setInterval(sendControlCommands, 25); // 40Hz - but server adds 5ms delay
                 }
             };
             

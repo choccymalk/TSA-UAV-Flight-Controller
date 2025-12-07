@@ -315,42 +315,6 @@ void receiveControl() {
       }
 
       lastCommand = millis();
-    } else {
-      if (command == "throttle+") {
-        throttle = constrain(throttle + 50, THROTTLE_MINIMUM, THROTTLE_MAXIMUM);
-      } else if (command == "throttle-") {
-        throttle = constrain(throttle - 50, THROTTLE_MINIMUM, THROTTLE_MAXIMUM);
-      } else if (command == "stop") {
-        throttle = THROTTLE_MINIMUM;
-      } else if (command == "calibrateAngles") {
-        //calibrateAngleOffsets();
-      } else if (command == "gainP+") {
-        gain_p[PITCH] += 0.1;
-        gain_p[ROLL] += 0.1;
-      } else if (command == "gainP-") {
-        gain_p[PITCH] -= 0.1;
-        gain_p[ROLL] -= 0.1;
-      } else if (command == "gainD+") {
-        gain_d[PITCH] += 0.05;
-        gain_d[ROLL] += 0.05;
-      } else if (command == "gainD-") {
-        gain_d[PITCH] -= 0.05;
-        gain_d[ROLL] -= 0.05;
-      } else if (command == "right") {
-        angle_desired[ROLL] += 2;
-      } else if (command == "left") {
-        angle_desired[ROLL] -= 2;
-      } else if (command == "filter+") {
-        filter = constrain(filter + 0.005, 0.0, 1.0);
-      } else if (command == "filter-") {
-        filter = constrain(filter - 0.005, 0.0, 1.0);
-      } else if (command == "mode0") {
-        mode = 0;
-      } else if (command == "mode1") {
-        mode = 1;
-      } else if (command == "mode2") {
-        mode = 2;
-      }
     }
   }
 }
