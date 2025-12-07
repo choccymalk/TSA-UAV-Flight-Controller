@@ -149,9 +149,9 @@ void serialDataThread() {
                 std::cerr << "Error in serialDataThread: " << e.what() << std::endl;
                 std::this_thread::sleep_for(std::chrono::milliseconds(500));
             }
+        } else {
+            i++;
         }
-    } else {
-        i++;
     }
 }
 
