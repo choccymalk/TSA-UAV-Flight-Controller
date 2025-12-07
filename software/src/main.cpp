@@ -195,6 +195,7 @@ int main() {
             for(char c : data) {
                 com.WriteChar(c);
             }
+            res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
         }
     });
 
