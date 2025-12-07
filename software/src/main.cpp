@@ -196,7 +196,7 @@ int main() {
                 com.WriteChar(c);
             }
             // give the device time to process the data before getting response 
-            //ceSerial::Delay(1000);
+            ceSerial::Delay(2000);
             res.set_content(parseMessage(readSerialDataBuffer()), "text/plain");
         }
     });
