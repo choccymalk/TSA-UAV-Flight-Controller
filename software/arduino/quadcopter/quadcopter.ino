@@ -124,9 +124,9 @@ void loop() {
   }
 
   getDataFromNAVX();
-  receiveControl();
+
   calculatePid();
-  receiveControl();
+
   if (throttle > 1010) {
     if (millis() > lastCommand + 1000) {
       emergencyLanding();
@@ -136,7 +136,7 @@ void loop() {
   } else {
     setSpeedForAllMotors(THROTTLE_MINIMUM);
   }
-  receiveControl();
+
   //if (sendDataCounter > 150) {
   //  sendData();
   //  sendDataCounter = 0;
@@ -355,82 +355,33 @@ void receiveControl() {
   }
 }
 
-unsigned char *floatToPaddedByteArray(float value) {
-  static unsigned char byteArray[8];
-
-  for (int i = 0; i < 8; i++) {
-    byteArray[i] = 0;
-  }
-
-  unsigned char *floatBytes = (unsigned char *)&value;
-  for (int i = 0; i < 4; i++) {
-    byteArray[i] = floatBytes[i];
-  }
-
-  return byteArray;
+// Helper to keep the main function clean
+inline void writeFloat(float val) {
+  // Cast the address of the float to a byte pointer and write 4 bytes at once
+  Serial.write((uint8_t*)&val, 4);
 }
 
 void sendData() {
-  Serial.write("B");
+  Serial.write('B');
 
-  unsigned char *bytes = floatToPaddedByteArray(throttle);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
+  writeFloat(throttle);
   Serial.write(0x7C);
 
-  bytes = floatToPaddedByteArray(angle_current[YAW]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(angle_current[PITCH]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(angle_current[ROLL]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(angle_desired[YAW]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(angle_desired[PITCH]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(angle_desired[ROLL]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(pid_current[YAW]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(pid_current[PITCH]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
-  }
-  Serial.write(0x7C);
-
-  bytes = floatToPaddedByteArray(pid_current[ROLL]);
-  for (int i = 0; i < 4; i++) {
-    Serial.write(bytes[i]);
+  // Assuming YAW, PITCH, ROLL are indices 0, 1, 2
+  // We can iterate to save code space and reduce typos
+  float* arrays[] = {angle_current, angle_desired, pid_current};
+  
+  for (int arrIdx = 0; arrIdx < 3; arrIdx++) {
+    for (int i = 0; i < 3; i++) { // Loop through YAW, PITCH, ROLL
+       writeFloat(arrays[arrIdx][i]);
+       
+       // Add separator, unless it's the very last element (pid_current[ROLL])
+       if (arrIdx == 2 && i == 2) {
+         continue; 
+       }
+       Serial.write(0x7C);
+    }
   }
 
-  Serial.write("E");
+  Serial.write('E');
 }

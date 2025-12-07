@@ -2,14 +2,14 @@
 <html>
 <meta charset="UTF-8">
 <body>
-    <h2>Serial Data Monitor (WebSocket)</h2>
+    <h2>Flight Controller Monitor (WebSocket)</h2>
     <div id="status" style="color: red; margin-bottom: 10px; font-weight: bold;">Disconnected</div>
     
-    <button onclick="startAutoRefresh()">Start Auto Refresh</button>
-    <button onclick="stopAutoRefresh()">Stop Auto Refresh</button>
+    <button onclick="requestTelemetry()">Request Telemetry</button>
+    <button onclick="toggleAutoTelemetry()">Auto Telemetry (every 5s)</button>
     
     <div id="parsedDataBox" style="border: 1px solid black; width: 300px; height: 100px; margin-top: 10px; padding: 5px; overflow-y: auto; background-color: #f5f5f5;">
-        Waiting for data...
+        Waiting for telemetry...
     </div>
     
     <h3>Received Data (Read-Only)</h3>
@@ -42,7 +42,7 @@
         <input type="range" id="targetYawSlider" min="-45" max="45" value="0" step="1" disabled />
     </div>
     
-    <h3>Send Commands</h3>
+    <h3>Send Commands (Continuous)</h3>
     <div>
         <label>Throttle: <span id="userThrottleValue">1500</span></label><br>
         <input type="range" id="userThrottleSlider" min="1200" max="1800" value="1500" step="1"
@@ -60,22 +60,31 @@
         <label>Yaw: <span id="userYawValue">0</span>°</label><br>
         <input type="range" id="userYawSlider" min="-45" max="45" value="0" step="1" oninput="updateUserYaw()" />
     </div>
-    <button onclick="sendSerialData()" style="margin-top: 10px;">Send Serial Data</button>
+    
+    <h3>Manual Command</h3>
     <textarea id="sendDataBox" style="width: 300px; height: 50px; margin-top: 10px; padding: 5px;"
         placeholder="Or manually enter data here..."></textarea>
+    <button onclick="sendManualData()" style="margin-top: 10px;">Send Manual Command</button>
 
     <script>
         let ws = null;
-        let autoRefreshEnabled = false;
+        let autoTelemetryEnabled = false;
+        let commandSendInterval = null;
         
         function connectWebSocket() {
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-            ws = new WebSocket(protocol + '//' + window.location.host + '/ws');
+            const wsUrl = protocol + '//' + window.location.hostname + ':8009';
+            ws = new WebSocket(wsUrl);
             
             ws.onopen = function() {
                 console.log('WebSocket connected');
                 document.getElementById('status').style.color = 'green';
                 document.getElementById('status').innerText = 'Connected';
+                
+                // Start sending control commands at high refresh rate
+                if (!commandSendInterval) {
+                    commandSendInterval = setInterval(sendControlCommands, 50); // 20Hz
+                }
             };
             
             ws.onmessage = function(event) {
@@ -95,9 +104,68 @@
                 console.log('WebSocket disconnected');
                 document.getElementById('status').style.color = 'red';
                 document.getElementById('status').innerText = 'Disconnected';
+                if (commandSendInterval) {
+                    clearInterval(commandSendInterval);
+                    commandSendInterval = null;
+                }
                 // Attempt to reconnect after 3 seconds
                 setTimeout(connectWebSocket, 3000);
             };
+        }
+        
+        function sendControlCommands() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                return;
+            }
+            
+            const throttle = document.getElementById('userThrottleSlider').value;
+            const pitch = document.getElementById('userPitchSlider').value;
+            const roll = document.getElementById('userRollSlider').value;
+            const yaw = document.getElementById('userYawSlider').value;
+            
+            const command = '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s";
+            ws.send('send:' + command);
+        }
+        
+        function sendManualData() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('WebSocket not connected');
+                return;
+            }
+            
+            const dataToSend = document.getElementById('sendDataBox').value;
+            if (dataToSend.trim() !== '') {
+                ws.send('send:' + dataToSend);
+                console.log('Manual data sent: ' + dataToSend);
+            }
+        }
+        
+        function requestTelemetry() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('WebSocket not connected');
+                return;
+            }
+            ws.send('get_data');
+            console.log('Telemetry requested');
+        }
+        
+        function toggleAutoTelemetry() {
+            autoTelemetryEnabled = !autoTelemetryEnabled;
+            if (autoTelemetryEnabled) {
+                console.log('Auto telemetry enabled');
+                autoTelemetryLoop();
+            } else {
+                console.log('Auto telemetry disabled');
+            }
+        }
+        
+        function autoTelemetryLoop() {
+            if (autoTelemetryEnabled && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send('get_data');
+            }
+            if (autoTelemetryEnabled) {
+                setTimeout(autoTelemetryLoop, 5000); // Request telemetry every 5 seconds
+            }
         }
         
         function updateDisplayValues(parsed) {
@@ -117,16 +185,6 @@
             document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
         }
         
-        function startAutoRefresh() {
-            autoRefreshEnabled = true;
-            console.log('Auto refresh started');
-        }
-        
-        function stopAutoRefresh() {
-            autoRefreshEnabled = false;
-            console.log('Auto refresh stopped');
-        }
-        
         function updateUserThrottle() {
             document.getElementById('userThrottleValue').innerText = document.getElementById('userThrottleSlider').value;
         }
@@ -141,26 +199,6 @@
         
         function updateUserYaw() {
             document.getElementById('userYawValue').innerText = document.getElementById('userYawSlider').value;
-        }
-        
-        function sendSerialData() {
-            if (!ws || ws.readyState !== WebSocket.OPEN) {
-                alert('WebSocket not connected');
-                return;
-            }
-            
-            let dataToSend = document.getElementById('sendDataBox').value;
-            
-            if (dataToSend.trim() === '') {
-                const throttle = document.getElementById('userThrottleSlider').value;
-                const pitch = document.getElementById('userPitchSlider').value;
-                const roll = document.getElementById('userRollSlider').value;
-                const yaw = document.getElementById('userYawSlider').value;
-                dataToSend = '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s";
-            }
-            
-            ws.send('send:' + dataToSend);
-            console.log('Data sent via WebSocket: ' + dataToSend);
         }
         
         function parseDataFurther(data) {

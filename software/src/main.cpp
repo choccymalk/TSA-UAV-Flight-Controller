@@ -27,8 +27,7 @@ typedef websocketpp::connection_hdl connection_hdl;
 ceSerial com("/dev/ttyACM0", 115200, 8, 'N', 1);
 httplib::Server svr;
 ws_server wsServer;
-std::set<connection_hdl, std::owner_less<connection_hdl>> g_connections;
-std::mutex g_connections_mutex;
+std::mutex g_serial_mutex;
 
 long long getTimestampMilliseconds() {
     auto now = std::chrono::system_clock::now();
@@ -45,6 +44,7 @@ std::string charToHexString(char c) {
 }
 
 std::vector<char> readSerialDataBuffer() {
+    std::lock_guard<std::mutex> lock(g_serial_mutex);
     bool readSuccess = true;
     com.WriteChar('.');
     com.WriteChar('s');
@@ -120,60 +120,38 @@ std::string parseMessage(std::vector<char> data) {
     return fullMessage;
 }
 
-void broadcastData(const std::string& message) {
-    std::lock_guard<std::mutex> lock(g_connections_mutex);
-    for (auto hdl : g_connections) {
-        try {
-            wsServer.send(hdl, message, websocketpp::frame::opcode::text);
-        } catch (const std::exception& e) {
-            std::cerr << "Error sending message: " << e.what() << std::endl;
-        }
-    }
-}
-
-void serialDataThread() {
-    int i = 0;
-    while (true) {
-        if(i == 10000){
-            try {
-                i = 0;
-                std::vector<char> rawData = readSerialDataBuffer();
-                if (!rawData.empty()) {
-                    std::string parsedData = parseMessage(rawData);
-                    if (!parsedData.empty()) {
-                        broadcastData(parsedData);
-                    }
-                }
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            } catch (const std::exception& e) {
-                std::cerr << "Error in serialDataThread: " << e.what() << std::endl;
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            }
-        } else {
-            i++;
-        }
-    }
-}
-
 void onWSOpen(connection_hdl hdl) {
-    std::lock_guard<std::mutex> lock(g_connections_mutex);
-    g_connections.insert(hdl);
-    std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket opened, total connections: " << g_connections.size() << std::endl;
+    std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket client connected" << std::endl;
 }
 
 void onWSClose(connection_hdl hdl) {
-    std::lock_guard<std::mutex> lock(g_connections_mutex);
-    g_connections.erase(hdl);
-    std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket closed, total connections: " << g_connections.size() << std::endl;
+    std::cout << std::to_string(getTimestampMilliseconds()) << ": WebSocket client disconnected" << std::endl;
 }
 
 void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
     std::string payload = msg->get_payload();
     
-    if (payload.find("send:") == 0) {
+    if (payload == "get_data") {
+        // Client requests serial data
+        std::vector<char> rawData = readSerialDataBuffer();
+        if (!rawData.empty()) {
+            std::string parsedData = parseMessage(rawData);
+            if (!parsedData.empty()) {
+                try {
+                    wsServer.send(hdl, parsedData, websocketpp::frame::opcode::text);
+                } catch (const std::exception& e) {
+                    std::cerr << "Error sending data: " << e.what() << std::endl;
+                }
+            }
+        }
+    } else if (payload.find("send:") == 0) {
+        // Client sends command to serial device
         std::string dataToSend = payload.substr(5);
-        for (char c : dataToSend) {
-            com.WriteChar(c);
+        {
+            std::lock_guard<std::mutex> lock(g_serial_mutex);
+            for (char c : dataToSend) {
+                com.WriteChar(c);
+            }
         }
         std::cout << std::to_string(getTimestampMilliseconds()) << ": Sent data via WebSocket: " << dataToSend << std::endl;
     }
@@ -204,10 +182,6 @@ int main() {
         std::cout << e.what() << std::endl;
         return 1;
     }
-    
-    // Start serial data reading thread
-    std::thread serialThread(serialDataThread);
-    serialThread.detach();
     
     // Start WebSocket server in separate thread
     std::thread wsThread([](){ wsServer.run(); });
