@@ -121,16 +121,17 @@
             async function sendSerialData(){
                 let dataToSend = document.getElementById('sendDataBox').value;
                 let notTextBox = false;
+                let throttle, pitch, roll, yaw;
                 // to change throttle, pitch, roll, yaw values, send data in the following format:
                 // .t1200, where 1200 is the desired throttle value, the minimum is 1200 and the maximum is 1800.
                 // the maximum value for roll, pitch, and yaw is 45 degrees, and the minimum value is -45 degrees.
                 // get data from sliders if textarea is empty
                 // multiple commands cannot be sent in one call
                 if(dataToSend.trim() === ''){
-                    const throttle = document.getElementById('userThrottleSlider').value;
-                    const pitch = document.getElementById('userPitchSlider').value;
-                    const roll = document.getElementById('userRollSlider').value;
-                    const yaw = document.getElementById('userYawSlider').value;
+                    throttle = document.getElementById('userThrottleSlider').value;
+                    pitch = document.getElementById('userPitchSlider').value;
+                    roll = document.getElementById('userRollSlider').value;
+                    yaw = document.getElementById('userYawSlider').value;
                     notTextBox = true;
                 }
                 if(!notTextBox){
