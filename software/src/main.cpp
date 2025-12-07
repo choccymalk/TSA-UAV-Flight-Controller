@@ -132,7 +132,9 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
     std::string payload = msg->get_payload();
     
     if (payload == "get_data") {
-        // Client requests serial data - pause control commands briefly
+        // Client requests serial data
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": Telemetry request received, waiting 1.5 seconds for response..." << std::endl;
+        
         {
             std::lock_guard<std::mutex> lock(g_serial_mutex);
             // Send request to flight controller
@@ -140,8 +142,8 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
             com.WriteChar('s');
         }
         
-        // Give flight controller time to respond
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        // Flight controller takes ~1.5 seconds to respond
+        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
         
         std::vector<char> rawData = readSerialDataBuffer();
         if (!rawData.empty()) {
@@ -149,6 +151,7 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
             if (!parsedData.empty()) {
                 try {
                     wsServer.send(hdl, parsedData, websocketpp::frame::opcode::text);
+                    std::cout << std::to_string(getTimestampMilliseconds()) << ": Telemetry sent to client" << std::endl;
                 } catch (const std::exception& e) {
                     std::cerr << "Error sending data: " << e.what() << std::endl;
                 }
