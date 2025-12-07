@@ -134,7 +134,7 @@ void broadcastData(const std::string& message) {
 void serialDataThread() {
     int i = 0;
     while (true) {
-        if(i == 100){
+        if(i == 10000){
             try {
                 i = 0;
                 std::vector<char> rawData = readSerialDataBuffer();
