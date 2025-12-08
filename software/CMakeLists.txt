@@ -13,10 +13,9 @@ set(SOURCES
 
 # Define a list of header files (optional for basic compilation, but good for IDEs)
 set(HEADERS
-    include/*.h
-    include/*.hpp
-    /usr/include/opencv4/opencv2/*.h
-    /usr/include/opencv4/opencv2/*.hpp
+    include/ceSerial.h
+    include/httplib.h
+    include/mjpeg_streamer.hpp
 )
 
 # Add an executable target
@@ -25,6 +24,7 @@ add_executable(quadcopter ${SOURCES} ${HEADERS})
 # Specify include directories for headers
 target_include_directories(quadcopter PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    /usr/include/opencv4/opencv2
 )
 
 # (Optional) Install the executable
