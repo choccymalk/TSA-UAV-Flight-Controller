@@ -24,7 +24,7 @@ add_executable(quadcopter ${SOURCES} ${HEADERS})
 # Specify include directories for headers
 target_include_directories(quadcopter PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    /usr/include/opencv4/opencv2
+    /usr/include/opencv4
 )
 
 # (Optional) Install the executable
