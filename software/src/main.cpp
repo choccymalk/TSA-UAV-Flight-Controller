@@ -174,6 +174,30 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
     }
 }
 
+void mjpegStreamThread(MJPEGStreamer& streamer) {
+    cv::VideoCapture cap(0);
+    if (!cap.isOpened()) {
+        std::cerr << "VideoCapture not opened\n";
+    }
+
+    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 90};
+
+    while (streamer.isRunning()) {
+        cv::Mat frame;
+        cap >> frame;
+        if (frame.empty()) {
+            std::cerr << "frame not grabbed\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            continue;
+        }
+
+        std::vector<uchar> buff_bgr;
+        cv::imencode(".jpg", frame, buff_bgr, params);
+        streamer.publish("/stream", std::string(buff_bgr.begin(), buff_bgr.end()));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+}
+
 int main() {
     printf("Opening port %s.\n", com.GetPort().c_str());
     if (com.Open() == 0) {
@@ -204,49 +228,20 @@ int main() {
     std::thread wsThread([](){ wsServer.run(); });
     wsThread.detach();
 
-    cv::VideoCapture cap(0);
-    if (!cap.isOpened()) {
-        std::cerr << "VideoCapture not opened\n";
-        //exit(EXIT_FAILURE);
-    }
-
-    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 90};
-
+    // Start MJPEG streamer
     MJPEGStreamer streamer;
-
-    // By default "/shutdown" is the target to graceful shutdown the streamer
-    // if you want to change the target to graceful shutdown:
-    //   streamer.setShutdownTarget("/stop");
-
-    // By default std::thread::hardware_concurrency() workers is used for streaming
-    // if you want to use 4 workers instead:
-    //   streamer.start(8080, 4);
     streamer.start(8010);
 
-    // Visit /shutdown or another defined target to stop the loop and graceful shutdown
-    while (streamer.isRunning()) {
-        cv::Mat frame;
-        cap >> frame;
-        if (frame.empty()) {
-            std::cerr << "frame not grabbed\n";
-            //exit(EXIT_FAILURE);
-        }
+    // Start MJPEG streaming in separate thread
+    std::thread mjpegThread([&streamer](){ mjpegStreamThread(std::ref(streamer)); });
+    mjpegThread.detach();
 
-        // http://localhost:8080/bgr
-        std::vector<uchar> buff_bgr;
-        cv::imencode(".jpg", frame, buff_bgr, params);
-        streamer.publish("/stream", std::string(buff_bgr.begin(), buff_bgr.end()));
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
-    
     // HTTP server for serving static files
     svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
         res.set_file_content("index.html", "text/html");
     });
     
     svr.listen("0.0.0.0", 8008);
-
-    streamer.stop();
 
     return 0;
 }
