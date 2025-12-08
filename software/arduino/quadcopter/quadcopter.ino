@@ -296,11 +296,9 @@ void receiveControl() {
   if (Serial.available()) {
     String command = Serial.readStringUntil(';');
 
-    if (command.length() == 0) return;  // Safety check
+    if (command.length() < 3) return;  // Safety check
 
     if (command[0] == '.') {
-      if (command.length() < 3) return;  // Safety: ensure enough characters
-
       if (command[1] == 't') {
         throttle = command.substring(2).toInt();
         throttle = constrain(throttle, THROTTLE_MINIMUM, THROTTLE_MAXIMUM);

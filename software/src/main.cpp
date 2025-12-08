@@ -198,6 +198,31 @@ void mjpegStreamThread(MJPEGStreamer& streamer) {
     }
 }
 
+std::string getWifiStrength(){
+    std::string strength;
+    std::ifstream wireless_file("/proc/net/wireless");
+    if (!wireless_file.is_open()) {
+        return "Error";
+    }
+
+    std::string line;
+    // Skip header lines
+    std::getline(wireless_file, line);
+    std::getline(wireless_file, line);
+
+    while (std::getline(wireless_file, line)) {
+        // Parse the line to extract signal quality (and other info if needed)
+        // Example: wlan0: 0000 65. - 45. - 256 0 0 0 8 169 0
+        // The third column (65 in this example) is typically the link quality.
+        // You would need to parse this string to extract the relevant number.
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": Wireless info: " << line << std::endl;
+        return line;
+        // Implement parsing logic here to extract signal strength
+    }
+    wireless_file.close();
+    return "Error";
+}
+
 int main() {
     printf("Opening port %s.\n", com.GetPort().c_str());
     if (com.Open() == 0) {
@@ -239,6 +264,10 @@ int main() {
     // HTTP server for serving static files
     svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
         res.set_file_content("index.html", "text/html");
+    });
+
+    svr.Get("/get_wifi_strength", [](const httplib::Request &, httplib::Response &res) {
+        res.set_file_content(getWifiStrength(), "text/plain");
     });
     
     svr.listen("0.0.0.0", 8008);

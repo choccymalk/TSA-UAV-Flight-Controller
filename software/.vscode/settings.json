@@ -6,6 +6,8 @@
         "thread": "cpp",
         "vector": "cpp",
         "array": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "algorithm": "cpp",
+        "sstream": "cpp"
     }
 }
