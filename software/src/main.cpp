@@ -199,17 +199,6 @@ int main() {
         std::cout << e.what() << std::endl;
         return 1;
     }
-    
-    // Start WebSocket server in separate thread
-    std::thread wsThread([](){ wsServer.run(); });
-    wsThread.detach();
-    
-    // HTTP server for serving static files
-    svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
-        res.set_file_content("index.html", "text/html");
-    });
-    
-    svr.listen("0.0.0.0", 8008);
 
     cv::VideoCapture cap(0);
     if (!cap.isOpened()) {
@@ -245,6 +234,18 @@ int main() {
         streamer.publish("/stream", std::string(buff_bgr.begin(), buff_bgr.end()));
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
+
+    
+    // Start WebSocket server in separate thread
+    std::thread wsThread([](){ wsServer.run(); });
+    wsThread.detach();
+    
+    // HTTP server for serving static files
+    svr.Get("/", [](const httplib::Request &, httplib::Response &res) {
+        res.set_file_content("index.html", "text/html");
+    });
+    
+    svr.listen("0.0.0.0", 8008);
 
     streamer.stop();
 
