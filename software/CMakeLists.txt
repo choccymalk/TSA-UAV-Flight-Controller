@@ -18,14 +18,21 @@ set(HEADERS
     include/mjpeg_streamer.hpp
 )
 
+
+find_package(OpenCV REQUIRED COMPONENTS core highgui imgproc)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+
 # Add an executable target
 add_executable(quadcopter ${SOURCES} ${HEADERS})
 
 # Specify include directories for headers
 target_include_directories(quadcopter PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    /usr/include/opencv4
+    #/usr/include/opencv4
 )
+
+target_link_libraries(quadcopter ${OpenCV_LIBS})
 
 # (Optional) Install the executable
 install(TARGETS quadcopter DESTINATION bin)
