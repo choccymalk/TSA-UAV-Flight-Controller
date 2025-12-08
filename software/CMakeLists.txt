@@ -13,8 +13,10 @@ set(SOURCES
 
 # Define a list of header files (optional for basic compilation, but good for IDEs)
 set(HEADERS
-    include/ceSerial.h
-    include/httplib.h
+    include/*.h
+    include/*.hpp
+    /usr/include/opencv4/opencv2/*.h
+    /usr/include/opencv4/opencv2/*.hpp
 )
 
 # Add an executable target

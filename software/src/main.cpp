@@ -17,7 +17,7 @@
 #include <iomanip>
 #include <sstream>
 #include "mjpeg_streamer.hpp"
-#include <opencv2/opencv.hpp>
+#include "opencv.hpp"
 // WebSocket++ headers
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
