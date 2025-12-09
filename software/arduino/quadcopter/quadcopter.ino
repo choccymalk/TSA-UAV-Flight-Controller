@@ -80,6 +80,8 @@ int sendDataCounter = 0;
 void setup() {
 
   Serial.begin(115200);
+  // uncomment to reduce serial delay
+  //Serial.setTimeout(100);
 
   Wire.begin();
 
@@ -242,7 +244,7 @@ void emergencyLanding() {
 
 void calibrateMotors() {
   setSpeedForAllMotors(THROTTLE_MINIMUM);
-  delay(7000);
+  delay(500);
 }
 
 void setSpeedForAllMotors(double speed) {

@@ -610,7 +610,7 @@
         </div>
 
         <footer>
-            <p>Pilot Station — Real-time flight control interface</p>
+            <p>Pilot Station</p>
         </footer>
     </div>
 
@@ -626,7 +626,7 @@
             const url = document.getElementById('videoUrl').value;
             if (!url) return;
             const feed = document.getElementById('videoFeed');
-            feed.innerHTML = `<img src="${url}" alt="Flight Controller Video" onerror="this.parentElement.innerHTML='<div class=\\'video-placeholder\\'><p>Failed to load video stream</p><p style=\\'font-size:12px;color:var(--muted)\\'>${url}</p></div>'" />`;
+            feed.innerHTML = `<img src="${url}" alt="Flight Controller Video" width="1200" height="800" onerror="this.parentElement.innerHTML='<div class=\\'video-placeholder\\'><p>Failed to load video stream</p><p style=\\'font-size:12px;color:var(--muted)\\'>${url}</p></div>'" />`;
         }
 
         function requestTelemetry() {
