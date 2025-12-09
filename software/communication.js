@@ -54,7 +54,7 @@ function sendControlCommands() {
     const roll = document.getElementById('userRollSlider').value;
     const yaw = document.getElementById('userYawSlider').value;
 
-    const command = '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s";
+    const command = ".t" + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";";
     ws.send('send:' + command);
 }
 

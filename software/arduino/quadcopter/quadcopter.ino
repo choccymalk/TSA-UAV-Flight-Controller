@@ -233,11 +233,11 @@ void setMotorPids() {
 }
 
 void emergencyLanding() {
-  throttle = throttle - 0.25;
-
   angle_desired[0] = 0.0;
   angle_desired[1] = 0.0;
   angle_desired[2] = 0.0;
+  // slowly ramp down throttle
+  throttle = throttle - 1;
 }
 
 void calibrateMotors() {
@@ -269,19 +269,12 @@ void blinkLED() {
 }
 
 void getDataFromNAVX() {
-  int i = 0;
-  Wire.beginTransmission(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT);
-  Wire.write(NAVX_REG_YAW_L);
-  Wire.write(NUM_BYTES_TO_READ);
-  Wire.endTransmission();
-
-  Wire.beginTransmission(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT);
   Wire.requestFrom(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT, NUM_BYTES_TO_READ);
   delay(1);
+  int i = 0;
   while (Wire.available()) {
     navx_data[i++] = Wire.read();
   }
-  Wire.endTransmission();
 
   float yaw = IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[0]);
   float pitch = IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[2]);
@@ -293,26 +286,62 @@ void getDataFromNAVX() {
 }
 
 void receiveControl() {
-  if (Serial.available()) {
-    String command = Serial.readStringUntil(';');
+  // Static variables persist between loop iterations
+  static char buffer[32]; 
+  static int index = 0;
 
-    if (command.length() < 3) return;  // Safety check
+  while (Serial.available() > 0) {
+    char c = Serial.read();
 
-    if (command[0] == '.') {
-      if (command[1] == 't') {
-        throttle = command.substring(2).toInt();
-        throttle = constrain(throttle, THROTTLE_MINIMUM, THROTTLE_MAXIMUM);
-      } else if (command[1] == 'p') {
-        angle_desired[PITCH] = command.substring(2).toFloat();
-      } else if (command[1] == 'r') {
-        angle_desired[ROLL] = command.substring(2).toFloat();
-      } else if (command[1] == 'y') {
-        angle_desired[YAW] = command.substring(2).toFloat();
-      } else if (command[1] == 's'){
-        sendData();
+    // Check for command terminators: Semicolon, Newline, or Carriage Return
+    if (c == ';' || c == '\n' || c == '\r') {
+      
+      // If we have data in the buffer, process it
+      if (index > 0) {
+        buffer[index] = '\0'; // Null-terminate the string to make it a valid C-string
+
+        // Validate command format: Must start with '.' and have a command letter
+        if (buffer[0] == '.' && index >= 2) {
+          
+          char commandChar = buffer[1];
+          char* valueStr = &buffer[2]; // Pointer to the value part (after ".t")
+
+          switch (commandChar) {
+            case 't': // Throttle (.t1000)
+              throttle = atoi(valueStr); // Convert remaining string to int
+              throttle = constrain(throttle, THROTTLE_MINIMUM, THROTTLE_MAXIMUM);
+              break;
+
+            case 'p': // Pitch (.p10.5)
+              angle_desired[PITCH] = atof(valueStr); // Convert remaining string to float
+              break;
+
+            case 'r': // Roll (.r-5.0)
+              angle_desired[ROLL] = atof(valueStr);
+              break;
+              
+            case 'y': // Yaw (.y45.0)
+              angle_desired[YAW] = atof(valueStr);
+              break;
+
+            case 's': // Send Data (.s)
+              sendData();
+              break;
+          }
+
+          // Update the last command timer
+          lastCommand = millis();
+        }
+        
+        // Reset the buffer for the next command
+        index = 0;
       }
-
-      lastCommand = millis();
+    } 
+    else {
+      // If not a terminator, add character to buffer (if space permits)
+      if (index < 31) {
+        buffer[index++] = c;
+      }
     }
   }
 }

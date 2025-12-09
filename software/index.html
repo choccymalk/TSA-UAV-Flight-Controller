@@ -724,7 +724,7 @@
             const roll = document.getElementById('userRollSlider').value;
             const yaw = document.getElementById('userYawSlider').value;
 
-            const command = '.t' + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";" + ".s";
+            const command = ".t" + throttle + ";" + ".p" + pitch + ";" + ".r" + roll + ";" + ".y" + yaw + ";";
             ws.send('send:' + command);
         }
 
@@ -838,9 +838,9 @@
         let listeningFor = null; // { control, startedAt }
 
         const state = {
-            map: { roll: 0, pitch: 1, yaw: 2, throttle: 3 },
+            map: { yaw: 0, pitch: 1, roll: 2, throttle: 3 },
             invert: { pitch: false, throttle: false },
-            zeroOffsets: { roll: 0, pitch: 0, yaw: 0, throttle: 0 }
+            zeroOffsets: { yaw: 0, pitch: 0, roll: 0, throttle: 0 }
         };
 
         // elements for mapping UI

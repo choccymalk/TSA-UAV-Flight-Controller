@@ -135,17 +135,19 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
     
     if (payload == "get_data") {
         // Client requests serial data
-        std::cout << std::to_string(getTimestampMilliseconds()) << ": Telemetry request received, waiting 1.5 seconds for response..." << std::endl;
+        std::cout << std::to_string(getTimestampMilliseconds()) << ": Telemetry request received, waiting 150 ms for response..." << std::endl;
         
         {
             std::lock_guard<std::mutex> lock(g_serial_mutex);
             // Send request to flight controller
             com.WriteChar('.');
             com.WriteChar('s');
+            // termination character, required for response
+            com.WriteChar(';');
         }
         
-        // Flight controller takes ~1.5 seconds to respond
-        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+        // Flight controller takes ~150 ms to respond
+        std::this_thread::sleep_for(std::chrono::milliseconds(150));
         
         std::vector<char> rawData = readSerialDataBuffer();
         if (!rawData.empty()) {

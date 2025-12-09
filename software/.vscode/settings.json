@@ -8,6 +8,8 @@
         "array": "cpp",
         "mutex": "cpp",
         "algorithm": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "cmath": "cpp",
+        "iomanip": "cpp"
     }
 }
