@@ -75,7 +75,7 @@ std::vector<char> readSerialDataBuffer() {
         return std::vector<char>();
     }
     
-    std::vector<char> buffer(800);
+    std::vector<char> buffer(1024);
     int i = 0;
     while (true) {
         com.WriteChar('.');

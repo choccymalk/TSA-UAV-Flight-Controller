@@ -114,6 +114,7 @@ function updateDisplayValues(parsed) {
     document.getElementById('targetRollValue').innerText = parsed.targetRoll.toFixed(2);
     document.getElementById('targetYawSlider').value = parsed.targetYaw;
     document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
+    
 }
 
 function updateUserThrottle() {

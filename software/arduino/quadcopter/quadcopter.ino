@@ -4,11 +4,8 @@
 
 /* --- SETTINGS --- */
 
-int DISPLAY_VERSION = 2;
 int THROTTLE_MINIMUM = 1000;
 int THROTTLE_MAXIMUM = 1800;
-
-float COMPLEMENTARY_FILTER = 0.98;
 
 float throttle = 1000;
 float angle_desired[3] = { 0.0, 0.0, 0.0 };
@@ -31,7 +28,6 @@ byte navx_data[512];
 
 #define MPU_ADDRESS 0x68
 
-#define ITERATION_DELAY_MS 10
 #define NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT 0x32
 #define NUM_BYTES_TO_READ 8
 
@@ -51,13 +47,6 @@ float pid_d[3] = { 0, 0, 0 };
 float integral_sum[3] = { 0, 0, 0 };  // Added: track integral accumulation
 
 float angle_current[3];
-float angle_acc[3];
-float angle_gyro[3];
-float angle_acc_offset[3] = { 0.0, 0.0, 0.0 };
-float angle_gyro_offset[3] = { 0.0, 0.0, 0.0 };
-
-float angle_acc_raw[3];
-int16_t angle_gyro_raw[3];
 
 float time_current;
 float time_prev;
@@ -68,14 +57,10 @@ Servo motor_2;  // Motor front left
 Servo motor_3;  // Motor back left
 Servo motor_4;  // Motor back right
 
-float rad_to_deg = 180 / 3.141592654;
-
 float blink_counter = 0;
 bool blink_status = false;
 
 float lastCommand = 0;
-
-int sendDataCounter = 0;
 
 void setup() {
 
@@ -270,6 +255,11 @@ void blinkLED() {
   blink_counter = blink_counter + 1;
 }
 
+// returns battery voltage to one decimal place, 0.0-12.0v
+float getBatteryVoltage(){
+  return (analogRead(A1) / (1 << 10)) * 12;
+}
+
 void getDataFromNAVX() {
   Wire.requestFrom(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT, NUM_BYTES_TO_READ);
   delay(1);
@@ -360,8 +350,6 @@ void sendData() {
   writeFloat(throttle);
   Serial.write(0x7C);
 
-  // Assuming YAW, PITCH, ROLL are indices 0, 1, 2
-  // We can iterate to save code space and reduce typos
   float* arrays[] = {angle_current, angle_desired, pid_current};
   
   for (int arrIdx = 0; arrIdx < 3; arrIdx++) {
@@ -375,6 +363,7 @@ void sendData() {
        Serial.write(0x7C);
     }
   }
-
+  Serial.write(0x7C);
+  writeFloat(getBatteryVoltage());
   Serial.write('E');
 }

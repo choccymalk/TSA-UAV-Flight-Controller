@@ -418,12 +418,12 @@
             <div class="video-feed" id="videoFeed">
                 <div class="video-placeholder">
                     <p>Waiting for video stream...</p>
-                    <p style="font-size:12px;color:var(--muted);">Configure stream URL in settings</p>
+                    <!--<p style="font-size:12px;color:var(--muted);">Configure stream URL in settings</p>-->
                 </div>
             </div>
             <div style="margin-top:8px;display:flex;gap:8px;">
-                <input type="text" id="videoUrl" placeholder="Video stream URL (e.g., http://192.168.1.100:8080)"
-                    style="flex:1;padding:8px;background:#051621;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--text);" />
+                <!--<input type="text" id="videoUrl" placeholder="Video stream URL (e.g., http://192.168.1.100:8080)"
+                    style="flex:1;padding:8px;background:#051621;border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--text);" />-->
                 <button onclick="loadVideoFeed()">Load Stream</button>
             </div>
         </div>
@@ -500,6 +500,12 @@
                             <div class="telemetry-item">
                                 <div class="telemetry-label">Target Roll</div>
                                 <div class="telemetry-value" id="targetRollValue">0°</div>
+                            </div>
+                        </div>
+                        <div class="telemetry-row">
+                            <div class="telemetry-item">
+                                <div class="telemetry-label">Battery Voltage</div>
+                                <div class="telemetry-value" id="batteryVoltageValue">0</div>
                             </div>
                         </div>
                     </div>
@@ -623,10 +629,7 @@
         }
 
         function loadVideoFeed() {
-            const url = document.getElementById('videoUrl').value;
-            if (!url) return;
-            const feed = document.getElementById('videoFeed');
-            feed.innerHTML = `<img src="${url}" alt="Flight Controller Video" width="1200" height="800" onerror="this.parentElement.innerHTML='<div class=\\'video-placeholder\\'><p>Failed to load video stream</p><p style=\\'font-size:12px;color:var(--muted)\\'>${url}</p></div>'" />`;
+            feed.innerHTML = '<img src="http://' + window.location.hostname + ':8010/stream" alt="Flight Controller Video" width="1200" height="800" onerror="this.parentElement.innerHTML=\'<div class=\'video-placeholder\'><p>Failed to load video stream</p><p style=\'font-size:12px;color:var(--muted)\'>http://' + window.location.hostname + ':8010/stream</p></div>\'" />';
         }
 
         function requestTelemetry() {
@@ -784,6 +787,7 @@
             document.getElementById('targetRollValue').innerText = parsed.targetRoll.toFixed(2);
             document.getElementById('targetYawSlider').value = parsed.targetYaw;
             document.getElementById('targetYawValue').innerText = parsed.targetYaw.toFixed(2);
+            document.getElementById('batteryVoltageSlider').innerText = parsed.batteryVoltage.toFixed(1);
         }
 
         function updateUserThrottle() {
@@ -814,7 +818,8 @@
                 targetYaw: parseFloat(dataArray[6]) || 0,
                 pidOutputPitch: parseFloat(dataArray[7]) || 0,
                 pidOutputRoll: parseFloat(dataArray[8]) || 0,
-                pidOutputYaw: parseFloat(dataArray[9]) || 0
+                pidOutputYaw: parseFloat(dataArray[9]) || 0,
+                batteryVoltage: parseFloat(dataArray[10]) || 0.
             };
         }
 
@@ -822,12 +827,6 @@
         window.addEventListener('load', function () {
             setTimeout(connectWebSocket, 1000);
         });
-
-        /* --------------------------------------------------------
-           Second: Gamepad mapping code (mapping + learn + UI)
-           This block complements the UI and updates the user* sliders
-           — it does not modify your WebSocket logic above.
-           -------------------------------------------------------- */
 
         const doc = id => document.getElementById(id);
 
