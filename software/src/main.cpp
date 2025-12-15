@@ -176,17 +176,123 @@ void onWSMessage(connection_hdl hdl, ws_server::message_ptr msg) {
     }
 }
 
+// draws a horizon line on the video feed based on roll and pitch, like a heads up display in a plane
+cv::Mat drawHorizonOnFeed(cv::Mat frame, float roll, float pitch) {
+    int width = frame.cols;
+    int height = frame.rows;
+    cv::Point center(width / 2, height / 2);
+    
+    // Debug: Mark center point
+    cv::circle(frame, center, 5, cv::Scalar(255, 0, 0), -1);
+    
+    float horizonY = center.y + (pitch / 90.0f) * (height / 2);
+    float angle = -roll * CV_PI / 180.0f;
+    
+    // Check for extreme angles (avoid tan(90°))
+    if (abs(roll) >= 89.0f) {
+        roll = (roll > 0) ? 88.0f : -88.0f;
+        angle = -roll * CV_PI / 180.0f;
+    }
+    
+    float tanAngle = std::tan(angle);
+    cv::Point pt1(0, static_cast<int>(horizonY - (width * tanAngle / 2)));
+    cv::Point pt2(width, static_cast<int>(horizonY + (width * tanAngle / 2)));
+    
+    // Debug: Mark the calculated points
+    cv::circle(frame, pt1, 5, cv::Scalar(0, 0, 255), -1);
+    cv::circle(frame, pt2, 5, cv::Scalar(0, 0, 255), -1);
+    
+    // Check if points are within frame bounds
+    cv::Rect frameRect(0, 0, width, height);
+    if (frameRect.contains(pt1) && frameRect.contains(pt2)) {
+        cv::line(frame, pt1, pt2, cv::Scalar(0, 255, 0), 2);
+    } else {
+        // Use cv::clipLine to ensure line is visible
+        cv::Point clippedPt1 = pt1;
+        cv::Point clippedPt2 = pt2;
+        if (cv::clipLine(frameRect, clippedPt1, clippedPt2)) {
+            cv::line(frame, clippedPt1, clippedPt2, cv::Scalar(0, 255, 0), 2);
+        }
+    }
+    
+    // Add text for debugging
+    //std::string debugText = "Roll: " + std::to_string(roll) + 
+    //                       " Pitch: " + std::to_string(pitch);
+    //cv::putText(frame, debugText, cv::Point(10, 30), 
+    //            cv::FONT_HERSHEY_SIMPLEX, 0.7, cv::Scalar(255, 255, 255), 2);
+    
+    return frame;
+}
+
+std::array<double, 2> getRollPitchFromSerialData(const std::vector<char>& data) {
+    double roll = 0.0;
+    double pitch = 0.0;
+    size_t pos = 0;
+    int floatCount = 0;
+
+    // Debug: Show what we're receiving
+    //std::cout << "getRollPitchFromSerialData: data size = " << data.size() << std::endl;
+    
+    while (pos < data.size()) {
+        // Check for end marker first (matching parseMessage)
+        if (data[pos] == 'E') {
+            //std::cout << "Found end marker 'E' at position " << pos << std::endl;
+            break;
+        }
+        
+        // Check if we have enough bytes for a float
+        if (pos + sizeof(float) > data.size()) {
+            //std::cout << "Not enough bytes for a float at position " << pos << std::endl;
+            break;
+        }
+        
+        if (data[pos] == '|') {
+            // Skip the delimiter
+            pos++;
+            continue;
+        }
+        
+        // Parse the float
+        float value;
+        std::memcpy(&value, &data[pos], sizeof(float));
+        
+        //std::cout << "Parsed float " << floatCount << ": " << value << std::endl;
+        
+        // According to your comment: 
+        // 0: throttle, 1: yaw, 2: pitch, 3: roll
+        if (floatCount == 2) {
+            pitch = static_cast<double>(value);
+        } else if (floatCount == 3) {
+            roll = static_cast<double>(value);
+            break; // We got what we need
+        }
+        
+        floatCount++;
+        pos += sizeof(float);
+    }
+    
+    //std::cout << "Returning roll=" << roll << ", pitch=" << pitch << std::endl;
+    return {roll, pitch};
+}
+
 void mjpegStreamThread(MJPEGStreamer& streamer) {
     cv::VideoCapture cap(0);
     if (!cap.isOpened()) {
         std::cerr << "VideoCapture not opened\n";
     }
 
-    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 90};
+    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 50};
 
     while (streamer.isRunning()) {
         cv::Mat frame;
         cap >> frame;
+        com.WriteChar('.');
+        com.WriteChar('s');
+        // termination character, required for response
+        com.WriteChar(';');
+        std::array<double, 2> rollPitch = getRollPitchFromSerialData(readSerialDataBuffer());
+        //std::cout << "Roll: " << rollPitch[0] << ", Pitch: " << rollPitch[1] << std::endl;
+        frame = drawHorizonOnFeed(frame, rollPitch[0], rollPitch[1]);
         if (frame.empty()) {
             std::cerr << "frame not grabbed\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -200,7 +306,7 @@ void mjpegStreamThread(MJPEGStreamer& streamer) {
     }
 }
 
-std::string getWifiStrength(){
+/*std::string getWifiStrength(){
     std::string strength;
     std::ifstream wireless_file("/proc/net/wireless");
     if (!wireless_file.is_open()) {
@@ -223,7 +329,7 @@ std::string getWifiStrength(){
     }
     wireless_file.close();
     return "Error";
-}
+}*/
 
 int main() {
     printf("Opening port %s.\n", com.GetPort().c_str());
@@ -268,8 +374,12 @@ int main() {
         res.set_file_content("index.html", "text/html");
     });
 
+    svr.Get("/script.js", [](const httplib::Request &, httplib::Response &res) {
+        res.set_file_content("script.js", "text/javascript");
+    });
+
     svr.Get("/get_wifi_strength", [](const httplib::Request &, httplib::Response &res) {
-        res.set_file_content(getWifiStrength(), "text/plain");
+        res.set_file_content("getWifiStrength()", "text/plain");
     });
     
     svr.listen("0.0.0.0", 8008);

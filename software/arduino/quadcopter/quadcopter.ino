@@ -261,16 +261,26 @@ float getBatteryVoltage(){
 }
 
 void getDataFromNAVX() {
-  Wire.requestFrom(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT, NUM_BYTES_TO_READ);
-  delay(1);
   int i = 0;
-  while (Wire.available()) {
+  /* Transmit I2C data request */
+  Wire.beginTransmission(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT); // Begin transmitting to navX-Sensor
+  Wire.write(0x16);                                // Sends starting register address
+  Wire.write(NUM_BYTES_TO_READ);                               // Send number of bytes to read
+  Wire.endTransmission();                                      // Stop transmitting
+  
+  /* Receive the echoed value back */
+  Wire.beginTransmission(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT); // Begin transmitting to navX-Sensor
+  Wire.requestFrom(NAVX_SENSOR_DEVICE_I2C_ADDRESS_7BIT, NUM_BYTES_TO_READ);    // Send number of bytes to read
+  delay(1);
+  while(Wire.available()) {                                    // Read data (slave may send less than requested)
     navx_data[i++] = Wire.read();
   }
+  Wire.endTransmission();                                      // Stop transmitting
 
-  float yaw = IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[0]);
-  float pitch = IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[2]);
-  float roll = IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[4]);
+  /* Decode received data to floating-point orientation values */
+  float yaw =     IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[0]);   // The cast is needed on arduino
+  float pitch =   IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[2]);   // The cast is needed on arduino
+  float roll =    IMURegisters::decodeProtocolSignedHundredthsFloat((char *)&navx_data[4]);   // The cast is needed on arduino
 
   angle_current[0] = yaw;
   angle_current[1] = pitch;
